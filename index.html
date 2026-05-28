@@ -1,32 +1,588 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Webhook Sender</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discord Webhook Sender — Bola Ubi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=gg+sans:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --discord-bg: #313338;
+      --discord-sidebar: #2b2d31;
+      --discord-dark: #1e1f22;
+      --discord-input: #1e1f22;
+      --discord-text: #dbdee1;
+      --discord-muted: #80848e;
+      --discord-accent: #5865F2;
+      --discord-green: #57F287;
+      --discord-red: #ED4245;
+      --app-bg: #0f0f10;
+      --panel-bg: #18191c;
+      --border: rgba(255,255,255,0.06);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--app-bg);
+      color: var(--discord-text);
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 260px;
+      background: var(--panel-bg);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .sidebar-brand {
+      padding: 24px 20px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--discord-accent) 0%, #7289da 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    .brand-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .brand-sub {
+      font-size: 12px;
+      color: var(--discord-muted);
+      margin-top: 2px;
+    }
+
+    .sidebar-section {
+      padding: 16px 12px 8px;
+    }
+    .sidebar-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--discord-muted);
+      padding: 0 8px;
+      margin-bottom: 4px;
+    }
+
+    .channel-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--discord-muted);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .channel-item:hover { background: rgba(255,255,255,0.05); color: var(--discord-text); }
+    .channel-item.active { background: rgba(88,101,242,0.2); color: #fff; }
+    .channel-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--discord-muted);
+      line-height: 1.5;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .topbar {
+      height: 52px;
+      background: var(--panel-bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .topbar-icon { color: var(--discord-muted); font-size: 20px; }
+    .topbar-name { font-size: 15px; font-weight: 700; color: #fff; }
+    .topbar-desc { font-size: 13px; color: var(--discord-muted); margin-left: 4px; }
+    .topbar-pill {
+      margin-left: auto;
+      background: rgba(88,101,242,0.15);
+      border: 1px solid rgba(88,101,242,0.3);
+      color: var(--discord-accent);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.06em;
+    }
+
+    .content {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .preview-pane {
+      background: var(--discord-bg);
+      overflow-y: auto;
+      padding: 24px 0 0;
+      border-right: 1px solid var(--border);
+    }
+
+    .pane-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--discord-muted);
+      padding: 0 20px 10px;
+    }
+
+    .day-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 20px 16px;
+    }
+    .day-line { flex: 1; height: 1px; background: var(--border); }
+    .day-text { font-size: 12px; font-weight: 600; color: var(--discord-muted); white-space: nowrap; }
+
+    .message-wrapper {
+      display: flex;
+      gap: 14px;
+      padding: 4px 20px 20px;
+      align-items: flex-start;
+    }
+
+    .bot-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #5865F2, #57F287);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .msg-body { flex: 1; min-width: 0; }
+
+    .msg-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+      flex-wrap: wrap;
+    }
+    .bot-name-display {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .bot-badge {
+      background: #5865F2;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+    .msg-ts {
+      font-size: 12px;
+      color: var(--discord-muted);
+    }
+
+    .msg-text {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--discord-text);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .msg-text strong { color: #fff; font-weight: 700; }
+    .msg-text em { font-style: italic; }
+    .msg-text code {
+      background: #1e1f22;
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    .editor-pane {
+      background: var(--panel-bg);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .editor-section {
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .editor-section:last-child { border-bottom: none; }
+
+    .field-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--discord-muted);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"], input[type="url"], textarea {
+      width: 100%;
+      background: var(--discord-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--discord-text);
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      padding: 9px 12px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input[type="text"]:focus,
+    input[type="url"]:focus,
+    textarea:focus {
+      border-color: rgba(88,101,242,0.6);
+    }
+    input::placeholder, textarea::placeholder { color: var(--discord-muted); }
+
+    textarea {
+      min-height: 200px;
+      resize: vertical;
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .field-hint {
+      font-size: 11px;
+      color: var(--discord-muted);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .char-count {
+      text-align: right;
+      font-size: 11px;
+      color: var(--discord-muted);
+      margin-top: 4px;
+    }
+    .char-count.warn { color: #FAA61A; }
+    .char-count.over { color: var(--discord-red); }
+
+    .webhook-row {
+      display: flex;
+      gap: 8px;
+    }
+    .webhook-row input { flex: 1; }
+
+    .send-btn {
+      height: 38px;
+      padding: 0 18px;
+      background: var(--discord-accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.1s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Nunito', sans-serif;
+    }
+    .send-btn:hover { background: #4752C4; }
+    .send-btn:active { transform: scale(0.97); }
+    .send-btn:disabled {
+      background: rgba(255,255,255,0.08);
+      color: var(--discord-muted);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .status-msg {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      min-height: 20px;
+      color: var(--discord-muted);
+    }
+    .status-msg.ok { color: var(--discord-green); }
+    .status-msg.err { color: var(--discord-red); }
+    .status-msg.loading { color: var(--discord-accent); }
+
+    .name-avatar-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .content { grid-template-columns: 1fr; }
+      .editor-pane { order: -1; }
+      .preview-pane { min-height: 400px; }
+    }
+  </style>
 </head>
 <body>
-  <input type="text" id="msg" placeholder="Masukkan pesan">
-  <button onclick="send()">Kirim</button>
 
-  <script>
-    async function send() {
-      const message = document.getElementById("msg").value;
+<div class="layout">
 
-      const res = await fetch("https://discord.com/api/webhooks/1509562601418526780/j4JhywJ657eL3RUNk1ySsG4GII6LaIN4DNbE1IKNk5kyRvls0fchg1uUiCTmh4KnpM0s", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          content: message
-        })
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">📢</div>
+      <div class="brand-title">Webhook Sender</div>
+      <div class="brand-sub">Discord Announcement Tool</div>
+    </div>
+    <div class="sidebar-section">
+      <p class="sidebar-label">Text Channels</p>
+      <div class="channel-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        announcements
+      </div>
+      <div class="channel-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        general
+      </div>
+      <div class="channel-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        rules
+      </div>
+    </div>
+    <div class="sidebar-footer">
+      Kirim pesan langsung ke<br>channel Discord lewat webhook.
+    </div>
+  </aside>
+
+  <div class="main">
+
+    <div class="topbar">
+      <svg class="topbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span class="topbar-name">announcements</span>
+      <span class="topbar-desc">— Pengumuman server</span>
+      <span class="topbar-pill">WEBHOOK</span>
+    </div>
+
+    <div class="content">
+
+      <div class="preview-pane">
+        <p class="pane-title">Preview pesan</p>
+        <div class="day-divider">
+          <div class="day-line"></div>
+          <div class="day-text" id="preview-date">Hari ini</div>
+          <div class="day-line"></div>
+        </div>
+        <div class="message-wrapper">
+          <div class="bot-avatar" id="avatar-display">📢</div>
+          <div class="msg-body">
+            <div class="msg-meta">
+              <span class="bot-name-display" id="preview-name">Bola Ubi</span>
+              <span class="bot-badge">APP</span>
+              <span class="msg-ts" id="preview-time">Hari ini pukul 10:00</span>
+            </div>
+            <div class="msg-text" id="preview-content"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="editor-pane">
+
+        <div class="editor-section">
+          <p class="field-label">Identitas pengirim</p>
+          <div class="name-avatar-row">
+            <div>
+              <input type="text" id="bot-username" placeholder="Nama bot" value="Bola Ubi" oninput="updatePreview()" />
+              <p class="field-hint">Nama pengirim</p>
+            </div>
+            <div>
+              <input type="url" id="avatar-url" placeholder="URL avatar (opsional)" oninput="updateAvatarPreview()" />
+              <p class="field-hint">Foto profil bot</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="editor-section">
+          <p class="field-label">Isi pesan</p>
+          <textarea id="msg-input" oninput="updatePreview(); updateCharCount();" placeholder="Tulis pesan announcement di sini..."></textarea>
+          <div class="char-count" id="char-count">0 / 2000</div>
+          <p class="field-hint">Gunakan **teks** untuk <strong>bold</strong>, *teks* untuk <em>italic</em>, dan `teks` untuk kode.</p>
+        </div>
+
+        <div class="editor-section">
+          <p class="field-label">Discord Webhook URL</p>
+          <div class="webhook-row">
+            <input type="text" id="webhook-url" placeholder="https://discord.com/api/webhooks/..." />
+            <button class="send-btn" id="send-btn" onclick="sendWebhook()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Kirim
+            </button>
+          </div>
+          <p class="field-hint">Discord → Channel → Edit → Integrations → Webhooks → Copy Webhook URL</p>
+          <div class="status-msg" id="status-msg"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const defaultMsg = `**Hai, terima kasih yaa sudah gabung ke server ini** 
+Di sini kalian bebas ngobrol, main, dan seru-seruan bareng!
+Tapi walau begitu, ada beberapa peraturan yang harus kalian patuhi ^^
+
+**〔 📜 PERATURAN SERVER 〕**
+
+**1.** Saling menghargai satu sama lain yaa, jangan toxic atau cari ribut. Karena server ini pengen jadi tempat yang nyaman dan ramah buat semua orang.
+**2.** Jangan spam chat, emoji, sticker, atau mention orang terus-terusan. Chill ajaa ngga sih?
+**3.** Kirim pesan di chanel yang sesuai yaa, hehe. Biar ngga berantakan.
+**4.** Dilarang kirim konten NSFW, gore, atau hal yang terlalu vulgar.
+**5.** Bercanda boleh, tapi jangan sampai bikin orang lain ngga nyaman (seperti rasisme dan diskriminasi). Okay?
+**6.** Jangan sebar data pribadi siapa pun yaa, termasuk nomor, foto, dan akun orang lain.
+**7.** Kalau ada masalah, jangan langsung ribut di chat yaa. Kalian boleh langsung kabarin Ubi.
+
+Hmm kayanya segitu aja, yang penting di sini kita seru-seruan bareng, nambah temen, dan sama-sama bikin suasana yang nyaman 
+Semoga betah ya, dan selamat bergabung di dunia perumbi-umbian`;
+
+  function renderMarkdown(text) {
+    return text
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/`(.+?)`/g, '<code>$1</code>')
+      .replace(/\n/g, '<br>');
+  }
+
+  function updatePreview() {
+    const text = document.getElementById('msg-input').value;
+    const name = document.getElementById('bot-username').value || 'Bot';
+    document.getElementById('preview-content').innerHTML = renderMarkdown(text);
+    document.getElementById('preview-name').textContent = name;
+
+    const now = new Date();
+    const time = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    document.getElementById('preview-time').textContent = `Hari ini pukul ${time}`;
+    document.getElementById('preview-date').textContent = now.toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' });
+  }
+
+  function updateAvatarPreview() {
+    const url = document.getElementById('avatar-url').value.trim();
+    const el = document.getElementById('avatar-display');
+    if (url) {
+      el.innerHTML = `<img src="${url}" style="width:40px;height:40px;border-radius:50%;object-fit:cover" onerror="this.parentElement.textContent='📢'" />`;
+    } else {
+      el.textContent = '📢';
+    }
+  }
+
+  function updateCharCount() {
+    const len = document.getElementById('msg-input').value.length;
+    const el = document.getElementById('char-count');
+    el.textContent = `${len} / 2000`;
+    el.className = 'char-count' + (len > 2000 ? ' over' : len > 1800 ? ' warn' : '');
+  }
+
+  async function sendWebhook() {
+    const url = document.getElementById('webhook-url').value.trim();
+    const content = document.getElementById('msg-input').value.trim();
+    const username = document.getElementById('bot-username').value.trim() || 'Bot';
+    const avatarUrl = document.getElementById('avatar-url').value.trim();
+    const btn = document.getElementById('send-btn');
+    const status = document.getElementById('status-msg');
+
+    if (!url) { setStatus('err', '❌ Masukkan webhook URL dulu ya!'); return; }
+    if (!url.startsWith('https://discord.com/api/webhooks/')) {
+      setStatus('err', '❌ URL tidak valid. Harus dimulai dengan https://discord.com/api/webhooks/');
+      return;
+    }
+    if (!content) { setStatus('err', '❌ Pesan masih kosong nih!'); return; }
+    if (content.length > 2000) { setStatus('err', '❌ Pesan terlalu panjang (maks 2000 karakter).'); return; }
+
+    btn.disabled = true;
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 1s linear infinite"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Mengirim...';
+    setStatus('loading', '⏳ Menghubungkan ke Discord...');
+
+    const payload = { content, username };
+    if (avatarUrl) payload.avatar_url = avatarUrl;
+
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       });
 
-      if (res.ok) {
-        alert("Pesan terkirim");
+      if (res.ok || res.status === 204) {
+        setStatus('ok', '✅ Pesan berhasil dikirim ke Discord!');
       } else {
-        alert("Error: " + res.status);
+        const err = await res.json().catch(() => ({}));
+        setStatus('err', `❌ Gagal: ${err.message || 'HTTP ' + res.status}`);
       }
+    } catch (e) {
+      setStatus('err', '❌ Gagal terhubung. Cek koneksi internetmu ya.');
     }
-  </script>
+
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Kirim';
+  }
+
+  function setStatus(type, msg) {
+    const s = document.getElementById('status-msg');
+    s.textContent = msg;
+    s.className = 'status-msg ' + type;
+  }
+
+  // Init
+  document.getElementById('msg-input').value = defaultMsg;
+  updatePreview();
+  updateCharCount();
+
+  const style = document.createElement('style');
+  style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+  document.head.appendChild(style);
+</script>
+
 </body>
 </html>
