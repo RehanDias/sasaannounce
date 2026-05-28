@@ -11,17 +11,21 @@
     async function send() {
       const message = document.getElementById("msg").value;
 
-      await fetch("https://discord.com/api/webhooks/1509562601418526780/j4JhywJ657eL3RUNk1ySsG4GII6LaIN4DNbE1IKNk5kyRvls0fchg1uUiCTmh4KnpM0s", {
+      const res = await fetch("MASUKKAN_WEBHOOK_URL_DISINI", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          message: message
+          content: message
         })
       });
 
-      alert("Pesan terkirim");
+      if (res.ok) {
+        alert("Pesan terkirim");
+      } else {
+        alert("Error: " + res.status);
+      }
     }
   </script>
 </body>
