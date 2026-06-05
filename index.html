@@ -39,10 +39,6 @@
             from { opacity: 0; transform: translateY(22px); }
             to   { opacity: 1; transform: translateY(0); }
         }
-        @keyframes shimmer {
-            0%   { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
 
         .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle var(--dur) var(--delay) infinite ease-in-out; }
         .orb  { position: fixed; border-radius: 50%; filter: blur(110px); pointer-events: none; z-index: 0; animation: drift var(--t, 14s) ease-in-out infinite alternate; }
@@ -118,6 +114,8 @@
             flex-shrink: 0;
         }
         .hook-toggle:hover { color: #c084fc; }
+
+
 
         .msg-textarea {
             width: 100%;
@@ -231,6 +229,17 @@
         .embed-desc .spoiler { background: #1e1f22; color: #1e1f22; border-radius: 3px; padding: 0 3px; cursor: pointer; user-select: none; transition: color 0.15s; }
         .embed-desc .spoiler:hover, .embed-desc .spoiler.revealed { color: #dbdee1; }
         .embed-desc .blockquote { display: block; border-left: 3px solid #4f545c; padding-left: 8px; color: #dcddde; margin: 1px 0; }
+
+        .content-mention {
+            display: inline-block;
+            background: rgba(88,101,242,0.3);
+            color: #c9cdfb;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.87rem;
+            font-weight: 600;
+            margin-right: 3px;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center overflow-x-hidden relative px-4 py-10 pb-24">
@@ -244,6 +253,7 @@
 
     <div class="w-full max-w-lg relative z-10">
 
+        <!-- Header -->
         <div class="text-center mb-12 slide-up" style="animation-delay:0s">
             <span class="float-icon text-5xl mb-4">📣</span>
             <h1 class="font-syne font-extrabold text-transparent bg-clip-text leading-tight" style="font-size:2.2rem;background-image:linear-gradient(130deg,#e879f9 0%,#c084fc 38%,#a78bfa 72%,#818cf8 100%);-webkit-background-clip:text;">
@@ -254,6 +264,7 @@
             </p>
         </div>
 
+        <!-- Webhook URL -->
         <div class="glass-card p-5 mb-4 slide-up" style="animation-delay:0.07s">
             <div class="section-label">🔗 Discord Webhook URL</div>
             <div class="input-wrap">
@@ -269,6 +280,7 @@
             </div>
         </div>
 
+        <!-- Format Discord -->
         <div class="glass-card p-5 mb-4 slide-up" style="animation-delay:0.13s">
             <div class="section-label">🎨 Format Discord</div>
             <p class="text-xs mb-3.5" style="color:rgba(192,132,252,0.42);">klik untuk sisipkan format ke posisi kursor ✨</p>
@@ -290,22 +302,17 @@
                 </button>
                 <button class="fmt-pill" onclick="insertFormat('||','||')">🙈 spoiler <code>||t||</code></button>
                 <button class="fmt-pill" onclick="insertQuote()">❝ quote <code>&gt; t</code></button>
-                <button class="fmt-pill" onclick="insertText('@everyone')">
-                    <span style="color:#c9cdfb;font-weight:700;">@</span> everyone
-                </button>
-                <button class="fmt-pill" onclick="insertText('@here')">
-                    <span style="color:#c9cdfb;font-weight:700;">@</span> here
-                </button>
                 <button class="fmt-pill" onclick="insertText('\n─────────────────\n')">➖ garis pemisah</button>
             </div>
         </div>
 
+        <!-- Tulis Pesan -->
         <div class="glass-card p-5 mb-4 slide-up" style="animation-delay:0.19s">
             <div class="section-label">✏️ Tulis Pesanmu</div>
             <textarea
                 class="msg-textarea"
                 id="customMsg"
-                placeholder="tulis pengumuman kamu di sini...&#10;&#10;contoh: halloooo hari ini **sasaubi** live pukul 21.00 yaa! 🔴&#10;&#10;format: **bold**, *italic*, ~~coret~~, `kode`, ||spoiler|| ✨"
+                placeholder="tulis isi pengumuman kamu di sini...&#10;&#10;contoh: halloooo hari ini **sasaubi** live pukul 21.00 yaa! 🔴&#10;&#10;format: **bold**, *italic*, ~~coret~~, `kode`, ||spoiler|| ✨"
                 oninput="handleInput(this)"
             ></textarea>
             <div class="flex items-center gap-3 mt-2.5">
@@ -316,6 +323,7 @@
             </div>
         </div>
 
+        <!-- Preview -->
         <div class="glass-card p-5 mb-5 slide-up" style="animation-delay:0.25s">
             <div class="section-label">👁️ Preview Embed Discord</div>
             <div class="rounded-xl p-4" style="background:#313338;">
@@ -338,6 +346,9 @@
                             <span class="text-white font-bold" style="font-size:0.58rem;background:#5865f2;padding:2px 5px;border-radius:3px;">BOT</span>
                             <span id="previewTs" style="font-size:0.7rem;color:#72767d;">Hari ini pukul 00:00</span>
                         </div>
+                        <!-- Mention badges di luar embed -->
+                        <div id="previewContent" style="display:none;margin-top:5px;line-height:1.6;font-size:0.87rem;color:#dbdee1;"></div>
+                        <!-- Embed box -->
                         <div class="relative overflow-hidden rounded-lg mt-2" style="background:#2b2d31;">
                             <div class="absolute left-0 top-0 bottom-0" style="width:4px;background:linear-gradient(180deg,#d946ef,#7c3aed);border-radius:4px 0 0 4px;"></div>
                             <div style="padding:0.9rem 1rem 0.9rem 1.25rem;">
@@ -361,6 +372,7 @@
             </div>
         </div>
 
+        <!-- Send Button -->
         <button
             class="send-btn slide-up"
             id="sendBtn"
@@ -372,6 +384,7 @@
 
     </div>
 
+    <!-- Toast -->
     <div
         id="toast"
         class="toast flex items-center gap-2.5 text-sm font-semibold"
@@ -382,6 +395,7 @@
     </div>
 
     <script>
+        /* ── Stars ── */
         (function () {
             const el = document.getElementById('stars');
             for (let i = 0; i < 120; i++) {
@@ -396,11 +410,27 @@
         const BOT_USERNAME = 'SasaUbi Berbicara';
         const BOT_AVATAR   = 'https://raw.githubusercontent.com/RehanDias/s0urce/refs/heads/main/sasaubi.jpeg';
 
+        /* ── Preview ── */
+        function updatePreview() {
+            const raw       = document.getElementById('customMsg').value;
+            const previewEl = document.getElementById('previewMsg');
+            const contentEl = document.getElementById('previewContent');
+
+            // @everyone selalu ditampilkan di luar embed
+            contentEl.style.display = 'block';
+            contentEl.innerHTML     = '<span class="content-mention">@everyone</span>';
+
+            previewEl.innerHTML = raw.trim()
+                ? parseDiscordMarkdown(raw)
+                : '<span style="color:#72767d;font-style:italic;">tulis pesan kamu di atas ya~ ☁️</span>';
+        }
+
+        /* ── Timestamp ── */
         function updateTs() {
             const n = new Date();
-            const h = String(n.getHours()).padStart(2,'0');
-            const m = String(n.getMinutes()).padStart(2,'0');
-            document.getElementById('previewTs').textContent = 'Hari ini pukul ' + h + ':' + m;
+            const h = String(n.getHours()).padStart(2, '0');
+            const m = String(n.getMinutes()).padStart(2, '0');
+            document.getElementById('previewTs').textContent  = 'Hari ini pukul ' + h + ':' + m;
             document.getElementById('previewDate').textContent = n.toLocaleDateString('id-ID', {
                 day: 'numeric', month: 'long', year: 'numeric'
             });
@@ -408,43 +438,35 @@
         updateTs();
         setInterval(updateTs, 15000);
 
+        /* ── Webhook toggle ── */
         function toggleWebhook() {
             const inp = document.getElementById('webhookUrl');
             const btn = document.getElementById('toggleBtn');
-            inp.type = inp.type === 'password' ? 'text' : 'password';
+            inp.type      = inp.type === 'password' ? 'text' : 'password';
             btn.textContent = inp.type === 'password' ? '👁️' : '🙈';
         }
 
+        /* ── Markdown helpers ── */
         function escHtml(t) {
             return t
-                .replace(/&/g,'&amp;')
-                .replace(/</g,'&lt;')
-                .replace(/>/g,'&gt;')
-                .replace(/"/g,'&quot;');
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
         }
 
         function parseDiscordMarkdown(raw) {
             let t = escHtml(raw);
             t = t.replace(/\|\|([\s\S]+?)\|\|/g, '<span class="spoiler" onclick="this.classList.toggle(\'revealed\')">$1</span>');
             t = t.replace(/\*\*([\s\S]+?)\*\*/g, '<strong>$1</strong>');
-            t = t.replace(/__([\s\S]+?)__/g, '<u>$1</u>');
-            t = t.replace(/\*([^\*\n]+?)\*/g, '<em>$1</em>');
-            t = t.replace(/_([^_\n]+?)_/g, '<em>$1</em>');
-            t = t.replace(/~~([\s\S]+?)~~/g, '<del>$1</del>');
-            t = t.replace(/`([^`]+?)`/g, '<code>$1</code>');
-            t = t.replace(/@everyone/g, '<span class="mention">@everyone</span>');
-            t = t.replace(/@here/g, '<span class="mention">@here</span>');
-            t = t.replace(/^&gt; (.+)$/gm, '<span class="blockquote">$1</span>');
+            t = t.replace(/__([\s\S]+?)__/g,     '<u>$1</u>');
+            t = t.replace(/\*([^\*\n]+?)\*/g,    '<em>$1</em>');
+            t = t.replace(/_([^_\n]+?)_/g,       '<em>$1</em>');
+            t = t.replace(/~~([\s\S]+?)~~/g,     '<del>$1</del>');
+            t = t.replace(/`([^`]+?)`/g,         '<code>$1</code>');
+            t = t.replace(/^&gt; (.+)$/gm,       '<span class="blockquote">$1</span>');
             t = t.replace(/\n/g, '<br>');
             return t;
-        }
-
-        function updatePreview() {
-            const raw = document.getElementById('customMsg').value;
-            const el  = document.getElementById('previewMsg');
-            el.innerHTML = raw.trim()
-                ? parseDiscordMarkdown(raw)
-                : '<span style="color:#72767d;font-style:italic;">tulis pesan kamu di atas ya~ ☁️</span>';
         }
 
         function handleInput(el) {
@@ -460,10 +482,11 @@
             updatePreview();
         }
 
+        /* ── Textarea helpers ── */
         function getTA() { return document.getElementById('customMsg'); }
 
         function insertFormat(before, after) {
-            const ta    = getTA();
+            const ta       = getTA();
             ta.focus();
             const start    = ta.selectionStart;
             const end      = ta.selectionEnd;
@@ -490,6 +513,7 @@
             handleInput(ta);
         }
 
+        /* ── Toast ── */
         function showToast(msg, type) {
             const t = document.getElementById('toast');
             t.classList.remove('show');
@@ -502,19 +526,23 @@
             setTimeout(() => t.classList.remove('show'), 3500);
         }
 
+        /* ── Send ── */
         async function sendAnnouncement() {
             const url = document.getElementById('webhookUrl').value.trim();
             const msg = document.getElementById('customMsg').value.trim();
+
             if (!msg) { showToast('Tulis pesan kamu dulu ya!', 'error'); return; }
             if (msg.length > 2000) { showToast('Pesan terlalu panjang! Maks 2000 karakter', 'error'); return; }
 
             const btn = document.getElementById('sendBtn');
-            btn.disabled = true;
+            btn.disabled  = true;
             btn.innerHTML = '<span class="send-spinner">⏳</span><span>Mengirim...</span>';
 
+            // @everyone selalu dikirim di luar embed
             const payload = {
                 username:   BOT_USERNAME,
                 avatar_url: BOT_AVATAR,
+                content:    '@everyone',
                 embeds: [{
                     color:       12615932,
                     description: msg,
@@ -539,7 +567,7 @@
             } catch (e) {
                 showToast('Koneksi error. Cek URL & internet ya!', 'error');
             } finally {
-                btn.disabled = false;
+                btn.disabled  = false;
                 btn.innerHTML = '<span>✨</span><span>Kirim ke Discord</span>';
             }
         }
