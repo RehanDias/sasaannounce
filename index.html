@@ -115,8 +115,6 @@
         }
         .hook-toggle:hover { color: #c084fc; }
 
-
-
         .msg-textarea {
             width: 100%;
             background: rgba(255,255,255,0.04);
@@ -171,6 +169,36 @@
             opacity: 0.7;
         }
 
+        /* Test button — kuning/amber */
+        .test-btn {
+            width: 100%;
+            background: transparent;
+            border: 1.5px solid rgba(251,191,36,0.35);
+            border-radius: 14px;
+            padding: 0.9rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: rgba(251,191,36,0.75);
+            cursor: pointer;
+            transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            letter-spacing: 0.02em;
+        }
+        .test-btn:hover:not(:disabled) {
+            background: rgba(251,191,36,0.07);
+            border-color: rgba(251,191,36,0.65);
+            color: #fbbf24;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(251,191,36,0.12);
+        }
+        .test-btn:active:not(:disabled) { transform: scale(0.98) translateY(0); }
+        .test-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+        /* Main send button — ungu */
         .send-btn {
             width: 100%;
             background: linear-gradient(135deg, #d946ef 0%, #a855f7 45%, #7c3aed 100%);
@@ -209,6 +237,25 @@
         .send-btn:active:not(:disabled) { transform: scale(0.98) translateY(0); }
         .send-btn:disabled { opacity: 0.38; cursor: not-allowed; }
 
+        /* Divider antara dua tombol */
+        .btn-divider {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: rgba(192,132,252,0.25);
+        }
+        .btn-divider::before, .btn-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(192,132,252,0.1);
+        }
+
         .toast {
             position: fixed;
             bottom: 2.5rem;
@@ -225,7 +272,6 @@
         .embed-desc em { font-style: italic; color: #dcddde; }
         .embed-desc del { text-decoration: line-through; color: #72767d; }
         .embed-desc u { text-decoration: underline; }
-        .embed-desc .mention { background: rgba(88,101,242,0.3); color: #c9cdfb; padding: 0 3px; border-radius: 3px; }
         .embed-desc .spoiler { background: #1e1f22; color: #1e1f22; border-radius: 3px; padding: 0 3px; cursor: pointer; user-select: none; transition: color 0.15s; }
         .embed-desc .spoiler:hover, .embed-desc .spoiler.revealed { color: #dbdee1; }
         .embed-desc .blockquote { display: block; border-left: 3px solid #4f545c; padding-left: 8px; color: #dcddde; margin: 1px 0; }
@@ -346,11 +392,13 @@
                             <span class="text-white font-bold" style="font-size:0.58rem;background:#5865f2;padding:2px 5px;border-radius:3px;">BOT</span>
                             <span id="previewTs" style="font-size:0.7rem;color:#72767d;">Hari ini pukul 00:00</span>
                         </div>
-                        <!-- Mention badges di luar embed -->
-                        <div id="previewContent" style="display:none;margin-top:5px;line-height:1.6;font-size:0.87rem;color:#dbdee1;"></div>
+                        <!-- @everyone selalu tampil di preview -->
+                        <div style="margin-top:5px;line-height:1.6;font-size:0.87rem;color:#dbdee1;">
+                            <span class="content-mention">@everyone</span>
+                        </div>
                         <!-- Embed box -->
-                        <div class="relative overflow-hidden rounded-lg mt-2" style="background:#2b2d31;">
-                            <div class="absolute left-0 top-0 bottom-0" style="width:4px;background:linear-gradient(180deg,#d946ef,#7c3aed);border-radius:4px 0 0 4px;"></div>
+                        <div id="embedBox" class="relative overflow-hidden rounded-lg mt-2" style="background:#2b2d31;">
+                            <div id="embedBar" class="absolute left-0 top-0 bottom-0" style="width:4px;background:linear-gradient(180deg,#d946ef,#7c3aed);border-radius:4px 0 0 4px;"></div>
                             <div style="padding:0.9rem 1rem 0.9rem 1.25rem;">
                                 <div
                                     id="previewMsg"
@@ -360,8 +408,8 @@
                                     <span style="color:#72767d;font-style:italic;">tulis pesan kamu di atas ya~ ☁️</span>
                                 </div>
                                 <div class="flex items-center mt-2.5" style="gap:5px;font-size:0.72rem;color:#80848e;">
-                                    <span>💜</span>
-                                    <span>sasaubi.stream</span>
+                                    <span id="previewFooterIcon">💜</span>
+                                    <span id="previewFooterText">sasaubi.stream</span>
                                     <span>•</span>
                                     <span id="previewDate">–</span>
                                 </div>
@@ -372,15 +420,18 @@
             </div>
         </div>
 
-        <!-- Send Button -->
-        <button
-            class="send-btn slide-up"
-            id="sendBtn"
-            onclick="sendAnnouncement()"
-            style="animation-delay:0.31s;"
-        >
-            <span>✨</span><span>Kirim ke Discord</span>
-        </button>
+        <!-- Buttons -->
+        <div class="slide-up" style="animation-delay:0.31s;">
+            <!-- Test Button -->
+            <button class="test-btn" id="testBtn" onclick="sendAnnouncement('test')">
+                <span>🧪</span><span>Kirim Test Dulu</span>
+            </button>
+            <div class="btn-divider">atau kalau udah yakin</div>
+            <!-- Main Send Button -->
+            <button class="send-btn" id="sendBtn" onclick="sendAnnouncement('main')">
+                <span>✨</span><span>Kirim ke Discord</span>
+            </button>
+        </div>
 
     </div>
 
@@ -409,20 +460,33 @@
 
         const BOT_USERNAME = 'SasaUbi Berbicara';
         const BOT_AVATAR   = 'https://raw.githubusercontent.com/RehanDias/s0urce/refs/heads/main/sasaubi.jpeg';
+        const WEBHOOK_MAIN = 'https://discord.com/api/webhooks/1509730907429535765/8NZKU4Iw1VfgPq7xVFntf5UMhJd33oiIQG9lfYEgtn_H43_1Kb8RejcQnGYtsAbVzU-6';
+        const WEBHOOK_TEST = 'https://discord.com/api/webhooks/1516345816325951550/Td4HeVX1oaXdgRLoCXMnTrt61wXTSw1PR_Fpj_9XTK4I57BxOPkOOXdRJnAq3FPVc2IZ';
 
         /* ── Preview ── */
-        function updatePreview() {
+        function updatePreview(isTest = false) {
             const raw       = document.getElementById('customMsg').value;
             const previewEl = document.getElementById('previewMsg');
-            const contentEl = document.getElementById('previewContent');
+            const embedBar  = document.getElementById('embedBar');
+            const footerIcon = document.getElementById('previewFooterIcon');
+            const footerText = document.getElementById('previewFooterText');
 
-            // @everyone selalu ditampilkan di luar embed
-            contentEl.style.display = 'block';
-            contentEl.innerHTML     = '<span class="content-mention">@everyone</span>';
+            if (isTest) {
+                embedBar.style.background = 'linear-gradient(180deg,#fbbf24,#f59e0b)';
+                footerIcon.textContent = '🧪';
+                footerText.textContent = 'test webhook — bukan channel utama';
+            } else {
+                embedBar.style.background = 'linear-gradient(180deg,#d946ef,#7c3aed)';
+                footerIcon.textContent = '💜';
+                footerText.textContent = 'sasaubi.stream';
+            }
 
-            previewEl.innerHTML = raw.trim()
-                ? parseDiscordMarkdown(raw)
-                : '<span style="color:#72767d;font-style:italic;">tulis pesan kamu di atas ya~ ☁️</span>';
+            if (raw.trim()) {
+                const prefix = isTest ? '<strong style="color:#fbbf24;">[TEST]</strong> ini pesan test ya!<br><br>' : '';
+                previewEl.innerHTML = prefix + parseDiscordMarkdown(raw);
+            } else {
+                previewEl.innerHTML = '<span style="color:#72767d;font-style:italic;">tulis pesan kamu di atas ya~ ☁️</span>';
+            }
         }
 
         /* ── Timestamp ── */
@@ -430,7 +494,7 @@
             const n = new Date();
             const h = String(n.getHours()).padStart(2, '0');
             const m = String(n.getMinutes()).padStart(2, '0');
-            document.getElementById('previewTs').textContent  = 'Hari ini pukul ' + h + ':' + m;
+            document.getElementById('previewTs').textContent   = 'Hari ini pukul ' + h + ':' + m;
             document.getElementById('previewDate').textContent = n.toLocaleDateString('id-ID', {
                 day: 'numeric', month: 'long', year: 'numeric'
             });
@@ -442,11 +506,11 @@
         function toggleWebhook() {
             const inp = document.getElementById('webhookUrl');
             const btn = document.getElementById('toggleBtn');
-            inp.type      = inp.type === 'password' ? 'text' : 'password';
+            inp.type        = inp.type === 'password' ? 'text' : 'password';
             btn.textContent = inp.type === 'password' ? '👁️' : '🙈';
         }
 
-        /* ── Markdown helpers ── */
+        /* ── Markdown ── */
         function escHtml(t) {
             return t
                 .replace(/&/g, '&amp;')
@@ -517,36 +581,57 @@
         function showToast(msg, type) {
             const t = document.getElementById('toast');
             t.classList.remove('show');
-            t.style.borderColor = type === 'success' ? 'rgba(74,222,128,0.3)' : 'rgba(248,113,113,0.3)';
-            t.style.color       = type === 'success' ? '#4ade80' : '#f87171';
-            document.getElementById('toastIcon').textContent = type === 'success' ? '✅' : '❌';
+            t.style.borderColor = type === 'success'
+                ? 'rgba(74,222,128,0.3)'
+                : type === 'test'
+                    ? 'rgba(251,191,36,0.3)'
+                    : 'rgba(248,113,113,0.3)';
+            t.style.color = type === 'success'
+                ? '#4ade80'
+                : type === 'test'
+                    ? '#fbbf24'
+                    : '#f87171';
+            document.getElementById('toastIcon').textContent = type === 'success' ? '✅' : type === 'test' ? '🧪' : '❌';
             document.getElementById('toastMsg').textContent  = msg;
             void t.offsetWidth;
             t.classList.add('show');
-            setTimeout(() => t.classList.remove('show'), 3500);
+            setTimeout(() => t.classList.remove('show'), 3800);
         }
 
         /* ── Send ── */
-        async function sendAnnouncement() {
-            const url = document.getElementById('webhookUrl').value.trim();
-            const msg = document.getElementById('customMsg').value.trim();
+        async function sendAnnouncement(target = 'main') {
+            const isTest  = target === 'test';
+            const url     = isTest ? WEBHOOK_TEST : WEBHOOK_MAIN;
+            const msg     = document.getElementById('customMsg').value.trim();
 
             if (!msg) { showToast('Tulis pesan kamu dulu ya!', 'error'); return; }
             if (msg.length > 2000) { showToast('Pesan terlalu panjang! Maks 2000 karakter', 'error'); return; }
 
-            const btn = document.getElementById('sendBtn');
-            btn.disabled  = true;
-            btn.innerHTML = '<span class="send-spinner">⏳</span><span>Mengirim...</span>';
+            const sendBtn = document.getElementById('sendBtn');
+            const testBtn = document.getElementById('testBtn');
+            sendBtn.disabled = true;
+            testBtn.disabled = true;
 
-            // @everyone selalu dikirim di luar embed
+            if (isTest) {
+                testBtn.innerHTML = '<span class="send-spinner">⏳</span><span>Mengirim test...</span>';
+                updatePreview(true);
+            } else {
+                sendBtn.innerHTML = '<span class="send-spinner">⏳</span><span>Mengirim...</span>';
+            }
+
+            const description = isTest
+                ? `🧪 **[TEST]** ini pesan test ya, bukan announcement beneran!\n\n${msg}`
+                : msg;
+
             const payload = {
                 username:   BOT_USERNAME,
                 avatar_url: BOT_AVATAR,
                 content:    '@everyone',
+                allowed_mentions: { parse: ['everyone'] },
                 embeds: [{
-                    color:       12615932,
-                    description: msg,
-                    footer:      { text: '💜 sasaubi.stream' },
+                    color:       isTest ? 16234512 : 12615932,
+                    description: description,
+                    footer:      { text: isTest ? '🧪 test webhook — bukan channel utama' : '💜 sasaubi.stream' },
                     timestamp:   new Date().toISOString()
                 }]
             };
@@ -558,7 +643,10 @@
                     body:    JSON.stringify(payload)
                 });
                 if (res.ok || res.status === 204) {
-                    showToast('Announcement berhasil dikirim! 🎉', 'success');
+                    showToast(
+                        isTest ? 'Test berhasil! Cek channel test kamu 🧪' : 'Announcement berhasil dikirim! 🎉',
+                        isTest ? 'test' : 'success'
+                    );
                 } else {
                     let errMsg = 'cek webhook URL-nya ya';
                     try { const d = await res.json(); errMsg = d.message || errMsg; } catch (_) {}
@@ -567,8 +655,11 @@
             } catch (e) {
                 showToast('Koneksi error. Cek URL & internet ya!', 'error');
             } finally {
-                btn.disabled  = false;
-                btn.innerHTML = '<span>✨</span><span>Kirim ke Discord</span>';
+                sendBtn.disabled = false;
+                testBtn.disabled = false;
+                sendBtn.innerHTML = '<span>✨</span><span>Kirim ke Discord</span>';
+                testBtn.innerHTML = '<span>🧪</span><span>Kirim Test Dulu</span>';
+                updatePreview(false);
             }
         }
     </script>
