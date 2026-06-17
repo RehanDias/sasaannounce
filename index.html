@@ -1,667 +1,831 @@
 <!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>✨ SasaUbi Announcement</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        syne: ['Syne', 'sans-serif'],
-                        dm: ['DM Sans', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'DM Sans', sans-serif; background: #06040f; color: #ede0ff; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✨ SasaUbi Announcement</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #06040f;
+      color: #ede0ff;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.04; transform: scale(0.55); }
-            50% { opacity: 0.95; transform: scale(1.45); }
-        }
-        @keyframes drift {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(var(--dx,30px), var(--dy,20px)); }
-        }
-        @keyframes bob {
-            0%, 100% { transform: translateY(0px) rotate(-2deg); }
-            50% { transform: translateY(-14px) rotate(2.5deg); }
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(22px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.04; transform: scale(0.55); }
+      50%       { opacity: 0.9;  transform: scale(1.4);  }
+    }
+    @keyframes drift {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(var(--dx, 30px), var(--dy, 20px)); }
+    }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50%       { transform: translateY(-12px) rotate(2.5deg); }
+    }
+    @keyframes spin    { to { transform: rotate(360deg); } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes modalIn { from { opacity: 0; transform: scale(.92) translateY(14px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes pulseRing {
+      0%   { box-shadow: 0 0 0 0   rgba(168, 85, 247, .35); }
+      70%  { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0);  }
+      100% { box-shadow: 0 0 0 0   rgba(168, 85, 247, 0);   }
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
 
-        .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle var(--dur) var(--delay) infinite ease-in-out; }
-        .orb  { position: fixed; border-radius: 50%; filter: blur(110px); pointer-events: none; z-index: 0; animation: drift var(--t, 14s) ease-in-out infinite alternate; }
+    .title-word {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      font-size: 2.7rem;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: linear-gradient(110deg, #f5d0fe, #e879f9, #c084fc, #a78bfa, #c084fc, #e879f9, #f5d0fe);
+      background-size: 250% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 5s linear infinite;
+      filter: drop-shadow(0 0 22px rgba(217, 70, 239, .45)) drop-shadow(0 0 6px rgba(192, 132, 252, .3));
+      display: block;
+    }
+    .title-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: .72rem;
+      letter-spacing: .52em;
+      text-transform: uppercase;
+      color: rgba(192, 132, 252, .42);
+      display: block;
+      margin-top: .35rem;
+      padding-left: .52em;
+    }
 
-        .float-icon { animation: bob 3.8s ease-in-out infinite; display: block; }
-        .send-spinner { display: inline-block; animation: spin 0.75s linear infinite; }
-        .slide-up { animation: slideUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .star       { position: absolute; background: #fff; border-radius: 50%; animation: twinkle var(--dur) var(--delay) infinite ease-in-out; }
+    .orb        { position: fixed; border-radius: 50%; filter: blur(110px); pointer-events: none; z-index: 0; animation: drift var(--t, 14s) ease-in-out infinite alternate; }
+    .float-icon { animation: bob 3.8s ease-in-out infinite; display: block; }
+    .spinner    { display: inline-block; animation: spin .7s linear infinite; }
+    .slide-up   { animation: slideUp .5s cubic-bezier(.16, 1, .3, 1) both; }
 
-        .glass-card {
-            background: rgba(255,255,255,0.022);
-            backdrop-filter: blur(28px) saturate(1.6);
-            -webkit-backdrop-filter: blur(28px) saturate(1.6);
-            border: 1px solid rgba(192,132,252,0.1);
-            border-radius: 22px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .glass-card:hover {
-            border-color: rgba(192,132,252,0.22);
-            box-shadow: 0 12px 48px rgba(168,85,247,0.07);
-        }
+    .glass {
+      background: rgba(255, 255, 255, 0.022);
+      backdrop-filter: blur(28px) saturate(1.6);
+      -webkit-backdrop-filter: blur(28px) saturate(1.6);
+      border: 1px solid rgba(192, 132, 252, 0.1);
+      border-radius: 20px;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .glass:hover {
+      border-color: rgba(192, 132, 252, .22);
+      box-shadow: 0 10px 40px rgba(168, 85, 247, .07);
+    }
 
-        .section-label {
-            font-size: 0.63rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: rgba(192,132,252,0.55);
-            display: flex;
-            align-items: center;
-            gap: 0.65rem;
-            margin-bottom: 1rem;
-        }
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(192,132,252,0.18), transparent);
-        }
+    .sec-label {
+      font-size: .62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      color: rgba(192, 132, 252, .52);
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: .9rem;
+    }
+    .sec-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(192, 132, 252, .18), transparent);
+    }
 
-        .input-wrap {
-            display: flex;
-            align-items: center;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(192,132,252,0.13);
-            border-radius: 14px;
-            overflow: hidden;
-            transition: border-color 0.22s, box-shadow 0.22s;
-        }
-        .input-wrap:focus-within {
-            border-color: rgba(192,132,252,0.55);
-            box-shadow: 0 0 0 3px rgba(192,132,252,0.09), 0 0 24px rgba(168,85,247,0.08);
-        }
-        .hook-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            outline: none;
-            padding: 0.88rem 1.1rem;
-            color: #ede0ff;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.875rem;
-            min-width: 0;
-        }
-        .hook-input::placeholder { color: rgba(192,132,252,0.32); }
-        .hook-toggle {
-            background: transparent;
-            border: none;
-            color: rgba(192,132,252,0.4);
-            cursor: pointer;
-            padding: 0.88rem 1rem;
-            font-size: 1rem;
-            transition: color 0.2s;
-            flex-shrink: 0;
-        }
-        .hook-toggle:hover { color: #c084fc; }
+    .msg-ta {
+      width: 100%;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(192, 132, 252, .13);
+      border-radius: 12px;
+      padding: .95rem 1rem;
+      color: #ede0ff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .88rem;
+      line-height: 1.7;
+      resize: vertical;
+      min-height: 138px;
+      outline: none;
+      transition: border-color .22s, box-shadow .22s;
+    }
+    .msg-ta:focus {
+      border-color: rgba(192, 132, 252, .5);
+      box-shadow: 0 0 0 3px rgba(192, 132, 252, .09);
+    }
+    .msg-ta::placeholder { color: rgba(192, 132, 252, .3); }
+    .msg-ta::-webkit-scrollbar       { width: 4px; }
+    .msg-ta::-webkit-scrollbar-track { background: transparent; }
+    .msg-ta::-webkit-scrollbar-thumb { background: rgba(192, 132, 252, .22); border-radius: 3px; }
 
-        .msg-textarea {
-            width: 100%;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(192,132,252,0.13);
-            border-radius: 14px;
-            padding: 1rem 1.1rem;
-            color: #ede0ff;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.9rem;
-            line-height: 1.7;
-            resize: vertical;
-            min-height: 136px;
-            outline: none;
-            transition: border-color 0.22s, box-shadow 0.22s;
-        }
-        .msg-textarea:focus {
-            border-color: rgba(192,132,252,0.55);
-            box-shadow: 0 0 0 3px rgba(192,132,252,0.09);
-        }
-        .msg-textarea::placeholder { color: rgba(192,132,252,0.32); }
-        .msg-textarea::-webkit-scrollbar { width: 5px; }
-        .msg-textarea::-webkit-scrollbar-track { background: transparent; }
-        .msg-textarea::-webkit-scrollbar-thumb { background: rgba(192,132,252,0.22); border-radius: 3px; }
+    .fmt-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(192, 132, 252, .11);
+      border-radius: 8px;
+      padding: 5px 11px;
+      font-size: .71rem;
+      cursor: pointer;
+      transition: all .2s cubic-bezier(.34, 1.56, .64, 1);
+      color: rgba(192, 132, 252, .62);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+    }
+    .fmt-pill:hover {
+      border-color: rgba(192, 132, 252, .4);
+      background: rgba(192, 132, 252, .09);
+      color: #ede0ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(168, 85, 247, .12);
+    }
+    .fmt-pill:active { transform: scale(.94) translateY(0); }
 
-        .fmt-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(192,132,252,0.11);
-            border-radius: 9px;
-            padding: 5px 11px;
-            font-size: 0.72rem;
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-            color: rgba(192,132,252,0.65);
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-        }
-        .fmt-pill:hover {
-            border-color: rgba(192,132,252,0.4);
-            background: rgba(192,132,252,0.09);
-            color: #ede0ff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(168,85,247,0.12);
-        }
-        .fmt-pill:active { transform: scale(0.94) translateY(0); }
-        .fmt-pill code {
-            font-family: 'Courier New', monospace;
-            color: #c084fc;
-            font-size: 0.7em;
-            opacity: 0.7;
-        }
+    .char-track { height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .06); overflow: hidden; }
+    .char-fill  { height: 100%; border-radius: 2px; transition: width .3s, background .3s; }
 
-        /* Test button — kuning/amber */
-        .test-btn {
-            width: 100%;
-            background: transparent;
-            border: 1.5px solid rgba(251,191,36,0.35);
-            border-radius: 14px;
-            padding: 0.9rem;
-            font-family: 'Syne', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: rgba(251,191,36,0.75);
-            cursor: pointer;
-            transition: all 0.25s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            letter-spacing: 0.02em;
-        }
-        .test-btn:hover:not(:disabled) {
-            background: rgba(251,191,36,0.07);
-            border-color: rgba(251,191,36,0.65);
-            color: #fbbf24;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(251,191,36,0.12);
-        }
-        .test-btn:active:not(:disabled) { transform: scale(0.98) translateY(0); }
-        .test-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(192, 132, 252, .14);
+      border-radius: 10px;
+      padding: .5rem .85rem;
+      font-size: .75rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      color: rgba(192, 132, 252, .5);
+      cursor: pointer;
+      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(192, 132, 252, .4);
+      color: #c084fc;
+      background: rgba(192, 132, 252, .06);
+    }
 
-        /* Main send button — ungu */
-        .send-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #d946ef 0%, #a855f7 45%, #7c3aed 100%);
-            background-size: 200% auto;
-            border: none;
-            border-radius: 14px;
-            padding: 1.08rem;
-            font-family: 'Syne', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.28s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.025em;
-        }
-        .send-btn::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 55%);
-            opacity: 0;
-            transition: opacity 0.25s;
-        }
-        .send-btn:hover:not(:disabled)::after { opacity: 1; }
-        .send-btn:hover:not(:disabled) {
-            background-position: right center;
-            transform: translateY(-3px);
-            box-shadow: 0 18px 48px rgba(168,85,247,0.45), 0 0 0 1px rgba(192,132,252,0.25);
-        }
-        .send-btn:active:not(:disabled) { transform: scale(0.98) translateY(0); }
-        .send-btn:disabled { opacity: 0.38; cursor: not-allowed; }
+    .btn-test {
+      width: 100%;
+      background: transparent;
+      border: 1.5px solid rgba(251, 191, 36, .32);
+      border-radius: 12px;
+      padding: .88rem;
+      font-family: 'Syne', sans-serif;
+      font-size: .92rem;
+      font-weight: 700;
+      color: rgba(251, 191, 36, .72);
+      cursor: pointer;
+      transition: all .25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      letter-spacing: .02em;
+    }
+    .btn-test:hover:not(:disabled) {
+      background: rgba(251, 191, 36, .07);
+      border-color: rgba(251, 191, 36, .6);
+      color: #fbbf24;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(251, 191, 36, .12);
+    }
+    .btn-test:active:not(:disabled) { transform: scale(.98); }
+    .btn-test:disabled { opacity: .3; cursor: not-allowed; }
 
-        /* Divider antara dua tombol */
-        .btn-divider {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin: 0.5rem 0;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: rgba(192,132,252,0.25);
-        }
-        .btn-divider::before, .btn-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(192,132,252,0.1);
-        }
+    .btn-send {
+      width: 100%;
+      background: linear-gradient(135deg, #d946ef 0%, #a855f7 45%, #7c3aed 100%);
+      border: none;
+      border-radius: 12px;
+      padding: 1rem;
+      font-family: 'Syne', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      transition: all .28s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: .025em;
+    }
+    .btn-send::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.18) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .btn-send:hover:not(:disabled)::after { opacity: 1; }
+    .btn-send:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 44px rgba(168, 85, 247, .45), 0 0 0 1px rgba(192, 132, 252, .25);
+    }
+    .btn-send:active:not(:disabled) { transform: scale(.98); }
+    .btn-send:disabled { opacity: .35; cursor: not-allowed; }
 
-        .toast {
-            position: fixed;
-            bottom: 2.5rem;
-            left: 50%;
-            transform: translateX(-50%) translateY(150%);
-            transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
-            z-index: 999;
-            white-space: nowrap;
-        }
-        .toast.show { transform: translateX(-50%) translateY(0); }
+    .or-div {
+      display: flex; align-items: center; gap: .7rem;
+      margin: .45rem 0;
+      font-size: .63rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .18em;
+      color: rgba(192, 132, 252, .22);
+    }
+    .or-div::before, .or-div::after {
+      content: ''; flex: 1; height: 1px;
+      background: rgba(192, 132, 252, .09);
+    }
 
-        .embed-desc code { background: rgba(192,132,252,0.15); color: #c084fc; padding: 1px 5px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.85em; }
-        .embed-desc strong { color: #fff; font-weight: 700; }
-        .embed-desc em { font-style: italic; color: #dcddde; }
-        .embed-desc del { text-decoration: line-through; color: #72767d; }
-        .embed-desc u { text-decoration: underline; }
-        .embed-desc .spoiler { background: #1e1f22; color: #1e1f22; border-radius: 3px; padding: 0 3px; cursor: pointer; user-select: none; transition: color 0.15s; }
-        .embed-desc .spoiler:hover, .embed-desc .spoiler.revealed { color: #dbdee1; }
-        .embed-desc .blockquote { display: block; border-left: 3px solid #4f545c; padding-left: 8px; color: #dcddde; margin: 1px 0; }
+    .draft-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #a855f7;
+      animation: pulseRing 2s ease infinite;
+    }
 
-        .content-mention {
-            display: inline-block;
-            background: rgba(88,101,242,0.3);
-            color: #c9cdfb;
-            padding: 1px 6px;
-            border-radius: 4px;
-            font-size: 0.87rem;
-            font-weight: 600;
-            margin-right: 3px;
-        }
-    </style>
+    .tpl-panel { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(.16,1,.3,1); }
+    .tpl-panel.open { max-height: 600px; }
+    .tpl-item {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(192,132,252,.1);
+      border-radius: 10px;
+      padding: .65rem .85rem;
+      cursor: pointer;
+      transition: all .2s;
+      font-size: .78rem;
+      color: rgba(192,132,252,.6);
+    }
+    .tpl-item:hover {
+      border-color: rgba(192,132,252,.35);
+      background: rgba(192,132,252,.07);
+      color: #ede0ff;
+    }
+    .tpl-item strong { color: #c084fc; font-weight: 600; display: block; margin-bottom: 2px; }
+    .tpl-item span { opacity: .55; font-size: .7rem; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .tpl-badge {
+      display: inline-block;
+      font-size: .58rem;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+    .tpl-badge.notlive { background: rgba(248,113,113,.15); color: #f87171; }
+    .tpl-badge.live    { background: rgba(74,222,128,.12); color: #4ade80; }
+    .tpl-badge.info    { background: rgba(251,191,36,.12); color: #fbbf24; }
+
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(8px);
+      z-index: 900;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity .25s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: #0e0a1e;
+      border: 1px solid rgba(192,132,252,.2);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 380px; width: 100%;
+      animation: modalIn .35s cubic-bezier(.34,1.56,.64,1) both;
+      box-shadow: 0 30px 80px rgba(0,0,0,.8), 0 0 0 1px rgba(192,132,252,.08);
+    }
+
+    .toast {
+      position: fixed; bottom: 2.4rem; left: 50%;
+      transform: translateX(-50%) translateY(160%);
+      transition: transform .42s cubic-bezier(.34,1.56,.64,1);
+      z-index: 1000; white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    kbd {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(192,132,252,.2);
+      border-radius: 5px;
+      padding: 1px 6px;
+      font-size: .7em;
+      font-family: monospace;
+      color: rgba(192,132,252,.7);
+    }
+
+    .embed-desc code       { background: rgba(192,132,252,.15); color: #c084fc; padding: 1px 5px; border-radius: 3px; font-family: monospace; font-size: .85em; }
+    .embed-desc strong     { color: #fff; font-weight: 700; }
+    .embed-desc em         { font-style: italic; color: #dcddde; }
+    .embed-desc del        { text-decoration: line-through; color: #72767d; }
+    .embed-desc u          { text-decoration: underline; }
+    .embed-desc .spoiler   { background: #1e1f22; color: #1e1f22; border-radius: 3px; padding: 0 3px; cursor: pointer; user-select: none; transition: color .15s; }
+    .embed-desc .spoiler:hover,
+    .embed-desc .spoiler.revealed { color: #dbdee1; }
+    .embed-desc .blockquote { display: block; border-left: 3px solid #4f545c; padding-left: 8px; color: #dcddde; margin: 1px 0; }
+    .dc-mention { display: inline-block; background: rgba(88,101,242,.3); color: #c9cdfb; padding: 1px 6px; border-radius: 4px; font-size: .87rem; font-weight: 600; }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col items-center overflow-x-hidden relative px-4 py-10 pb-24">
 
-    <div id="stars" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+<body class="min-h-screen flex flex-col items-center overflow-x-hidden relative px-4 py-10 pb-28">
 
-    <div class="orb" style="width:420px;height:420px;background:rgba(168,85,247,0.065);top:-130px;right:-110px;--dx:30px;--dy:40px;--t:17s;"></div>
-    <div class="orb" style="width:320px;height:320px;background:rgba(124,58,237,0.048);bottom:4%;left:-90px;--dx:-26px;--dy:-22px;--t:22s;"></div>
-    <div class="orb" style="width:240px;height:240px;background:rgba(217,70,239,0.038);top:40%;right:-60px;--dx:20px;--dy:-32px;--t:27s;"></div>
-    <div class="orb" style="width:180px;height:180px;background:rgba(192,132,252,0.035);top:60%;left:5%;--dx:-14px;--dy:20px;--t:19s;"></div>
+  <div id="stars" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
 
-    <div class="w-full max-w-lg relative z-10">
+  <div class="orb" style="width:420px;height:420px;background:rgba(168,85,247,.06);top:-130px;right:-110px;--dx:30px;--dy:40px;--t:17s;"></div>
+  <div class="orb" style="width:320px;height:320px;background:rgba(124,58,237,.045);bottom:4%;left:-90px;--dx:-26px;--dy:-22px;--t:22s;"></div>
+  <div class="orb" style="width:240px;height:240px;background:rgba(217,70,239,.035);top:40%;right:-60px;--dx:20px;--dy:-32px;--t:27s;"></div>
 
-        <!-- Header -->
-        <div class="text-center mb-12 slide-up" style="animation-delay:0s">
-            <span class="float-icon text-5xl mb-4">📣</span>
-            <h1 class="font-syne font-extrabold text-transparent bg-clip-text leading-tight" style="font-size:2.2rem;background-image:linear-gradient(130deg,#e879f9 0%,#c084fc 38%,#a78bfa 72%,#818cf8 100%);-webkit-background-clip:text;">
-                sasaubi announcement
-            </h1>
-            <p class="text-sm mt-2.5 font-dm tracking-wide" style="color:rgba(192,132,252,0.48);">
-                kirim pengumuman cantik ke discord ✨
-            </p>
-        </div>
+  <div class="w-full max-w-lg relative z-10">
 
-        <!-- Webhook URL -->
-        <div class="glass-card p-5 mb-4 slide-up" style="animation-delay:0.07s">
-            <div class="section-label">🔗 Discord Webhook URL</div>
-            <div class="input-wrap">
-                <input
-                    type="password"
-                    id="webhookUrl"
-                    class="hook-input"
-                    placeholder="https://discord.com/api/webhooks/..."
-                    value="https://discord.com/api/webhooks/1509730907429535765/8NZKU4Iw1VfgPq7xVFntf5UMhJd33oiIQG9lfYEgtn_H43_1Kb8RejcQnGYtsAbVzU-6"
-                    readonly
-                />
-                <button class="hook-toggle" id="toggleBtn" onclick="toggleWebhook()">👁️</button>
-            </div>
-        </div>
-
-        <!-- Format Discord -->
-        <div class="glass-card p-5 mb-4 slide-up" style="animation-delay:0.13s">
-            <div class="section-label">🎨 Format Discord</div>
-            <p class="text-xs mb-3.5" style="color:rgba(192,132,252,0.42);">klik untuk sisipkan format ke posisi kursor ✨</p>
-            <div class="flex flex-wrap gap-1.5">
-                <button class="fmt-pill" onclick="insertFormat('**','**')">
-                    <strong class="text-white" style="font-size:0.8rem;">B</strong> bold <code>**t**</code>
-                </button>
-                <button class="fmt-pill" onclick="insertFormat('*','*')">
-                    <em class="text-white" style="font-size:0.8rem;">I</em> italic <code>*t*</code>
-                </button>
-                <button class="fmt-pill" onclick="insertFormat('__','__')">
-                    <span class="underline text-white" style="font-size:0.8rem;">U</span> underline <code>__t__</code>
-                </button>
-                <button class="fmt-pill" onclick="insertFormat('~~','~~')">
-                    <span class="line-through text-white" style="font-size:0.8rem;">S</span> coret <code>~~t~~</code>
-                </button>
-                <button class="fmt-pill" onclick="insertFormat('`','`')">
-                    <span style="color:#c084fc;font-family:monospace;font-size:0.78em;">&lt;/&gt;</span> kode <code>`t`</code>
-                </button>
-                <button class="fmt-pill" onclick="insertFormat('||','||')">🙈 spoiler <code>||t||</code></button>
-                <button class="fmt-pill" onclick="insertQuote()">❝ quote <code>&gt; t</code></button>
-                <button class="fmt-pill" onclick="insertText('\n─────────────────\n')">➖ garis pemisah</button>
-            </div>
-        </div>
-
-        <!-- Tulis Pesan -->
-        <div class="glass-card p-5 mb-4 slide-up" style="animation-delay:0.19s">
-            <div class="section-label">✏️ Tulis Pesanmu</div>
-            <textarea
-                class="msg-textarea"
-                id="customMsg"
-                placeholder="tulis isi pengumuman kamu di sini...&#10;&#10;contoh: halloooo hari ini **sasaubi** live pukul 21.00 yaa! 🔴&#10;&#10;format: **bold**, *italic*, ~~coret~~, `kode`, ||spoiler|| ✨"
-                oninput="handleInput(this)"
-            ></textarea>
-            <div class="flex items-center gap-3 mt-2.5">
-                <div class="flex-1 rounded-full overflow-hidden" style="height:3px;background:rgba(255,255,255,0.06);">
-                    <div id="charBar" class="h-full rounded-full transition-all duration-300" style="width:0%;background:linear-gradient(90deg,#d946ef,#a855f7);"></div>
-                </div>
-                <span id="charCount" class="text-xs flex-shrink-0 tabular-nums" style="color:rgba(192,132,252,0.48);">0 / 2000</span>
-            </div>
-        </div>
-
-        <!-- Preview -->
-        <div class="glass-card p-5 mb-5 slide-up" style="animation-delay:0.25s">
-            <div class="section-label">👁️ Preview Embed Discord</div>
-            <div class="rounded-xl p-4" style="background:#313338;">
-                <div class="flex gap-3 items-start">
-                    <img
-                        src="https://raw.githubusercontent.com/RehanDias/s0urce/refs/heads/main/sasaubi.jpeg"
-                        alt="SasaUbi"
-                        class="rounded-full flex-shrink-0 object-cover"
-                        style="width:40px;height:40px;"
-                        onerror="this.style.display='none';document.getElementById('avatarFallback').style.display='flex';"
-                    />
-                    <div
-                        id="avatarFallback"
-                        class="rounded-full flex-shrink-0 items-center justify-center text-lg"
-                        style="width:40px;height:40px;background:linear-gradient(135deg,#d946ef,#7c3aed);display:none;"
-                    >💜</div>
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center flex-wrap" style="gap:5px;">
-                            <span class="font-bold text-sm" style="color:#c084fc;">SasaUbi Berbicara</span>
-                            <span class="text-white font-bold" style="font-size:0.58rem;background:#5865f2;padding:2px 5px;border-radius:3px;">BOT</span>
-                            <span id="previewTs" style="font-size:0.7rem;color:#72767d;">Hari ini pukul 00:00</span>
-                        </div>
-                        <!-- @everyone selalu tampil di preview -->
-                        <div style="margin-top:5px;line-height:1.6;font-size:0.87rem;color:#dbdee1;">
-                            <span class="content-mention">@everyone</span>
-                        </div>
-                        <!-- Embed box -->
-                        <div id="embedBox" class="relative overflow-hidden rounded-lg mt-2" style="background:#2b2d31;">
-                            <div id="embedBar" class="absolute left-0 top-0 bottom-0" style="width:4px;background:linear-gradient(180deg,#d946ef,#7c3aed);border-radius:4px 0 0 4px;"></div>
-                            <div style="padding:0.9rem 1rem 0.9rem 1.25rem;">
-                                <div
-                                    id="previewMsg"
-                                    class="embed-desc break-words"
-                                    style="font-size:0.86rem;color:#dbdee1;line-height:1.6;min-height:1.2em;"
-                                >
-                                    <span style="color:#72767d;font-style:italic;">tulis pesan kamu di atas ya~ ☁️</span>
-                                </div>
-                                <div class="flex items-center mt-2.5" style="gap:5px;font-size:0.72rem;color:#80848e;">
-                                    <span id="previewFooterIcon">💜</span>
-                                    <span id="previewFooterText">sasaubi.stream</span>
-                                    <span>•</span>
-                                    <span id="previewDate">–</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Buttons -->
-        <div class="slide-up" style="animation-delay:0.31s;">
-            <!-- Test Button -->
-            <button class="test-btn" id="testBtn" onclick="sendAnnouncement('test')">
-                <span>🧪</span><span>Kirim Test Dulu</span>
-            </button>
-            <div class="btn-divider">atau kalau udah yakin</div>
-            <!-- Main Send Button -->
-            <button class="send-btn" id="sendBtn" onclick="sendAnnouncement('main')">
-                <span>✨</span><span>Kirim ke Discord</span>
-            </button>
-        </div>
-
+    <div class="text-center mb-10 slide-up" style="animation-delay:0s">
+      <span class="float-icon text-5xl mb-4">📣</span>
+      <h1 class="font-syne font-extrabold text-transparent bg-clip-text leading-tight"
+          style="font-size:2.15rem;background-image:linear-gradient(130deg,#e879f9 0%,#c084fc 38%,#a78bfa 72%,#818cf8 100%);-webkit-background-clip:text;">
+        sasaubi announcement
+      </h1>
+      <p class="text-xs mt-2 font-dm tracking-wide" style="color:rgba(192,132,252,.45);">
+        kirim pengumuman ke discord · <kbd>Ctrl+Enter</kbd> untuk kirim ✨
+      </p>
     </div>
 
-    <!-- Toast -->
-    <div
-        id="toast"
-        class="toast flex items-center gap-2.5 text-sm font-semibold"
-        style="background:rgba(10,7,22,0.96);border:1px solid rgba(192,132,252,0.18);border-radius:50px;padding:0.8rem 1.55rem;box-shadow:0 12px 48px rgba(0,0,0,0.55),0 0 0 1px rgba(192,132,252,0.08);"
-    >
-        <span id="toastIcon">✅</span>
-        <span id="toastMsg">Berhasil!</span>
+    <div class="glass p-5 mb-4 slide-up" style="animation-delay:.08s">
+      <div class="sec-label">🎨 Format Teks</div>
+      <div class="flex flex-wrap gap-1.5 mb-3">
+        <button class="fmt-pill" onclick="App.fmt('**','**')"><strong class="text-white" style="font-size:.78rem;">B</strong> bold</button>
+        <button class="fmt-pill" onclick="App.fmt('*','*')"><em class="text-white" style="font-size:.78rem;">I</em> italic</button>
+        <button class="fmt-pill" onclick="App.fmt('__','__')"><span class="underline text-white" style="font-size:.78rem;">U</span> underline</button>
+        <button class="fmt-pill" onclick="App.fmt('~~','~~')"><span class="line-through text-white" style="font-size:.78rem;">S</span> coret</button>
+        <button class="fmt-pill" onclick="App.fmt('`','`')"><span style="color:#c084fc;font-family:monospace;font-size:.72em;">&lt;/&gt;</span> kode</button>
+        <button class="fmt-pill" onclick="App.fmt('||','||')">🙈 spoiler</button>
+        <button class="fmt-pill" onclick="App.quote()">❝ quote</button>
+        <button class="fmt-pill" onclick="App.insert('\n─────────────────\n')">➖ garis</button>
+      </div>
+      <p class="text-xs mb-1.5" style="color:rgba(192,132,252,.3);">Emoji cepat</p>
+      <div id="emojiRow" class="flex flex-wrap gap-1"></div>
     </div>
 
-    <script>
-        /* ── Stars ── */
-        (function () {
-            const el = document.getElementById('stars');
-            for (let i = 0; i < 120; i++) {
-                const s = document.createElement('div');
-                s.className = 'star';
-                const sz = Math.random() * 2.4 + 0.2;
-                s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--dur:${2+Math.random()*5.5}s;--delay:${Math.random()*7}s`;
-                el.appendChild(s);
-            }
-        })();
+    <div class="glass p-5 mb-4 slide-up" style="animation-delay:.13s">
+      <div class="flex items-center justify-between mb-3">
+        <div class="sec-label" style="margin-bottom:0;flex:1;">✏️ Tulis Pesan</div>
+        <div class="flex items-center gap-2 ml-3">
+          <div id="draftBadge" style="display:none;" class="flex items-center gap-1.5">
+            <span class="draft-dot"></span>
+            <span style="font-size:.65rem;color:rgba(192,132,252,.45);">draft</span>
+          </div>
+          <button class="btn-ghost" onclick="App.clear()">🗑️ Bersihkan</button>
+        </div>
+      </div>
+      <textarea
+        id="customMsg"
+        class="msg-ta"
+        placeholder="tulis isi pengumuman di sini...&#10;&#10;contoh:&#10;🚫 sasaubi hari ini tidak live ya~&#10;maaf ada keperluan mendadak 🙏&#10;&#10;tip: **bold**, *italic*, ~~coret~~, `kode`, ||spoiler|| ✨"
+        oninput="App.onInput()"
+        onkeydown="App.onKeydown(event)"
+      ></textarea>
+      <div class="flex items-center gap-3 mt-2.5">
+        <div class="char-track flex-1">
+          <div id="charBar" class="char-fill" style="width:0%;background:linear-gradient(90deg,#d946ef,#a855f7);"></div>
+        </div>
+        <span id="charCount" style="font-size:.72rem;color:rgba(192,132,252,.45);flex-shrink:0;font-variant-numeric:tabular-nums;">0 / 2000</span>
+      </div>
+    </div>
 
-        const BOT_USERNAME = 'SasaUbi Berbicara';
-        const BOT_AVATAR   = 'https://raw.githubusercontent.com/RehanDias/s0urce/refs/heads/main/sasaubi.jpeg';
-        const WEBHOOK_MAIN = 'https://discord.com/api/webhooks/1509730907429535765/8NZKU4Iw1VfgPq7xVFntf5UMhJd33oiIQG9lfYEgtn_H43_1Kb8RejcQnGYtsAbVzU-6';
-        const WEBHOOK_TEST = 'https://discord.com/api/webhooks/1516345816325951550/Td4HeVX1oaXdgRLoCXMnTrt61wXTSw1PR_Fpj_9XTK4I57BxOPkOOXdRJnAq3FPVc2IZ';
+    <div class="glass p-5 mb-4 slide-up" style="animation-delay:.17s">
+      <div class="flex items-center justify-between">
+        <div class="sec-label" style="margin-bottom:0;flex:1;">📋 Template Cepat</div>
+        <button class="btn-ghost ml-3" id="tplBtn" onclick="App.toggleTpl()">▾ lihat</button>
+      </div>
+      <div id="tplPanel" class="tpl-panel">
+        <div id="tplList" class="mt-3 flex flex-col gap-2"></div>
+      </div>
+    </div>
 
-        /* ── Preview ── */
-        function updatePreview(isTest = false) {
-            const raw       = document.getElementById('customMsg').value;
-            const previewEl = document.getElementById('previewMsg');
-            const embedBar  = document.getElementById('embedBar');
-            const footerIcon = document.getElementById('previewFooterIcon');
-            const footerText = document.getElementById('previewFooterText');
+    <div class="glass p-5 mb-5 slide-up" style="animation-delay:.21s">
+      <div class="sec-label">👁️ Preview Discord</div>
+      <div class="rounded-xl p-4" style="background:#313338;">
+        <div class="flex gap-3 items-start">
+          <img src="https://raw.githubusercontent.com/RehanDias/s0urce/refs/heads/main/sasaubi.jpeg"
+               alt="avatar" class="rounded-full flex-shrink-0 object-cover" style="width:40px;height:40px;"
+               onerror="this.style.display='none';document.getElementById('avatarFb').style.display='flex';" />
+          <div id="avatarFb" class="rounded-full flex-shrink-0 items-center justify-center text-lg"
+               style="width:40px;height:40px;background:linear-gradient(135deg,#d946ef,#7c3aed);display:none;">💜</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center flex-wrap" style="gap:5px;">
+              <span class="font-bold text-sm" style="color:#c084fc;">SasaUbi Berbicara</span>
+              <span style="font-size:.57rem;background:#5865f2;color:#fff;padding:2px 5px;border-radius:3px;font-weight:700;">BOT</span>
+              <span id="previewTs" style="font-size:.7rem;color:#72767d;">Hari ini pukul 00:00</span>
+            </div>
+            <div id="previewMentionRow" style="margin-top:5px;line-height:1.6;font-size:.87rem;">
+              <span class="dc-mention">@everyone</span>
+            </div>
+            <div class="relative overflow-hidden rounded-lg mt-2" style="background:#2b2d31;">
+              <div class="absolute left-0 top-0 bottom-0" style="width:4px;background:linear-gradient(180deg,#d946ef,#7c3aed);border-radius:4px 0 0 4px;"></div>
+              <div style="padding:.9rem 1rem .9rem 1.25rem;">
+                <div id="previewMsg" class="embed-desc break-words" style="font-size:.85rem;color:#dbdee1;line-height:1.6;min-height:1.2em;">
+                  <span style="color:#72767d;font-style:italic;">tulis pesan kamu di atas ya~ ☁️</span>
+                </div>
+                <div class="flex items-center mt-2.5" style="gap:5px;font-size:.71rem;color:#80848e;">
+                  <span>💜</span>
+                  <span id="previewFooter">tiktok.com/@sasaubi</span>
+                  <span>•</span>
+                  <span id="previewDate">–</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            if (isTest) {
-                embedBar.style.background = 'linear-gradient(180deg,#fbbf24,#f59e0b)';
-                footerIcon.textContent = '🧪';
-                footerText.textContent = 'test webhook — bukan channel utama';
-            } else {
-                embedBar.style.background = 'linear-gradient(180deg,#d946ef,#7c3aed)';
-                footerIcon.textContent = '💜';
-                footerText.textContent = 'sasaubi.stream';
-            }
+    <div class="slide-up" style="animation-delay:.25s;">
+      <button class="btn-test" id="testBtn" onclick="App.send('test')">
+        <span>🧪</span><span>Kirim Test Dulu</span>
+      </button>
+      <div class="or-div">atau kalau udah yakin</div>
+      <button class="btn-send" id="sendBtn" onclick="App.confirmSend()">
+        <span>✨</span><span>Kirim ke Discord</span>
+      </button>
+    </div>
 
-            if (raw.trim()) {
-                const prefix = isTest ? '<strong style="color:#fbbf24;">[TEST]</strong> ini pesan test ya!<br><br>' : '';
-                previewEl.innerHTML = prefix + parseDiscordMarkdown(raw);
-            } else {
-                previewEl.innerHTML = '<span style="color:#72767d;font-style:italic;">tulis pesan kamu di atas ya~ ☁️</span>';
-            }
+  </div>
+
+  <div id="confirmModal" class="modal-overlay" onclick="App.closeModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="text-center mb-5">
+        <span style="font-size:2.6rem;">📣</span>
+        <h2 class="font-syne font-extrabold mt-2" style="font-size:1.2rem;color:#ede0ff;">Kirim ke Channel Utama?</h2>
+        <p class="mt-1.5 text-xs" style="color:rgba(192,132,252,.48);">Pesan akan dikirim ke semua member. Pastikan sudah benar!</p>
+        <div class="mt-2">
+          <span style="font-size:.72rem;background:rgba(192,132,252,.2);color:#c084fc;padding:3px 10px;border-radius:20px;font-weight:700;">📢 @everyone</span>
+        </div>
+      </div>
+      <div id="modalPreview" class="rounded-xl p-3 mb-4 embed-desc"
+           style="background:#2b2d31;color:#dbdee1;line-height:1.6;max-height:130px;overflow-y:auto;font-size:.8rem;"></div>
+      <div class="flex gap-3">
+        <button onclick="App.closeModal()" class="btn-ghost" style="flex:1;justify-content:center;padding:.75rem;">Batal</button>
+        <button onclick="App.send('main')" class="btn-send" style="flex:1;padding:.75rem;">
+          <span>🚀</span><span>Kirim Sekarang</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast flex items-center gap-2.5 text-sm font-semibold"
+       style="background:rgba(10,7,22,.96);border:1px solid rgba(192,132,252,.15);border-radius:50px;padding:.75rem 1.5rem;box-shadow:0 12px 48px rgba(0,0,0,.55);">
+    <span id="toastIcon">✅</span>
+    <span id="toastMsg">OK</span>
+  </div>
+
+  <script>
+  const App = (() => {
+    'use strict';
+
+    const WEBHOOK_MAIN = 'https://discord.com/api/webhooks/1509730907429535765/8NZKU4Iw1VfgPq7xVFntf5UMhJd33oiIQG9lfYEgtn_H43_1Kb8RejcQnGYtsAbVzU-6';
+    const WEBHOOK_TEST = 'https://discord.com/api/webhooks/1516345816325951550/Td4HeVX1oaXdgRLoCXMnTrt61wXTSw1PR_Fpj_9XTK4I57BxOPkOOXdRJnAq3FPVc2IZ';
+    const BOT_USERNAME = 'SasaUbi Berbicara';
+    const BOT_AVATAR   = 'https://raw.githubusercontent.com/RehanDias/s0urce/refs/heads/main/sasaubi.jpeg';
+    const EMBED_COLOR  = 12615932;
+
+    const EMOJIS = ['🔴','💜','🎉','✨','📣','🚫','⚠️','📅','🎮','📱','🔥','💫','🌸','⭐','🙏','💎'];
+
+    const TEMPLATES = [
+      {
+        label   : '🚫 Tidak live hari ini',
+        badge   : 'notlive',
+        badgeText: 'TIDAK LIVE',
+        text    : '🚫 **Hai semuanya!**\n\nSasaUbi hari ini **tidak bisa live** ya~\n\n[tulis alasannya di sini]\n\nMaaf ya udah nunggu! 🙏\nInsyaallah besok atau lusa balik lagi~ 💜',
+      },
+      {
+        label   : '⚠️ Ada gangguan teknis',
+        badge   : 'notlive',
+        badgeText: 'GANGGUAN',
+        text    : '⚠️ **Info gangguan!**\n\nHai semua, lagi ada **kendala teknis** nih~\n[tulis detail masalahnya]\n\nLagi diusahain diperbaiki ya, mohon ditunggu!\nSorry banget ganggu waktunya 🙏💜',
+      },
+      {
+        label   : '⏸️ Live dijeda / terputus',
+        badge   : 'notlive',
+        badgeText: 'JEDA',
+        text    : '⏸️ **Live lagi dijeda sebentar!**\n\nHai semua, koneksi lagi **bermasalah** nih~\nLagi di-restart, tunggu bentar ya!\n\nKalau udah stabil langsung balik lagi 💜',
+      },
+      {
+        label   : '🔴 Live sekarang di TikTok!',
+        badge   : 'live',
+        badgeText: 'LIVE',
+        text    : '🔴 **LIVE SEKARANG di TikTok!**\n\nHalloooo hari ini **sasaubi** lagi live nih!\nYuk langsung mampir dan nemenin~ ✨\n\n📱 https://www.tiktok.com/@sasaubi',
+      },
+      {
+        label   : '📅 Update jadwal live',
+        badge   : 'info',
+        badgeText: 'JADWAL',
+        text    : '📅 **Update jadwal live minggu ini!**\n\n─────────────────\n📱 **Senin** – libur\n📱 **Rabu** – 21.00 WIB\n📱 **Jumat** – 20.00 WIB\n📱 **Sabtu** – 19.00 WIB\n─────────────────\n\nJadwal bisa berubah sewaktu-waktu ya!\nPantau terus channel ini~ 💜',
+      },
+      {
+        label   : '💬 Pengumuman umum',
+        badge   : 'info',
+        badgeText: 'INFO',
+        text    : '📢 **Pengumuman!**\n\n[tulis pengumuman kamu di sini]\n\nMakasih udah selalu support **sasaubi** ya~ 💜',
+      },
+    ];
+
+    const S = {
+      tplOpen : false,
+      sending : false,
+    };
+
+    const $ = id => document.getElementById(id);
+
+    function init() {
+      _stars();
+      _emojis();
+      _templates();
+      _tick();
+      setInterval(_tick, 15000);
+
+      const draft = localStorage.getItem('sasa_draft') || '';
+      if (draft) {
+        $('customMsg').value = draft;
+        onInput();
+        $('draftBadge').style.display = 'flex';
+      }
+    }
+
+    function _stars() {
+      const el = $('stars');
+      for (let i = 0; i < 110; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        const sz = Math.random() * 2.2 + 0.2;
+        s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--dur:${2+Math.random()*5.5}s;--delay:${Math.random()*7}s`;
+        el.appendChild(s);
+      }
+    }
+
+    function _emojis() {
+      const row = $('emojiRow');
+      EMOJIS.forEach(em => {
+        const b = document.createElement('button');
+        b.className = 'fmt-pill';
+        b.style.cssText = 'padding:4px 8px;font-size:.9rem;';
+        b.textContent = em;
+        b.onclick = () => insert(em);
+        row.appendChild(b);
+      });
+    }
+
+    function _templates() {
+      const list = $('tplList');
+      TEMPLATES.forEach(t => {
+        const el = document.createElement('div');
+        el.className = 'tpl-item';
+        el.innerHTML = `<strong>${t.label}<span class="tpl-badge ${t.badge}">${t.badgeText}</span></strong><span>${t.text.replace(/\n/g,' ').slice(0,90)}…</span>`;
+        el.onclick = () => {
+          $('customMsg').value = t.text;
+          onInput();
+          showToast('Template diterapkan ✨', 'success');
+          if (S.tplOpen) toggleTpl();
+        };
+        list.appendChild(el);
+      });
+    }
+
+    function _tick() {
+      const n = new Date();
+      const h = String(n.getHours()).padStart(2,'0');
+      const m = String(n.getMinutes()).padStart(2,'0');
+      $('previewTs').textContent   = 'Hari ini pukul ' + h + ':' + m;
+      $('previewDate').textContent = n.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+    }
+
+    function _esc(t) {
+      return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function _md(raw) {
+      let t = _esc(raw);
+      t = t.replace(/\|\|([\s\S]+?)\|\|/g, '<span class="spoiler" onclick="this.classList.toggle(\'revealed\')">$1</span>');
+      t = t.replace(/\*\*([\s\S]+?)\*\*/g, '<strong>$1</strong>');
+      t = t.replace(/__([\s\S]+?)__/g,     '<u>$1</u>');
+      t = t.replace(/\*([^\*\n]+?)\*/g,    '<em>$1</em>');
+      t = t.replace(/_([^_\n]+?)_/g,       '<em>$1</em>');
+      t = t.replace(/~~([\s\S]+?)~~/g,     '<del>$1</del>');
+      t = t.replace(/`([^`]+?)`/g,         '<code>$1</code>');
+      t = t.replace(/^&gt; (.+)$/gm,       '<span class="blockquote">$1</span>');
+      t = t.replace(/\n/g, '<br>');
+      return t;
+    }
+
+    function updatePreview(isTest) {
+      const raw    = $('customMsg').value;
+      const msgEl  = $('previewMsg');
+      const footEl = $('previewFooter');
+
+      footEl.textContent = isTest ? 'test webhook — bukan channel utama' : 'tiktok.com/@sasaubi';
+
+      if (raw.trim()) {
+        const prefix = isTest ? '<strong style="color:#fbbf24;">[TEST]</strong> ini pesan test ya!<br><br>' : '';
+        msgEl.innerHTML = prefix + _md(raw);
+      } else {
+        msgEl.innerHTML = '<span style="color:#72767d;font-style:italic;">tulis pesan kamu di atas ya~ ☁️</span>';
+      }
+    }
+
+    function onInput() {
+      const ta  = $('customMsg');
+      const len = ta.value.length;
+      const cc  = $('charCount');
+      const bar = $('charBar');
+
+      cc.textContent = len + ' / 2000';
+      cc.style.color = len > 1900 ? '#f472b6' : len > 1700 ? '#fbbf24' : 'rgba(192,132,252,.45)';
+      bar.style.width = Math.min((len / 2000) * 100, 100) + '%';
+      bar.style.background = len > 1900
+        ? 'linear-gradient(90deg,#f472b6,#ec4899)'
+        : len > 1700
+          ? 'linear-gradient(90deg,#fbbf24,#f59e0b)'
+          : 'linear-gradient(90deg,#d946ef,#a855f7)';
+
+      localStorage.setItem('sasa_draft', ta.value);
+      $('draftBadge').style.display = ta.value ? 'flex' : 'none';
+      updatePreview(false);
+    }
+
+    function onKeydown(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        confirmSend();
+      }
+    }
+
+    function _ta() { return $('customMsg'); }
+
+    function fmt(before, after) {
+      const ta = _ta(); ta.focus();
+      const s = ta.selectionStart, e = ta.selectionEnd;
+      const sel = ta.value.substring(s, e) || 'teks';
+      ta.setRangeText(before + sel + after, s, e, 'end');
+      if (!ta.value.substring(s, e)) ta.setSelectionRange(s + before.length, s + before.length + sel.length);
+      onInput();
+    }
+
+    function insert(text) {
+      const ta = _ta(); ta.focus();
+      ta.setRangeText(text, ta.selectionStart, ta.selectionStart, 'end');
+      onInput();
+    }
+
+    function quote() {
+      const ta = _ta(); ta.focus();
+      const s  = ta.selectionStart;
+      const pre = (s === 0 || ta.value[s-1] === '\n') ? '> ' : '\n> ';
+      ta.setRangeText(pre, s, s, 'end');
+      onInput();
+    }
+
+    function toggleTpl() {
+      S.tplOpen = !S.tplOpen;
+      $('tplPanel').classList.toggle('open', S.tplOpen);
+      $('tplBtn').textContent = S.tplOpen ? '▴ tutup' : '▾ lihat';
+    }
+
+    function clear() {
+      if (!$('customMsg').value) return;
+      if (!confirm('Hapus semua isi pesan?')) return;
+      $('customMsg').value = '';
+      localStorage.removeItem('sasa_draft');
+      $('draftBadge').style.display = 'none';
+      onInput();
+      showToast('Pesan dihapus 🗑️', 'info');
+    }
+
+    let _toastTimer = null;
+    function showToast(msg, type) {
+      const t = $('toast');
+      clearTimeout(_toastTimer);
+      t.classList.remove('show');
+
+      const map = {
+        success : { b:'rgba(74,222,128,.3)',  c:'#4ade80', i:'✅' },
+        error   : { b:'rgba(248,113,113,.3)', c:'#f87171', i:'❌' },
+        test    : { b:'rgba(251,191,36,.3)',   c:'#fbbf24', i:'🧪' },
+        info    : { b:'rgba(192,132,252,.22)', c:'#c084fc', i:'ℹ️' },
+      };
+      const s = map[type] || map.info;
+      t.style.borderColor = s.b;
+      t.style.color       = s.c;
+      $('toastIcon').textContent = s.i;
+      $('toastMsg').textContent  = msg;
+
+      void t.offsetWidth;
+      t.classList.add('show');
+      _toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
+    }
+
+    function confirmSend() {
+      const msg = $('customMsg').value.trim();
+      if (!msg) { showToast('Tulis pesan dulu ya!', 'error'); return; }
+      if (msg.length > 2000) { showToast('Pesan terlalu panjang! Maks 2000 karakter.', 'error'); return; }
+      $('modalPreview').innerHTML = _md(msg);
+      $('confirmModal').classList.add('open');
+    }
+
+    function closeModal(e) {
+      if (!e || e.target === $('confirmModal')) {
+        $('confirmModal').classList.remove('open');
+      }
+    }
+
+    function _payload(isTest, msg) {
+      return {
+        username         : BOT_USERNAME,
+        avatar_url       : BOT_AVATAR,
+        content          : '@everyone',
+        allowed_mentions : { parse: ['everyone'] },
+        embeds: [{
+          color       : isTest ? 16234512 : EMBED_COLOR,
+          description : isTest ? `🧪 **[TEST]** ini pesan test ya!\n\n${msg}` : msg,
+          footer      : { text: isTest ? '🧪 test webhook — bukan channel utama' : '💜 tiktok.com/@sasaubi' },
+          timestamp   : new Date().toISOString(),
+        }],
+      };
+    }
+
+    async function send(target) {
+      if (S.sending) return;
+      const isTest = target === 'test';
+      const url    = isTest ? WEBHOOK_TEST : WEBHOOK_MAIN;
+      const msg    = $('customMsg').value.trim();
+
+      $('confirmModal').classList.remove('open');
+
+      if (!msg) { showToast('Tulis pesan dulu ya!', 'error'); return; }
+      if (msg.length > 2000) { showToast('Pesan terlalu panjang! Maks 2000 karakter.', 'error'); return; }
+
+      S.sending = true;
+      const sendBtn = $('sendBtn'), testBtn = $('testBtn');
+      sendBtn.disabled = testBtn.disabled = true;
+
+      if (isTest) {
+        testBtn.innerHTML = '<span class="spinner">⏳</span><span>Mengirim test…</span>';
+        updatePreview(true);
+      } else {
+        sendBtn.innerHTML = '<span class="spinner">⏳</span><span>Mengirim…</span>';
+      }
+
+      try {
+        const res = await fetch(url, {
+          method  : 'POST',
+          headers : { 'Content-Type': 'application/json' },
+          body    : JSON.stringify(_payload(isTest, msg)),
+        });
+
+        if (res.ok || res.status === 204) {
+          showToast(
+            isTest ? 'Test berhasil dikirim! Cek channel test 🧪' : 'Announcement berhasil dikirim! 🎉',
+            isTest ? 'test' : 'success'
+          );
+          if (!isTest) {
+            localStorage.removeItem('sasa_draft');
+            $('draftBadge').style.display = 'none';
+          }
+        } else {
+          let errMsg = 'cek koneksi dan coba lagi ya';
+          try { const d = await res.json(); errMsg = d.message || errMsg; } catch(_) {}
+          if (res.status === 401 || res.status === 403) errMsg = 'Webhook tidak valid atau sudah kadaluarsa';
+          if (res.status === 404) errMsg = 'Webhook tidak ditemukan (404)';
+          if (res.status === 429) errMsg = 'Terlalu banyak request, tunggu sebentar';
+          showToast('Gagal: ' + errMsg, 'error');
         }
+      } catch (err) {
+        showToast('Koneksi error. Cek internet ya!', 'error');
+      } finally {
+        S.sending = false;
+        sendBtn.disabled = testBtn.disabled = false;
+        sendBtn.innerHTML = '<span>✨</span><span>Kirim ke Discord</span>';
+        testBtn.innerHTML = '<span>🧪</span><span>Kirim Test Dulu</span>';
+        updatePreview(false);
+      }
+    }
 
-        /* ── Timestamp ── */
-        function updateTs() {
-            const n = new Date();
-            const h = String(n.getHours()).padStart(2, '0');
-            const m = String(n.getMinutes()).padStart(2, '0');
-            document.getElementById('previewTs').textContent   = 'Hari ini pukul ' + h + ':' + m;
-            document.getElementById('previewDate').textContent = n.toLocaleDateString('id-ID', {
-                day: 'numeric', month: 'long', year: 'numeric'
-            });
-        }
-        updateTs();
-        setInterval(updateTs, 15000);
+    return { init, onInput, onKeydown, fmt, insert, quote, toggleTpl, clear, confirmSend, closeModal, send };
+  })();
 
-        /* ── Webhook toggle ── */
-        function toggleWebhook() {
-            const inp = document.getElementById('webhookUrl');
-            const btn = document.getElementById('toggleBtn');
-            inp.type        = inp.type === 'password' ? 'text' : 'password';
-            btn.textContent = inp.type === 'password' ? '👁️' : '🙈';
-        }
-
-        /* ── Markdown ── */
-        function escHtml(t) {
-            return t
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;');
-        }
-
-        function parseDiscordMarkdown(raw) {
-            let t = escHtml(raw);
-            t = t.replace(/\|\|([\s\S]+?)\|\|/g, '<span class="spoiler" onclick="this.classList.toggle(\'revealed\')">$1</span>');
-            t = t.replace(/\*\*([\s\S]+?)\*\*/g, '<strong>$1</strong>');
-            t = t.replace(/__([\s\S]+?)__/g,     '<u>$1</u>');
-            t = t.replace(/\*([^\*\n]+?)\*/g,    '<em>$1</em>');
-            t = t.replace(/_([^_\n]+?)_/g,       '<em>$1</em>');
-            t = t.replace(/~~([\s\S]+?)~~/g,     '<del>$1</del>');
-            t = t.replace(/`([^`]+?)`/g,         '<code>$1</code>');
-            t = t.replace(/^&gt; (.+)$/gm,       '<span class="blockquote">$1</span>');
-            t = t.replace(/\n/g, '<br>');
-            return t;
-        }
-
-        function handleInput(el) {
-            const len = el.value.length;
-            const cc  = document.getElementById('charCount');
-            const bar = document.getElementById('charBar');
-            cc.textContent  = len + ' / 2000';
-            cc.style.color  = len > 1900 ? '#f472b6' : 'rgba(192,132,252,0.48)';
-            bar.style.width = Math.min((len / 2000) * 100, 100) + '%';
-            bar.style.background = len > 1900
-                ? 'linear-gradient(90deg,#f472b6,#ec4899)'
-                : 'linear-gradient(90deg,#d946ef,#a855f7)';
-            updatePreview();
-        }
-
-        /* ── Textarea helpers ── */
-        function getTA() { return document.getElementById('customMsg'); }
-
-        function insertFormat(before, after) {
-            const ta       = getTA();
-            ta.focus();
-            const start    = ta.selectionStart;
-            const end      = ta.selectionEnd;
-            const selected = ta.value.substring(start, end);
-            const inner    = selected || 'teks';
-            ta.setRangeText(before + inner + after, start, end, 'end');
-            if (!selected) ta.setSelectionRange(start + before.length, start + before.length + inner.length);
-            handleInput(ta);
-        }
-
-        function insertText(text) {
-            const ta = getTA();
-            ta.focus();
-            ta.setRangeText(text, ta.selectionStart, ta.selectionStart, 'end');
-            handleInput(ta);
-        }
-
-        function insertQuote() {
-            const ta  = getTA();
-            ta.focus();
-            const s   = ta.selectionStart;
-            const pre = s === 0 || ta.value[s - 1] === '\n' ? '> ' : '\n> ';
-            ta.setRangeText(pre, s, s, 'end');
-            handleInput(ta);
-        }
-
-        /* ── Toast ── */
-        function showToast(msg, type) {
-            const t = document.getElementById('toast');
-            t.classList.remove('show');
-            t.style.borderColor = type === 'success'
-                ? 'rgba(74,222,128,0.3)'
-                : type === 'test'
-                    ? 'rgba(251,191,36,0.3)'
-                    : 'rgba(248,113,113,0.3)';
-            t.style.color = type === 'success'
-                ? '#4ade80'
-                : type === 'test'
-                    ? '#fbbf24'
-                    : '#f87171';
-            document.getElementById('toastIcon').textContent = type === 'success' ? '✅' : type === 'test' ? '🧪' : '❌';
-            document.getElementById('toastMsg').textContent  = msg;
-            void t.offsetWidth;
-            t.classList.add('show');
-            setTimeout(() => t.classList.remove('show'), 3800);
-        }
-
-        /* ── Send ── */
-        async function sendAnnouncement(target = 'main') {
-            const isTest  = target === 'test';
-            const url     = isTest ? WEBHOOK_TEST : WEBHOOK_MAIN;
-            const msg     = document.getElementById('customMsg').value.trim();
-
-            if (!msg) { showToast('Tulis pesan kamu dulu ya!', 'error'); return; }
-            if (msg.length > 2000) { showToast('Pesan terlalu panjang! Maks 2000 karakter', 'error'); return; }
-
-            const sendBtn = document.getElementById('sendBtn');
-            const testBtn = document.getElementById('testBtn');
-            sendBtn.disabled = true;
-            testBtn.disabled = true;
-
-            if (isTest) {
-                testBtn.innerHTML = '<span class="send-spinner">⏳</span><span>Mengirim test...</span>';
-                updatePreview(true);
-            } else {
-                sendBtn.innerHTML = '<span class="send-spinner">⏳</span><span>Mengirim...</span>';
-            }
-
-            const description = isTest
-                ? `🧪 **[TEST]** ini pesan test ya, bukan announcement beneran!\n\n${msg}`
-                : msg;
-
-            const payload = {
-                username:   BOT_USERNAME,
-                avatar_url: BOT_AVATAR,
-                content:    '@everyone',
-                allowed_mentions: { parse: ['everyone'] },
-                embeds: [{
-                    color:       isTest ? 16234512 : 12615932,
-                    description: description,
-                    footer:      { text: isTest ? '🧪 test webhook — bukan channel utama' : '💜 sasaubi.stream' },
-                    timestamp:   new Date().toISOString()
-                }]
-            };
-
-            try {
-                const res = await fetch(url, {
-                    method:  'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body:    JSON.stringify(payload)
-                });
-                if (res.ok || res.status === 204) {
-                    showToast(
-                        isTest ? 'Test berhasil! Cek channel test kamu 🧪' : 'Announcement berhasil dikirim! 🎉',
-                        isTest ? 'test' : 'success'
-                    );
-                } else {
-                    let errMsg = 'cek webhook URL-nya ya';
-                    try { const d = await res.json(); errMsg = d.message || errMsg; } catch (_) {}
-                    showToast('Gagal dikirim: ' + errMsg, 'error');
-                }
-            } catch (e) {
-                showToast('Koneksi error. Cek URL & internet ya!', 'error');
-            } finally {
-                sendBtn.disabled = false;
-                testBtn.disabled = false;
-                sendBtn.innerHTML = '<span>✨</span><span>Kirim ke Discord</span>';
-                testBtn.innerHTML = '<span>🧪</span><span>Kirim Test Dulu</span>';
-                updatePreview(false);
-            }
-        }
-    </script>
+  document.addEventListener('DOMContentLoaded', App.init);
+  </script>
 </body>
 </html>
