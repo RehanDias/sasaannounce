@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📹 Ubi YouTube Post</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #06040f;
+      color: #ede0ff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.04; transform: scale(0.55); }
+      50%       { opacity: 0.9;  transform: scale(1.4);  }
+    }
+    @keyframes drift {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(var(--dx, 30px), var(--dy, 20px)); }
+    }
+    @keyframes bob {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50%       { transform: translateY(-12px) rotate(2.5deg); }
+    }
+    @keyframes spin    { to { transform: rotate(360deg); } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes modalIn { from { opacity: 0; transform: scale(.92) translateY(14px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes shimmer {
+      0%   { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+
+    .title-word {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      font-size: 2.7rem;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: linear-gradient(110deg, #f5d0fe, #e879f9, #c084fc, #a78bfa, #c084fc, #e879f9, #f5d0fe);
+      background-size: 250% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 5s linear infinite;
+      filter: drop-shadow(0 0 22px rgba(217, 70, 239, .45)) drop-shadow(0 0 6px rgba(192, 132, 252, .3));
+      display: block;
+    }
+
+    .star       { position: absolute; background: #fff; border-radius: 50%; animation: twinkle var(--dur) var(--delay) infinite ease-in-out; }
+    .orb        { position: fixed; border-radius: 50%; filter: blur(110px); pointer-events: none; z-index: 0; animation: drift var(--t, 14s) ease-in-out infinite alternate; }
+    .float-icon { animation: bob 3.8s ease-in-out infinite; display: block; }
+    .spinner    { display: inline-block; animation: spin .7s linear infinite; }
+    .slide-up   { animation: slideUp .5s cubic-bezier(.16, 1, .3, 1) both; }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.022);
+      backdrop-filter: blur(28px) saturate(1.6);
+      -webkit-backdrop-filter: blur(28px) saturate(1.6);
+      border: 1px solid rgba(192, 132, 252, 0.1);
+      border-radius: 20px;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .glass:hover {
+      border-color: rgba(192, 132, 252, .22);
+      box-shadow: 0 10px 40px rgba(168, 85, 247, .07);
+    }
+
+    .sec-label {
+      font-size: .62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      color: rgba(192, 132, 252, .52);
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: .9rem;
+    }
+    .sec-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(192, 132, 252, .18), transparent);
+    }
+
+    .txt-in {
+      width: 100%;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(192, 132, 252, .13);
+      border-radius: 12px;
+      padding: .85rem 1rem;
+      color: #ede0ff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .22s, box-shadow .22s;
+    }
+    .txt-in:focus {
+      border-color: rgba(192, 132, 252, .5);
+      box-shadow: 0 0 0 3px rgba(192, 132, 252, .09);
+    }
+    .txt-in::placeholder { color: rgba(192, 132, 252, .3); }
+
+    textarea.txt-in {
+      resize: vertical;
+      min-height: 88px;
+      line-height: 1.5;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .fmt-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-bottom: .7rem;
+    }
+    .fmt-btn {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(192, 132, 252, .15);
+      border-radius: 8px;
+      padding: .42rem .68rem;
+      font-size: .78rem;
+      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+      color: rgba(192, 132, 252, .65);
+      cursor: pointer;
+      transition: all .2s;
+      line-height: 1;
+    }
+    .fmt-btn:hover {
+      background: rgba(192, 132, 252, .1);
+      border-color: rgba(192, 132, 252, .4);
+      color: #c084fc;
+    }
+    .fmt-btn:active { transform: scale(.94); }
+    .fmt-btn.italic { font-style: italic; }
+    .fmt-btn.underline { text-decoration: underline; }
+    .fmt-btn.strike { text-decoration: line-through; }
+
+    .status-row {
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .74rem; margin-top: .7rem; min-height: 1.1rem;
+      color: rgba(192,132,252,.4);
+    }
+    .status-row .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+    .status-row.ok      { color: #4ade80; }
+    .status-row.err     { color: #f87171; }
+    .status-row.loading { color: #fbbf24; }
+
+    .btn-test {
+      width: 100%;
+      background: transparent;
+      border: 1.5px solid rgba(251, 191, 36, .32);
+      border-radius: 12px;
+      padding: .88rem;
+      font-size: .92rem;
+      font-weight: 700;
+      color: rgba(251, 191, 36, .72);
+      cursor: pointer;
+      transition: all .25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      letter-spacing: .02em;
+    }
+    .btn-test:hover:not(:disabled) {
+      background: rgba(251, 191, 36, .07);
+      border-color: rgba(251, 191, 36, .6);
+      color: #fbbf24;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(251, 191, 36, .12);
+    }
+    .btn-test:active:not(:disabled) { transform: scale(.98); }
+    .btn-test:disabled { opacity: .3; cursor: not-allowed; }
+
+    .btn-send {
+      width: 100%;
+      background: linear-gradient(135deg, #d946ef 0%, #a855f7 45%, #7c3aed 100%);
+      border: none;
+      border-radius: 12px;
+      padding: 1.05rem;
+      font-size: .97rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      transition: all .28s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: .025em;
+    }
+    .btn-send::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.18) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .btn-send:hover:not(:disabled)::after { opacity: 1; }
+    .btn-send:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 44px rgba(168, 85, 247, .45), 0 0 0 1px rgba(192, 132, 252, .25);
+    }
+    .btn-send:active:not(:disabled) { transform: scale(.98); }
+    .btn-send:disabled { opacity: .35; cursor: not-allowed; }
+
+    .or-div {
+      display: flex; align-items: center; gap: .7rem;
+      margin: .45rem 0;
+      font-size: .63rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .18em;
+      color: rgba(192, 132, 252, .22);
+    }
+    .or-div::before, .or-div::after {
+      content: ''; flex: 1; height: 1px;
+      background: rgba(192, 132, 252, .09);
+    }
+
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(8px);
+      z-index: 900;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity .25s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: #0e0a1e;
+      border: 1px solid rgba(192,132,252,.2);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 380px; width: 100%;
+      animation: modalIn .35s cubic-bezier(.34,1.56,.64,1) both;
+      box-shadow: 0 30px 80px rgba(0,0,0,.8), 0 0 0 1px rgba(192,132,252,.08);
+    }
+
+    .toast {
+      position: fixed; bottom: 2.4rem; left: 50%;
+      transform: translateX(-50%) translateY(160%);
+      transition: transform .42s cubic-bezier(.34,1.56,.64,1);
+      z-index: 1000; white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    kbd {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(192,132,252,.2);
+      border-radius: 5px;
+      padding: 1px 6px;
+      font-size: .7em;
+      font-family: monospace;
+      color: rgba(192,132,252,.7);
+    }
+
+    .embed-desc strong { color: #fff; font-weight: 700; }
+    .embed-desc u { text-decoration: underline; }
+    .embed-desc s { text-decoration: line-through; }
+    .embed-desc em { font-style: italic; }
+
+    .dc-code {
+      background: #1e1f22;
+      color: #e3e5e8;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: .85em;
+    }
+    .dc-spoiler {
+      background: #1a1b1e;
+      color: transparent;
+      border-radius: 3px;
+      padding: 0 2px;
+      cursor: pointer;
+      transition: color .12s, background .12s;
+    }
+    .dc-spoiler.revealed {
+      color: #dbdee1;
+      background: #2b2d31;
+    }
+    .dc-quote {
+      border-left: 4px solid #4f545c;
+      padding-left: .6rem;
+      margin: .2rem 0;
+      color: #c2c5cb;
+    }
+    .dc-hr {
+      border: none;
+      border-top: 1px solid #3f4147;
+      margin: .45rem 0;
+    }
+
+    .yt-thumb-wrap {
+      position: relative; width: 100%; border-radius: 8px; overflow: hidden;
+      background: #1a1b1e; aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .yt-thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .yt-thumb-empty { color: rgba(192,132,252,.28); font-size: .78rem; text-align: center; padding: 1rem; }
+
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center overflow-x-hidden relative px-4 py-10 pb-28">
+
+  <div id="stars" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+  <div class="orb" style="width:420px;height:420px;background:rgba(168,85,247,.06);top:-130px;right:-110px;--dx:30px;--dy:40px;--t:17s;"></div>
+  <div class="orb" style="width:320px;height:320px;background:rgba(124,58,237,.045);bottom:4%;left:-90px;--dx:-26px;--dy:-22px;--t:22s;"></div>
+  <div class="orb" style="width:240px;height:240px;background:rgba(217,70,239,.035);top:40%;right:-60px;--dx:20px;--dy:-32px;--t:27s;"></div>
+
+  <div class="w-full max-w-lg relative z-10">
+
+    <div class="text-center mb-10 slide-up" style="animation-delay:0s">
+      <span class="float-icon text-5xl mb-4">📹</span>
+      <h1 class="title-word" style="font-size:2rem;">ubi youtube post</h1>
+      <p class="text-xs mt-2 font-dm tracking-wide" style="color:rgba(192,132,252,.45);">
+        tempel link, otomatis kekirim ke discord dengan @everyone ✨
+      </p>
+    </div>
+
+    <div class="glass p-5 mb-4 slide-up" style="animation-delay:.05s">
+      <div class="sec-label">🔗 Link Video</div>
+      <input id="ytUrl" type="text" class="txt-in" placeholder="https://youtube.com/watch?v=..." oninput="App.onUrlInput()" autofocus />
+      <div id="statusRow" class="status-row"><span class="dot"></span><span id="statusText">tempel link video di atas, sisanya otomatis</span></div>
+    </div>
+
+    <div class="glass p-5 mb-4 slide-up" style="animation-delay:.07s">
+      <div class="sec-label">✍️ Caption</div>
+      <div class="fmt-row">
+        <button type="button" class="fmt-btn" onclick="App.formatText('bold')" title="Bold">B</button>
+        <button type="button" class="fmt-btn italic" onclick="App.formatText('italic')" title="Italic">I</button>
+        <button type="button" class="fmt-btn underline" onclick="App.formatText('underline')" title="Underline">U</button>
+        <button type="button" class="fmt-btn strike" onclick="App.formatText('strike')" title="Strikethrough">S</button>
+        <button type="button" class="fmt-btn" onclick="App.formatText('code')" title="Kode">&lt;/&gt;</button>
+        <button type="button" class="fmt-btn" onclick="App.formatText('spoiler')" title="Spoiler">🙈</button>
+        <button type="button" class="fmt-btn" onclick="App.formatText('quote')" title="Quote">❝</button>
+        <button type="button" class="fmt-btn" onclick="App.formatText('divider')" title="Garis Pembatas">➖</button>
+      </div>
+      <textarea id="captionInput" class="txt-in" placeholder="Tulis caption kamu sendiri di sini... (opsional, kosongin aja kalau ga mau ada caption)" oninput="App.onCaptionInput()"></textarea>
+      <div class="status-row" style="color:rgba(192,132,252,.32);"><span id="captionHint">kosongin = ga ada caption yang dikirim</span></div>
+    </div>
+
+    <div class="glass p-5 mb-5 slide-up" style="animation-delay:.09s">
+      <div class="sec-label">👁️ Preview Discord</div>
+      <div class="rounded-xl p-4" style="background:#313338;">
+        <div class="flex gap-3 items-start">
+          <img src="https://raw.githubusercontent.com/RehanDias/s0urce/refs/heads/main/sasaubi.jpeg"
+               alt="avatar" class="rounded-full flex-shrink-0 object-cover" style="width:40px;height:40px;"
+               onerror="this.style.display='none';document.getElementById('avatarFb').style.display='flex';" />
+          <div id="avatarFb" class="rounded-full flex-shrink-0 items-center justify-center text-lg"
+               style="width:40px;height:40px;background:linear-gradient(135deg,#d946ef,#7c3aed);display:none;">💜</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center flex-wrap" style="gap:5px;">
+              <span class="font-bold text-sm" style="color:#c084fc;">Ubi YouTube Post</span>
+              <span style="font-size:.57rem;background:#5865f2;color:#fff;padding:2px 5px;border-radius:3px;font-weight:700;">BOT</span>
+              <span id="previewTs" style="font-size:.7rem;color:#72767d;">Hari ini pukul 00:00</span>
+            </div>
+            <div style="margin-top:5px;line-height:1.6;font-size:.87rem;">
+              <span class="dc-mention" style="display:inline-block;background:rgba(88,101,242,.3);color:#c9cdfb;padding:1px 6px;border-radius:4px;font-size:.87rem;font-weight:600;">@everyone</span>
+            </div>
+            <div class="relative overflow-hidden rounded-lg mt-2" style="background:#2b2d31;">
+              <div class="absolute left-0 top-0 bottom-0" style="width:4px;background:linear-gradient(180deg,#d946ef,#7c3aed);border-radius:4px 0 0 4px;"></div>
+              <div style="padding:.9rem 1rem .9rem 1.25rem;">
+                <div id="previewAuthor" style="font-size:.8rem;color:#dbdee1;font-weight:600;margin-bottom:3px;display:none;"></div>
+                <div id="previewTitle" style="font-size:.92rem;color:#00a8fc;font-weight:600;margin-bottom:4px;display:none;"></div>
+                <div id="previewMsg" class="embed-desc break-words" style="font-size:.85rem;color:#dbdee1;line-height:1.6;min-height:1.2em;">
+                  <span style="color:#72767d;font-style:italic;">nunggu link video ya~ ☁️</span>
+                </div>
+                <div id="previewImgWrap" class="mt-2.5 rounded-md overflow-hidden" style="display:none;">
+                  <img id="previewImg" src="" style="width:100%;display:block;" />
+                </div>
+                <div class="flex items-center mt-2.5" style="gap:5px;font-size:.71rem;color:#80848e;">
+                  <span>💜</span>
+                  <span id="previewFooter">youtube.com/@sasaubi</span>
+                  <span>•</span>
+                  <span id="previewDate">–</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-up" style="animation-delay:.13s;">
+      <button class="btn-test" id="testBtn" onclick="App.send('test')" disabled>
+        <span>🧪</span><span>Kirim Test Dulu</span>
+      </button>
+      <div class="or-div">atau kalau udah yakin</div>
+      <button class="btn-send" id="sendBtn" onclick="App.confirmSend()" disabled>
+        <span>✨</span><span>Kirim ke Discord</span>
+      </button>
+    </div>
+
+  </div>
+
+  <div id="confirmModal" class="modal-overlay" onclick="App.closeModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="text-center mb-5">
+        <span style="font-size:2.6rem;">📹</span>
+        <h2 class="font-extrabold mt-2" style="font-size:1.2rem;color:#ede0ff;">Kirim ke Channel Utama?</h2>
+        <p class="mt-1.5 text-xs" style="color:rgba(192,132,252,.48);">Notif video akan dikirim dengan @everyone. Pastikan link videonya sudah bener!</p>
+        <div class="mt-2">
+          <span style="font-size:.72rem;background:rgba(192,132,252,.2);color:#c084fc;padding:3px 10px;border-radius:20px;font-weight:700;">📢 @everyone</span>
+        </div>
+      </div>
+      <div id="modalPreview" class="rounded-xl p-3 mb-4" style="background:#2b2d31;color:#dbdee1;line-height:1.6;max-height:180px;overflow-y:auto;font-size:.8rem;"></div>
+      <div class="flex gap-3">
+        <button onclick="App.closeModal()" class="btn-test" style="border-color:rgba(192,132,252,.18);color:rgba(192,132,252,.55);flex:1;">Batal</button>
+        <button onclick="App.send('main')" class="btn-send" style="flex:1;padding:.75rem;">
+          <span>🚀</span><span>Kirim Sekarang</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast flex items-center gap-2.5 text-sm font-semibold"
+       style="background:rgba(10,7,22,.96);border:1px solid rgba(192,132,252,.15);border-radius:50px;padding:.75rem 1.5rem;box-shadow:0 12px 48px rgba(0,0,0,.55);">
+    <span id="toastIcon">✅</span>
+    <span id="toastMsg">OK</span>
+  </div>
+
+  <script>
+  const App = (() => {
+    'use strict';
+
+    const WEBHOOK_MAIN = 'https://discord.com/api/webhooks/1549042613363937400/j2TfwQ0rV2VD6k4rVChxZtcqjrz5D7umCmF_j0Y6CLXFNZIfTt9e5zHCzpQmA8WVOcRc';
+    const WEBHOOK_TEST = 'https://discord.com/api/webhooks/1516345816325951550/Td4HeVX1oaXdgRLoCXMnTrt61wXTSw1PR_Fpj_9XTK4I57BxOPkOOXdRJnAq3FPVc2IZ';
+    const BOT_USERNAME = 'Ubi YouTube Post';
+    const BOT_AVATAR   = 'https://raw.githubusercontent.com/RehanDias/s0urce/refs/heads/main/sasaubi.jpeg';
+    const EMBED_COLOR  = 12615932;
+    const CHANNEL_NAME = 'SasaUbi';
+    const CHANNEL_URL  = 'https://www.youtube.com/@SasaUbii';
+    const FETCH_DEBOUNCE_MS = 650;
+
+    function currentCaption() {
+      return $('captionInput').value.trim();
+    }
+
+    const S = { sending: false, fetching: false, debounceTimer: null, video: null };
+
+    const $ = id => document.getElementById(id);
+
+    function init() {
+      _stars();
+      _tick();
+      setInterval(_tick, 15000);
+    }
+
+    function _stars() {
+      const el = $('stars');
+      for (let i = 0; i < 110; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        const sz = Math.random() * 2.2 + 0.2;
+        s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--dur:${2+Math.random()*5.5}s;--delay:${Math.random()*7}s`;
+        el.appendChild(s);
+      }
+    }
+
+    function _tick() {
+      const n = new Date();
+      const h = String(n.getHours()).padStart(2,'0');
+      const m = String(n.getMinutes()).padStart(2,'0');
+      $('previewTs').textContent   = 'Hari ini pukul ' + h + ':' + m;
+      $('previewDate').textContent = n.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+    }
+
+    function _esc(t) {
+      return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function _md(raw) {
+      let t = _esc(raw);
+      t = t.replace(/`([^`\n]+?)`/g, '<code class="dc-code">$1</code>');
+      t = t.replace(/\*\*\*([\s\S]+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+      t = t.replace(/\*\*([\s\S]+?)\*\*/g, '<strong>$1</strong>');
+      t = t.replace(/__([\s\S]+?)__/g, '<u>$1</u>');
+      t = t.replace(/~~([\s\S]+?)~~/g, '<s>$1</s>');
+      t = t.replace(/\*([\s\S]+?)\*/g, '<em>$1</em>');
+      t = t.replace(/\|\|([\s\S]+?)\|\|/g, '<span class="dc-spoiler" onclick="this.classList.toggle(\'revealed\')">$1</span>');
+      const lines = t.split('\n').map(line => {
+        const trimmed = line.trim();
+        if (trimmed === '---') return '<hr class="dc-hr">';
+        if (/^&gt;\s?/.test(line)) return '<div class="dc-quote">' + line.replace(/^&gt;\s?/, '') + '</div>';
+        return line;
+      });
+      return lines.join('<br>');
+    }
+
+    function _extractVideoId(url) {
+      const m = url.match(/(?:youtube\.com\/watch\?v=|youtube\.com\/shorts\/|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})/);
+      return m ? m[1] : null;
+    }
+
+    function _setStatus(text, kind) {
+      const row = $('statusRow');
+      row.className = 'status-row' + (kind ? ' ' + kind : '');
+      $('statusText').textContent = text;
+    }
+
+    function _resetVideo() {
+      S.video = null;
+      $('sendBtn').disabled = true;
+      $('testBtn').disabled = true;
+      $('previewAuthor').style.display = 'none';
+      $('previewTitle').style.display = 'none';
+      $('previewImgWrap').style.display = 'none';
+      $('previewMsg').innerHTML = '<span style="color:#72767d;font-style:italic;">nunggu link video ya~ ☁️</span>';
+    }
+
+    function onUrlInput() {
+      const raw = $('ytUrl').value.trim();
+      clearTimeout(S.debounceTimer);
+      const id = _extractVideoId(raw);
+
+      if (!raw) { _resetVideo(); _setStatus('tempel link video di atas, sisanya otomatis'); return; }
+      if (!id)  { _resetVideo(); _setStatus('link belum kelihatan valid...', 'err'); return; }
+
+      _setStatus('nunggu kamu selesai ngetik/paste...', 'loading');
+      S.debounceTimer = setTimeout(() => _fetchInfo(raw, id), FETCH_DEBOUNCE_MS);
+    }
+
+    function onCaptionInput() {
+      $('captionHint').textContent = $('captionInput').value.trim()
+        ? 'pakai caption kamu sendiri'
+        : 'kosongin = ga ada caption yang dikirim';
+
+      if (S.video) {
+        S.video.caption = currentCaption();
+        _updatePreview(false);
+      }
+    }
+
+    function formatText(type) {
+      const ta = $('captionInput');
+      const val = ta.value;
+      const start = ta.selectionStart;
+      const end = ta.selectionEnd;
+      const selected = val.substring(start, end);
+
+      const wrap = (marker) => {
+        const result = val.slice(0, start) + marker + selected + marker + val.slice(end);
+        ta.value = result;
+        const newStart = start + marker.length;
+        const newEnd = newStart + selected.length;
+        ta.focus();
+        ta.setSelectionRange(newStart, newEnd);
+      };
+
+      if (type === 'bold') wrap('**');
+      else if (type === 'italic') wrap('*');
+      else if (type === 'underline') wrap('__');
+      else if (type === 'strike') wrap('~~');
+      else if (type === 'code') wrap('`');
+      else if (type === 'spoiler') wrap('||');
+      else if (type === 'quote') {
+        const lineStart = val.lastIndexOf('\n', start - 1) + 1;
+        let lineEnd = val.indexOf('\n', end);
+        if (lineEnd === -1) lineEnd = val.length;
+        const block = val.slice(lineStart, lineEnd);
+        const quoted = block.split('\n').map(l => l.startsWith('> ') ? l : '> ' + l).join('\n');
+        ta.value = val.slice(0, lineStart) + quoted + val.slice(lineEnd);
+        ta.focus();
+        ta.setSelectionRange(lineStart, lineStart + quoted.length);
+      }
+      else if (type === 'divider') {
+        const insertPos = end;
+        const needsNewlineBefore = insertPos > 0 && val[insertPos - 1] !== '\n';
+        const insertTextValue = (needsNewlineBefore ? '\n' : '') + '---\n';
+        ta.value = val.slice(0, insertPos) + insertTextValue + val.slice(insertPos);
+        const cursor = insertPos + insertTextValue.length;
+        ta.focus();
+        ta.setSelectionRange(cursor, cursor);
+      }
+
+      onCaptionInput();
+    }
+
+    async function _fetchInfo(url, id) {
+      if (S.fetching) return;
+      S.fetching = true;
+      _setStatus('ngambil info video otomatis...', 'loading');
+
+      try {
+        const res  = await fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`);
+        if (!res.ok) throw new Error('not found');
+        const data = await res.json();
+
+        const title   = data.title || 'Video baru';
+        const thumbs  = [`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`, `https://i.ytimg.com/vi/${id}/hqdefault.jpg`];
+
+        S.video = { url, id, title, channel: CHANNEL_NAME, channelUrl: CHANNEL_URL, caption: currentCaption(), thumb: thumbs[0], thumbFallback: thumbs[1] };
+
+        $('sendBtn').disabled = false;
+        $('testBtn').disabled = false;
+        _setStatus('siap dikirim! judul & thumbnail udah otomatis keisi ✨', 'ok');
+        _updatePreview(false);
+      } catch (err) {
+        _resetVideo();
+        _setStatus('gagal ambil info video, cek lagi linknya', 'err');
+      } finally {
+        S.fetching = false;
+      }
+    }
+
+    function _updatePreview(isTest) {
+      if (!S.video) return;
+      const { title, channel, caption, thumb } = S.video;
+
+      $('previewFooter').textContent = isTest ? 'test webhook — bukan channel utama' : 'youtube.com/@SasaUbii';
+
+      $('previewAuthor').style.display = 'block';
+      $('previewAuthor').textContent   = channel;
+
+      $('previewTitle').style.display = 'block';
+      $('previewTitle').textContent   = title;
+
+      const prefix = isTest ? '<strong style="color:#fbbf24;">[TEST]</strong> ini notif test ya!<br><br>' : '';
+      if (caption) {
+        $('previewMsg').innerHTML = prefix + _md(caption);
+      } else {
+        $('previewMsg').innerHTML = prefix || '<span style="color:#72767d;font-style:italic;">(tanpa caption)</span>';
+      }
+
+      $('previewImgWrap').style.display = 'block';
+      $('previewImg').src = thumb;
+      $('previewImg').onerror = () => { $('previewImg').src = S.video.thumbFallback; };
+    }
+
+    let _toastTimer = null;
+    function showToast(msg, type) {
+      const t = $('toast');
+      clearTimeout(_toastTimer);
+      t.classList.remove('show');
+
+      const map = {
+        success : { b:'rgba(74,222,128,.3)',  c:'#4ade80', i:'✅' },
+        error   : { b:'rgba(248,113,113,.3)', c:'#f87171', i:'❌' },
+        test    : { b:'rgba(251,191,36,.3)',   c:'#fbbf24', i:'🧪' },
+        info    : { b:'rgba(192,132,252,.22)', c:'#c084fc', i:'ℹ️' },
+      };
+      const s = map[type] || map.info;
+      t.style.borderColor = s.b;
+      t.style.color       = s.c;
+      $('toastIcon').textContent = s.i;
+      $('toastMsg').textContent  = msg;
+
+      void t.offsetWidth;
+      t.classList.add('show');
+      _toastTimer = setTimeout(() => t.classList.remove('show'), 4000);
+    }
+
+    function confirmSend() {
+      if (!S.video) { showToast('Tempel link video dulu ya!', 'error'); return; }
+      const captionHtml = S.video.caption
+        ? _md(S.video.caption)
+        : '<span style="color:#72767d;font-style:italic;">(tanpa caption)</span>';
+      $('modalPreview').innerHTML = `<div style="color:#00a8fc;font-weight:600;margin-bottom:4px;">${_esc(S.video.title)}</div>` + captionHtml;
+      $('confirmModal').classList.add('open');
+    }
+
+    function closeModal(e) {
+      if (!e || e.target === $('confirmModal')) {
+        $('confirmModal').classList.remove('open');
+      }
+    }
+
+    function _payload(isTest) {
+      const { title, channel, channelUrl, caption, thumb, url } = S.video;
+
+      let description;
+      if (isTest) {
+        description = caption
+          ? `🧪 **[TEST]** ini notif test ya!\n\n${caption}`
+          : `🧪 **[TEST]** ini notif test ya!`;
+      } else if (caption) {
+        description = caption;
+      }
+
+      const embed = {
+        color       : isTest ? 16234512 : EMBED_COLOR,
+        title       : title,
+        url         : url,
+        author      : { name: channel, url: channelUrl },
+        image       : { url: thumb },
+        footer      : { text: isTest ? '🧪 test webhook — bukan channel utama' : '💜 youtube.com/@SasaUbii' },
+        timestamp   : new Date().toISOString(),
+      };
+      if (description) embed.description = description;
+
+      return {
+        username         : BOT_USERNAME,
+        avatar_url       : BOT_AVATAR,
+        content          : '@everyone',
+        allowed_mentions : { parse: ['everyone'] },
+        embeds: [embed],
+      };
+    }
+
+    async function send(target) {
+      if (S.sending) return;
+      if (!S.video) { showToast('Tempel link video dulu ya!', 'error'); $('confirmModal').classList.remove('open'); return; }
+
+      const isTest = target === 'test';
+      const url    = isTest ? WEBHOOK_TEST : WEBHOOK_MAIN;
+
+      $('confirmModal').classList.remove('open');
+
+      if (url.startsWith('PASTE_WEBHOOK')) {
+        showToast('Isi dulu WEBHOOK_' + (isTest ? 'TEST' : 'MAIN') + ' di kode ya!', 'error');
+        return;
+      }
+
+      S.sending = true;
+      const sendBtn = $('sendBtn'), testBtn = $('testBtn');
+      sendBtn.disabled = testBtn.disabled = true;
+
+      if (isTest) {
+        testBtn.innerHTML = '<span class="spinner">⏳</span><span>Mengirim test…</span>';
+        _updatePreview(true);
+      } else {
+        sendBtn.innerHTML = '<span class="spinner">⏳</span><span>Mengirim…</span>';
+      }
+
+      try {
+        const res = await fetch(url, {
+          method  : 'POST',
+          headers : { 'Content-Type': 'application/json' },
+          body    : JSON.stringify(_payload(isTest)),
+        });
+
+        if (res.ok || res.status === 204) {
+          showToast(
+            isTest ? 'Test berhasil dikirim! Cek channel test 🧪' : 'Notif video berhasil dikirim ke @everyone! 🎉',
+            isTest ? 'test' : 'success'
+          );
+          if (!isTest) {
+            $('ytUrl').value = '';
+            $('captionInput').value = '';
+            $('captionHint').textContent = 'kosongin = ga ada caption yang dikirim';
+            _resetVideo();
+            _setStatus('tempel link video di atas, sisanya otomatis');
+          }
+        } else {
+          let errMsg = 'cek koneksi dan coba lagi ya';
+          try { const d = await res.json(); errMsg = d.message || errMsg; } catch(_) {}
+          if (res.status === 401 || res.status === 403) errMsg = 'Webhook tidak valid atau sudah kadaluarsa';
+          if (res.status === 404) errMsg = 'Webhook tidak ditemukan (404)';
+          if (res.status === 429) errMsg = 'Terlalu banyak request, tunggu sebentar';
+          showToast('Gagal: ' + errMsg, 'error');
+        }
+      } catch (err) {
+        showToast('Koneksi error. Cek internet ya!', 'error');
+      } finally {
+        S.sending = false;
+        sendBtn.disabled = testBtn.disabled = !S.video;
+        sendBtn.innerHTML = '<span>✨</span><span>Kirim ke Discord</span>';
+        testBtn.innerHTML = '<span>🧪</span><span>Kirim Test Dulu</span>';
+        if (S.video) _updatePreview(false);
+      }
+    }
+
+    return { init, onUrlInput, onCaptionInput, formatText, confirmSend, closeModal, send };
+  })();
+
+  document.addEventListener('DOMContentLoaded', App.init);
+  </script>
+</body>
+</html>
