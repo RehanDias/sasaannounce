@@ -299,7 +299,7 @@
     .dc-hr {
       border: none;
       border-top: 1px solid #3f4147;
-      margin: .45rem 0;
+      margin: .5rem 0;
     }
 
     .yt-thumb-wrap {
@@ -372,15 +372,15 @@
               <span class="dc-mention" style="display:inline-block;background:rgba(88,101,242,.3);color:#c9cdfb;padding:1px 6px;border-radius:4px;font-size:.87rem;font-weight:600;">@everyone</span>
             </div>
             <div class="relative overflow-hidden rounded-lg mt-2" style="background:#2b2d31;">
-              <div class="absolute left-0 top-0 bottom-0" style="width:4px;background:linear-gradient(180deg,#d946ef,#7c3aed);border-radius:4px 0 0 4px;"></div>
+              <div id="previewAccent" class="absolute left-0 top-0 bottom-0" style="width:4px;background:#c082fc;border-radius:4px 0 0 4px;"></div>
               <div style="padding:.9rem 1rem .9rem 1.25rem;">
                 <div id="previewAuthor" style="font-size:.8rem;color:#dbdee1;font-weight:600;margin-bottom:3px;display:none;"></div>
-                <div id="previewTitle" style="font-size:.92rem;color:#00a8fc;font-weight:600;margin-bottom:4px;display:none;"></div>
+                <div id="previewTitle" style="overflow-wrap:anywhere;font-size:.92rem;color:#00a8fc;font-weight:600;margin-bottom:4px;display:none;"></div>
                 <div id="previewMsg" class="embed-desc break-words" style="font-size:.85rem;color:#dbdee1;line-height:1.6;min-height:1.2em;">
                   <span style="color:#72767d;font-style:italic;">nunggu link video ya~ ☁️</span>
                 </div>
-                <div id="previewImgWrap" class="mt-2.5 rounded-md overflow-hidden" style="display:none;">
-                  <img id="previewImg" src="" style="width:100%;display:block;" />
+                <div id="previewImgWrap" class="mt-2.5 rounded-md overflow-hidden" style="display:none;width:100%;">
+                  <img id="previewImg" src="" alt="Thumbnail video" style="width:100%;height:auto;display:block;" />
                 </div>
                 <div class="flex items-center mt-2.5" style="gap:5px;font-size:.71rem;color:#80848e;">
                   <span>💜</span>
@@ -494,7 +494,6 @@
       t = t.replace(/\|\|([\s\S]+?)\|\|/g, '<span class="dc-spoiler" onclick="this.classList.toggle(\'revealed\')">$1</span>');
       const lines = t.split('\n').map(line => {
         const trimmed = line.trim();
-        if (trimmed === '---') return '<hr class="dc-hr">';
         if (/^&gt;\s?/.test(line)) return '<div class="dc-quote">' + line.replace(/^&gt;\s?/, '') + '</div>';
         return line;
       });
@@ -536,7 +535,7 @@
 
     function onCaptionInput() {
       $('captionHint').textContent = $('captionInput').value.trim()
-        ? 'pakai caption kamu sendiri'
+        ? 'baris --- akan dikirim sebagai garis pembatas'
         : 'kosongin = ga ada caption yang dikirim';
 
       if (S.video) {
@@ -621,6 +620,7 @@
       if (!S.video) return;
       const { title, channel, caption, thumb } = S.video;
 
+      $('previewAccent').style.background = '#' + (isTest ? 16234512 : EMBED_COLOR).toString(16).padStart(6, '0');
       $('previewFooter').textContent = isTest ? 'test webhook — bukan channel utama' : 'youtube.com/@SasaUbii';
 
       $('previewAuthor').style.display = 'block';
@@ -629,16 +629,19 @@
       $('previewTitle').style.display = 'block';
       $('previewTitle').textContent   = title;
 
-      const prefix = isTest ? '<strong style="color:#fbbf24;">[TEST]</strong> ini notif test ya!<br><br>' : '';
+      const prefix = isTest ? '🧪 <strong style="color:#fbbf24;">[TEST]</strong> ini notif test ya!<br><br>' : '';
       if (caption) {
-        $('previewMsg').innerHTML = prefix + _md(caption);
+        $('previewMsg').innerHTML = prefix + _captionPreview(caption);
       } else {
-        $('previewMsg').innerHTML = prefix || '<span style="color:#72767d;font-style:italic;">(tanpa caption)</span>';
+        $('previewMsg').innerHTML = prefix;
       }
 
       $('previewImgWrap').style.display = 'block';
+      $('previewImg').onerror = () => {
+        $('previewImg').onerror = null;
+        $('previewImg').src = S.video.thumbFallback;
+      };
       $('previewImg').src = thumb;
-      $('previewImg').onerror = () => { $('previewImg').src = S.video.thumbFallback; };
     }
 
     let _toastTimer = null;
@@ -667,7 +670,7 @@
     function confirmSend() {
       if (!S.video) { showToast('Tempel link video dulu ya!', 'error'); return; }
       const captionHtml = S.video.caption
-        ? _md(S.video.caption)
+        ? _captionPreview(S.video.caption)
         : '<span style="color:#72767d;font-style:italic;">(tanpa caption)</span>';
       $('modalPreview').innerHTML = `<div style="color:#00a8fc;font-weight:600;margin-bottom:4px;">${_esc(S.video.title)}</div>` + captionHtml;
       $('confirmModal').classList.add('open');
@@ -679,35 +682,61 @@
       }
     }
 
-    function _payload(isTest) {
-      const { title, channel, channelUrl, caption, thumb, url } = S.video;
-
-      let description;
-      if (isTest) {
-        description = caption
-          ? `🧪 **[TEST]** ini notif test ya!\n\n${caption}`
-          : `🧪 **[TEST]** ini notif test ya!`;
-      } else if (caption) {
-        description = caption;
+    // Convert standalone --- lines to native Discord Separators.
+    function _captionParts(raw) {
+      const parts = [];
+      let buffer = [];
+      function flush() {
+        const content = buffer.join('\n').trim();
+        if (content) parts.push({ type: 10, content });
+        buffer = [];
       }
+      for (const line of raw.split(/\r?\n/)) {
+        if (line.trim() === '---') {
+          flush();
+          parts.push({ type: 14, divider: true, spacing: 1 });
+        } else {
+          buffer.push(line);
+        }
+      }
+      flush();
+      return parts;
+    }
 
-      const embed = {
-        color       : isTest ? 16234512 : EMBED_COLOR,
-        title       : title,
-        url         : url,
-        author      : { name: channel, url: channelUrl },
-        image       : { url: thumb },
-        footer      : { text: isTest ? '🧪 test webhook — bukan channel utama' : '💜 youtube.com/@SasaUbii' },
-        timestamp   : new Date().toISOString(),
-      };
-      if (description) embed.description = description;
+    function _captionPreview(raw) {
+      return _captionParts(raw).map(part => part.type === 14
+        ? '<hr class="dc-hr">'
+        : '<div>' + _md(part.content) + '</div>'
+      ).join('');
+    }
 
+    function _payload(isTest) {
+      const { title, channel, channelUrl, thumb, url } = S.video;
+      const escapeLabel = text => text.replace(/([\\`*_{}\[\]()<>~|])/g, '\\$1');
+      const components = [{
+        type: 10,
+        content: `**[${escapeLabel(channel)}](${channelUrl})**\n**[${escapeLabel(title)}](${url})**`,
+      }];
+      if (isTest) components.push({ type: 10, content: '🧪 **[TEST]** ini notif test ya!' });
+      components.push(..._captionParts(currentCaption()));
+      // Place the video image below the entire caption, before the footer.
+      components.push({ type: 12, items: [{ media: { url: thumb } }] });
+      const footer = isTest ? '🧪 test webhook — bukan channel utama' : '💜 youtube.com/@SasaUbii';
+      const date = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      components.push({ type: 10, content: `-# ${footer} • ${date}` });
+      // Include the outer Text Display and Container.
+      if (components.length + 2 > 40) throw new Error('Terlalu banyak garis pembatas. Kurangi jumlah garisnya ya.');
+      const textLength = components.reduce((n, c) => n + (c.content || '').length + (c.components || []).reduce((sum, child) => sum + (child.content || '').length, 0), '@everyone'.length);
+      if (textLength > 4000) throw new Error('Teks terlalu panjang. Pendekkan caption ya (maksimal total 4000 karakter).');
       return {
-        username         : BOT_USERNAME,
-        avatar_url       : BOT_AVATAR,
-        content          : '@everyone',
-        allowed_mentions : { parse: ['everyone'] },
-        embeds: [embed],
+        username: BOT_USERNAME,
+        avatar_url: BOT_AVATAR,
+        flags: 32768,
+        allowed_mentions: { parse: ['everyone'] },
+        components: [
+          { type: 10, content: '@everyone' },
+          { type: 17, accent_color: isTest ? 16234512 : EMBED_COLOR, components },
+        ],
       };
     }
 
@@ -725,6 +754,10 @@
         return;
       }
 
+      let payload;
+      try { payload = _payload(isTest); }
+      catch (err) { showToast(err.message, 'error'); return; }
+
       S.sending = true;
       const sendBtn = $('sendBtn'), testBtn = $('testBtn');
       sendBtn.disabled = testBtn.disabled = true;
@@ -737,10 +770,13 @@
       }
 
       try {
-        const res = await fetch(url, {
+        const webhookUrl = new URL(url);
+        webhookUrl.searchParams.set('with_components', 'true');
+        webhookUrl.searchParams.set('wait', 'true');
+        const res = await fetch(webhookUrl.toString(), {
           method  : 'POST',
           headers : { 'Content-Type': 'application/json' },
-          body    : JSON.stringify(_payload(isTest)),
+          body    : JSON.stringify(payload),
         });
 
         if (res.ok || res.status === 204) {
