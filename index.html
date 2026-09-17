@@ -1,183 +1,3917 @@
 <!doctype html>
 <html lang="id">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Ubi Studio — Community Workspace</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
-<style>:root{color-scheme:dark;--bg:#0c0c10;--panel:#131318;--line:#292830;--text:#eceaf2;--muted:#96939f;--purple:#bba0ff;--accent:#9165ed;--green:#9bddb6}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.6 'Plus Jakarta Sans',sans-serif}button,input,textarea,select{font:inherit}button,a,input,textarea,select{outline-offset:4px}button{cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}button{color:inherit}a{color:var(--purple)}.ti{font-size:20px;line-height:1}button .ti{pointer-events:none}button{display:inline-flex;align-items:center;justify-content:center;gap:9px}button:focus-visible,a:focus-visible{outline:2px solid var(--purple)}.shell{display:grid;grid-template-columns:224px minmax(0,1fr);min-height:100vh}.sidebar{padding:32px 20px;border-right:1px solid var(--line);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;background:#101014}.brand{display:flex;align-items:center;gap:11px;font-size:21px;font-weight:800;letter-spacing:-1px}.brandmark{background:linear-gradient(145deg,#b894ff,#6b3bcc);border:1px solid #d4baff66;width:38px;height:38px;display:grid;place-items:center;border-radius:12px;color:white;box-shadow:0 4px 20px #9760ed22}.brand small{font-size:9px;letter-spacing:1.8px;color:var(--muted);display:block;font-weight:500;line-height:1.4}.navlabel{font-size:10px;letter-spacing:1.8px;color:#716d7d;margin:43px 12px 14px}.navbtn{width:100%;justify-content:flex-start;border:1px solid transparent;background:none;padding:12px;border-radius:9px;margin-bottom:6px;color:var(--muted);font-size:13px}.navbtn.active{background:#211b30;color:#cfb7ff;border-color:#3d2d57}.navbtn:hover{background:#211e2a}.sidebottom{margin-top:auto}.workspace{border:1px solid var(--line);padding:14px;border-radius:12px;margin:22px 0;display:flex;gap:10px;align-items:center}.avatar{width:34px;height:34px;border-radius:50%;background:#3b2c57;color:#d6bcff;display:grid;place-items:center;font-weight:800;flex-shrink:0}.workspace strong{font-size:12px}.workspace small{display:block;color:var(--muted);font-size:10px}.sidefoot{font-size:10px;color:#716d7d;letter-spacing:.5px;padding:0 10px}.topbar{height:76px;border-bottom:1px solid var(--line);padding:0 42px;display:flex;align-items:center;justify-content:space-between;gap:16px}.breadcrumb{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:14px}.breadcrumb b{font-weight:500;color:var(--text)}.quiet{border:1px solid var(--line);background:#18171e;border-radius:8px;padding:8px 12px;font-size:12px}.quiet:hover{background:#272130}.topright{display:flex;align-items:center;gap:18px}.status{font-size:11px;display:flex;align-items:center;gap:7px;color:var(--muted)}.dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px #9bddb622}.main{max-width:1440px;margin:auto;padding:37px 42px 24px}.eyebrow{color:var(--purple);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase}.hero{display:flex;align-items:center;justify-content:space-between;margin-bottom:29px;gap:16px}.hero h1{font-size:30px;line-height:1.3;letter-spacing:-1.2px;margin:9px 0}.hero p{font-size:12px;color:var(--muted);margin:0}.heroicon{width:64px;height:64px;border:1px solid #44325d;border-radius:20px;background:radial-gradient(at top left,#352447,#18141f);display:grid;place-items:center;transform:rotate(-7deg);color:#caa9ff}.heroicon .ti{font-size:30px}.layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:25px;align-items:start}.tabs{display:flex;background:#101015;border:1px solid var(--line);padding:5px;border-radius:11px;margin-bottom:22px;gap:5px}.tab{flex:1;background:none;border:0;padding:10px 4px;border-radius:7px;font-size:12px;color:var(--muted)}.tab.active{background:#2b223c;color:#d8c1ff;box-shadow:0 2px 5px #0003}.card{border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden;margin-bottom:18px}.cardhead{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}.cardtitle{font-weight:600;font-size:12px;display:flex;align-items:center;gap:9px}.cardtitle .ti{font-size:17px;color:#b6a0db}.tiny{font-size:10px;color:var(--muted)}.cardbody{padding:20px}.sectionrow{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.sectionrow b{font-size:12px;font-weight:600}.templategrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.template{background:#1b1921;border:1px solid #302b39;border-radius:9px;flex-direction:column;align-items:flex-start;padding:13px 10px;font-size:10px;text-align:left;gap:9px;transition:.15s}.template .ti{color:#bca7de;font-size:19px}.template:hover,.template.selected{border-color:#9470c9;background:#2b223a}.editor{margin-top:21px;border:1px solid #37303f;border-radius:10px;overflow:hidden;background:#101014}.toolbar{padding:7px 9px;border-bottom:1px solid #29252f;display:flex;gap:3px;flex-wrap:wrap}.tool{padding:7px;background:none;border:0;border-radius:5px;color:#aea7bc}.tool:hover{background:#33253f;color:#dfcaff}.tool .ti{font-size:17px}.toolbar .spacer{flex:1}.editor textarea{width:100%;padding:17px;border:0;background:none;color:var(--text);min-height:225px;resize:vertical;line-height:1.85;font-size:12px;display:block;outline:none}.editor:focus-within{border-color:#9b77cf;box-shadow:0 0 0 3px #9b77cf10}textarea::placeholder,input::placeholder{color:#77717f}.editorfoot{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid #29252f;font-size:10px;color:var(--muted);gap:8px}.draft{display:flex;align-items:center;gap:6px}.draft .ti{font-size:13px;color:var(--green)}.helper{font-size:10px;color:#807a8e;margin:11px 0 0}.options{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}.optiontitle{font-size:12px;font-weight:600}.optiondesc{color:var(--muted);font-size:10px;margin-top:3px}.switch{position:relative;flex-shrink:0;width:36px;height:21px}.switch input{position:absolute;opacity:0}.switch span{display:block;height:21px;background:#3c3546;border-radius:20px;cursor:pointer}.switch span:after{content:'';position:absolute;top:3px;left:3px;width:15px;height:15px;border-radius:50%;background:#fff;transition:transform .2s}.switch input:checked+span{background:#9670e0}.switch input:checked+span:after{transform:translateX(15px)}.switch input:focus-visible+span{outline:2px solid white;outline-offset:4px}.actions{display:flex;gap:10px}.primary,.secondary{border-radius:9px;font-size:12px;font-weight:600;padding:13px 16px}.primary{background:linear-gradient(110deg,#a681ee,#8c60dc);color:white;border:1px solid #b897ef;box-shadow:0 4px 15px #6f3db520;flex:1}.primary:hover{filter:brightness(1.1)}.secondary{background:#1b1822;border:1px solid #3a3049;color:#ccb9e9}.actions .ti{font-size:17px}.bottomhint{text-align:center;font-size:10px;color:#726b7f;margin:12px 0}kbd{font-family:inherit;font-size:9px;border:1px solid #3b3444;border-radius:4px;padding:1px 4px}.previewhead{display:flex;align-items:center;justify-content:space-between;margin:5px 0 19px}.previewhead strong{font-size:12px}.livepill{font-size:9px;color:#a8d3b7;background:#17221d;padding:4px 8px;border:1px solid #2a4135;border-radius:20px;display:flex;align-items:center;gap:5px}.discord{background:#242429;border:1px solid #36333c;border-radius:14px;overflow:hidden}.channelbar{padding:13px 18px;border-bottom:1px solid #37343d;display:flex;align-items:center;gap:9px;font-size:12px;color:#cfccd6}.channelbar .ti{color:#817b8a;font-size:18px}.channelbar small{margin-left:auto;color:#837d8d;font-size:9px}.message{padding:24px 18px 26px;display:flex;align-items:flex-start;gap:11px}.botavatar{background:#5b4080;position:relative;overflow:hidden;width:36px;height:36px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;color:#e3ccff;font-weight:700}.botavatar img{position:absolute;width:100%;height:100%;object-fit:cover}.messagecontent{min-width:0;flex:1}.botline{display:flex;flex-wrap:wrap;align-items:center;gap:6px;line-height:1.5}.botname{font-size:12px;font-weight:700;color:#d1b4fc}.botbadge{background:#5865f2;color:white;border-radius:3px;font:8px/1.5 sans-serif;padding:1px 4px}.botline time{font-size:9px;color:#97909f}.mention{color:#cbd0ff;background:#5865f23b;border-radius:3px;padding:1px 5px;font-size:12px;display:inline-block;margin:8px 0}.embed{border-left:3px solid #ac87e9;border-radius:4px;background:#1c1c21;padding:15px;margin-top:8px;min-height:165px;overflow-wrap:anywhere}.previewtext{font-size:12px;line-height:1.8;color:#d1ced8;white-space:normal}.previewtext strong{color:#f2eef8}.previewtext code{background:#121215;padding:2px 4px;border-radius:3px}.previewtext blockquote{margin:5px 0;border-left:3px solid #605669;padding-left:9px}.previewtext hr{border:0;border-top:1px solid #46404d;margin:13px 0}.spoiler{background:#09090b;color:transparent;border:0;border-radius:3px;padding:0 3px;display:inline;font:inherit}.spoiler.revealed{color:inherit;background:#37303e}.placeholder{color:#8d8499}.embedfoot{display:flex;align-items:center;gap:5px;font-size:8px;color:#91899b;margin-top:18px;flex-wrap:wrap}.embedfoot .ti{font-size:12px}.previewbottom{border-top:1px solid #37323e;padding:12px 18px;color:#8f869c;font-size:9px;display:flex;gap:7px;align-items:center}.previewbottom .ti{font-size:14px}.notecard{display:flex;gap:12px;border:1px solid #34293f;border-radius:11px;background:linear-gradient(120deg,#1d1826,#141318);padding:18px;margin-top:18px}.notecard>.ti{color:#af8de1}.notecard b{font-size:11px;font-weight:600}.notecard p{font-size:10px;line-height:1.8;color:#9d93aa;margin:5px 0 0}.metarow{display:flex;justify-content:space-between;color:#8b8298;font-size:10px;margin:19px 3px}.footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:9px;color:#746d80;padding-top:18px;margin-top:30px;gap:15px}.field{width:100%;border:1px solid #393140;border-radius:8px;background:#101014;color:var(--text);padding:11px;font-size:12px;margin:7px 0}.label{font-size:11px;color:#c5b9d4;display:block}.urlstatus{font-size:10px;color:var(--muted);margin:4px 0 15px}.urlstatus.error{color:#f4a4a4}.urlstatus.ok{color:var(--green)}.videotitle{font-size:13px;font-weight:700;color:#8fbbfa;display:block;margin:5px 0 10px;text-decoration:none}.videothumb{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:7px;margin-top:12px;background:#25222b}.videoauthor{font-size:11px;color:#8fbbfa;font-weight:700}.session-picker{margin-top:18px;padding-top:17px;border-top:1px solid var(--line)}.session-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:10px 0 18px}.session-choice{border:1px solid #3d324b;background:#1b1722;border-radius:8px;padding:12px 5px;font-size:9px;font-weight:700;flex-direction:column;gap:7px}.session-choice .ti{font-size:19px;color:#c6a8ef}.session-choice.active{border-color:#b28ae9;background:#352744;color:#e2ccff}.session-preview{border-top:1px solid #46404d;border-bottom:1px solid #46404d;padding:8px 0;margin:9px 0;font-size:12px;font-weight:800;color:#e5e1eb}.caption-label{display:block;font-size:11px;color:#c5b9d4;margin-top:17px}@media(max-width:420px){html:not([data-layout="desktop"]) .session-choice{font-size:8px}}.hidden,[hidden]{display:none!important}dialog{background:#19151f;border:1px solid #544065;color:var(--text);border-radius:16px;padding:25px;max-width:480px;width:calc(100% - 32px);max-height:85vh;overflow:auto;box-shadow:0 25px 100px #0008}dialog::backdrop{background:#07050bcc;backdrop-filter:blur(5px)}dialog h2{font-size:20px;margin:0 0 8px;letter-spacing:-.5px}dialog p{font-size:12px;color:var(--muted)}dialog .actions{margin-top:22px}.dialogheader{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.dialogheader button{border:0;background:none;color:var(--muted)}#confirmContent{max-height:230px;overflow:auto;padding:15px;background:#110f15;border-radius:8px;margin-top:16px;white-space:pre-wrap;font-size:12px;overflow-wrap:anywhere}#toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#292032;border:1px solid #72518c;padding:13px 20px;border-radius:10px;box-shadow:0 10px 50px #0008;z-index:20;font-size:12px;width:max-content;max-width:calc(100% - 30px)}.errorcount{color:#f3a0a0!important}@media(min-width:1500px){.main{padding-top:50px}.editor textarea{min-height:285px}}@media(max-width:1150px){html:not([data-layout="desktop"]) .shell{grid-template-columns:190px minmax(0,1fr)}html:not([data-layout="desktop"]) .sidebar{padding:26px 13px}html:not([data-layout="desktop"]) .main{padding:30px 24px}html:not([data-layout="desktop"]) .topbar{padding:0 24px}html:not([data-layout="desktop"]) .layout{gap:18px}html:not([data-layout="desktop"]) .cardbody{padding:16px}html:not([data-layout="desktop"]) .templategrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:900px){html:not([data-layout="desktop"]) .shell{grid-template-columns:1fr}html:not([data-layout="desktop"]) .sidebar{display:none}html:not([data-layout="desktop"]) .layout{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}html:not([data-layout="desktop"]) .main{padding:27px 22px}html:not([data-layout="desktop"]) .hero h1{font-size:27px}}@media(max-width:650px){html:not([data-layout="desktop"]) .topbar{height:64px;padding:0 18px}html:not([data-layout="desktop"]) .breadcrumb>span,html:not([data-layout="desktop"]) .topright .status{display:none}html:not([data-layout="desktop"]) .topright{gap:8px}html:not([data-layout="desktop"]) .main{padding:24px 16px}html:not([data-layout="desktop"]) .hero h1{font-size:25px}html:not([data-layout="desktop"]) .hero p{max-width:260px}html:not([data-layout="desktop"]) .heroicon{width:48px;height:48px;border-radius:14px}html:not([data-layout="desktop"]) .layout{grid-template-columns:1fr}html:not([data-layout="desktop"]) .templategrid{grid-template-columns:repeat(3,1fr)}html:not([data-layout="desktop"]) .template{font-size:9px;padding:11px 8px}html:not([data-layout="desktop"]) .editor textarea{min-height:230px}html:not([data-layout="desktop"]) .previewhead{margin-top:8px}html:not([data-layout="desktop"]) .footer{font-size:8px}html:not([data-layout="desktop"]) .actions{flex-wrap:wrap}html:not([data-layout="desktop"]) .hero{margin-bottom:24px}html:not([data-layout="desktop"]) .message{padding:22px 14px}html:not([data-layout="desktop"]) .tab{font-size:11px}html:not([data-layout="desktop"]) .embed{padding:13px}html:not([data-layout="desktop"]) .quiet{font-size:10px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}/* Touch-friendly layout and persistent mobile send controls. */
-html{scroll-behavior:smooth;scroll-padding-top:90px}body{overflow-wrap:break-word}.layout>*,.hero>div,.messagecontent{min-width:0}.mobile-preview-link{display:none}.send-actions{flex-wrap:wrap}.send-destination{flex-basis:100%;font-size:10px;color:var(--muted);padding:0 2px 2px}.webhook-setting{padding:14px 0;border-bottom:1px solid var(--line)}.webhook-setting .label{display:flex;align-items:center;gap:6px}.webhook-setting .helper{margin:3px 0 0}.webhook-setting .ti{font-size:17px;color:var(--purple)}.field{max-width:100%}dialog{max-height:calc(100dvh - 32px);overscroll-behavior:contain}.topbar{padding-top:env(safe-area-inset-top)}#composer,#discordPreview{scroll-margin-top:90px}
-@media(max-width:1100px) and (min-width:651px){html:not([data-layout="desktop"]) .layout{grid-template-columns:minmax(0,1fr)}html:not([data-layout="desktop"]) .templategrid{grid-template-columns:repeat(3,minmax(0,1fr))}html:not([data-layout="desktop"]) .main{max-width:850px}html:not([data-layout="desktop"]) .discord{max-width:100%}html:not([data-layout="desktop"]) .editor textarea{min-height:240px}html:not([data-layout="desktop"]) .session-choice{font-size:11px}html:not([data-layout="desktop"]) .field{font-size:16px;min-height:46px}html:not([data-layout="desktop"]) .tool{min-width:42px;min-height:42px}html:not([data-layout="desktop"]) .mobile-preview-link{display:inline-flex;gap:5px;align-items:center;font-size:11px;text-decoration:none;min-height:40px}html:not([data-layout="desktop"]) .compose-step{display:none}}
-@media(max-width:650px){html:not([data-layout="desktop"]) body{padding-bottom:calc(128px + env(safe-area-inset-bottom));font-size:14px}html:not([data-layout="desktop"]) .shell{min-height:100dvh}html:not([data-layout="desktop"]) .topbar{position:sticky;top:0;z-index:8;height:calc(64px + env(safe-area-inset-top));background:#101014f5;backdrop-filter:blur(16px);padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}html:not([data-layout="desktop"]) .topbar .quiet{min-height:42px;padding:9px 11px;font-size:11px}html:not([data-layout="desktop"]) .topbar .avatar{display:none}html:not([data-layout="desktop"]) .breadcrumb{gap:8px;font-size:11px}html:not([data-layout="desktop"]) .main{padding:22px max(14px,env(safe-area-inset-left)) 16px max(14px,env(safe-area-inset-right))}html:not([data-layout="desktop"]) .hero{gap:10px;margin-bottom:22px}html:not([data-layout="desktop"]) .hero h1{font-size:26px}html:not([data-layout="desktop"]) .hero p{font-size:12px;line-height:1.8}html:not([data-layout="desktop"]) .heroicon{flex-shrink:0}html:not([data-layout="desktop"]) .eyebrow{font-size:9px;letter-spacing:1.6px}html:not([data-layout="desktop"]) .layout{gap:20px}html:not([data-layout="desktop"]) .tabs{margin-bottom:16px}html:not([data-layout="desktop"]) .tab{min-height:46px;font-size:12px;gap:7px}html:not([data-layout="desktop"]) .cardhead{padding:13px 15px}html:not([data-layout="desktop"]) .cardbody{padding:15px}html:not([data-layout="desktop"]) .cardtitle{font-size:12px}html:not([data-layout="desktop"]) .compose-step{display:none}html:not([data-layout="desktop"]) .mobile-preview-link{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:42px;font-size:11px;text-decoration:none}html:not([data-layout="desktop"]) .mobile-preview-link .ti{font-size:17px}html:not([data-layout="desktop"]) .templategrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}html:not([data-layout="desktop"]) .template{min-height:68px;padding:12px;font-size:11px;gap:9px;flex-direction:row;align-items:center}html:not([data-layout="desktop"]) .sectionrow{gap:8px}html:not([data-layout="desktop"]) .sectionrow .tiny{font-size:9px}html:not([data-layout="desktop"]) .toolbar{padding:7px;gap:2px}html:not([data-layout="desktop"]) .tool{min-width:40px;min-height:42px;padding:9px}html:not([data-layout="desktop"]) .tool .ti{font-size:19px}html:not([data-layout="desktop"]) .toolbar .spacer{display:none}html:not([data-layout="desktop"]) .editor textarea{font-size:16px;line-height:1.8;min-height:230px;padding:14px}html:not([data-layout="desktop"]) .editorfoot{font-size:9px;flex-wrap:wrap;padding:10px}html:not([data-layout="desktop"]) .label,html:not([data-layout="desktop"]) .caption-label{font-size:12px}html:not([data-layout="desktop"]) .field{font-size:16px;min-height:48px;padding:11px 12px}html:not([data-layout="desktop"]) .urlstatus,html:not([data-layout="desktop"]) .helper{font-size:11px;line-height:1.7}html:not([data-layout="desktop"]) .session-options{grid-template-columns:1fr;gap:8px}html:not([data-layout="desktop"]) .session-choice{min-height:46px;flex-direction:row;justify-content:flex-start;padding:12px 14px;font-size:11px;gap:10px}html:not([data-layout="desktop"]) .session-choice.active{box-shadow:inset 3px 0 #c4a0ff}html:not([data-layout="desktop"]) .options{padding:16px;gap:12px}html:not([data-layout="desktop"]) .optiontitle{font-size:12px}html:not([data-layout="desktop"]) .optiondesc{font-size:11px;line-height:1.7}html:not([data-layout="desktop"]) .switch{width:44px;height:44px;display:flex;align-items:center}html:not([data-layout="desktop"]) .switch span{width:44px;height:26px}html:not([data-layout="desktop"]) .switch span:after{width:20px;height:20px;top:12px}html:not([data-layout="desktop"]) .switch input:checked+span:after{transform:translateX(18px)}html:not([data-layout="desktop"]) .send-actions{position:fixed;bottom:0;left:0;right:0;z-index:10;margin:0;padding:10px max(14px,env(safe-area-inset-left)) calc(12px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-right));background:#15121bf5;backdrop-filter:blur(20px);border-top:1px solid #463550;display:grid;grid-template-columns:minmax(108px,.85fr) minmax(0,1.4fr);gap:8px;box-shadow:0 -8px 30px #0003}html:not([data-layout="desktop"]) .send-destination{grid-column:1/-1;font-size:10px;text-align:center;padding-bottom:2px}html:not([data-layout="desktop"]) .send-actions button{min-height:48px;font-size:12px;padding:12px 8px}html:not([data-layout="desktop"]) .bottomhint{font-size:10px;margin:10px 0 0}html:not([data-layout="desktop"]) .desktop-shortcut{display:none}html:not([data-layout="desktop"]) .previewhead{flex-wrap:wrap;gap:8px;margin-bottom:12px}html:not([data-layout="desktop"]) .previewhead .livepill{display:none}html:not([data-layout="desktop"]) .previewhead strong{font-size:13px}html:not([data-layout="desktop"]) .message{gap:8px;padding:18px 10px}html:not([data-layout="desktop"]) .botavatar{width:28px;height:28px;font-size:12px}html:not([data-layout="desktop"]) .botname{font-size:11px}html:not([data-layout="desktop"]) .botline time{font-size:9px}html:not([data-layout="desktop"]) .embed{padding:12px 10px}html:not([data-layout="desktop"]) .previewtext{font-size:12px}html:not([data-layout="desktop"]) .videotitle{font-size:13px}html:not([data-layout="desktop"]) .session-preview{font-size:11px}html:not([data-layout="desktop"]) .embedfoot{font-size:9px;line-height:1.7}html:not([data-layout="desktop"]) .previewbottom{font-size:10px;padding:11px 13px}html:not([data-layout="desktop"]) .metarow{font-size:10px;gap:10px;flex-wrap:wrap}html:not([data-layout="desktop"]) .notecard p{font-size:11px}html:not([data-layout="desktop"]) .footer{flex-direction:column;gap:6px;font-size:10px;margin-top:22px}html:not([data-layout="desktop"]) dialog{padding:20px 16px;width:calc(100% - 24px);border-radius:14px;max-height:calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom))}html:not([data-layout="desktop"]) dialog h2{font-size:19px}html:not([data-layout="desktop"]) .dialogheader button{min-height:44px;min-width:44px}html:not([data-layout="desktop"]) dialog .actions button{min-height:46px}html:not([data-layout="desktop"]) #toast{bottom:calc(125px + env(safe-area-inset-bottom));font-size:12px;text-align:center;overflow-wrap:anywhere}
-}
-@media(max-width:359px){html:not([data-layout="desktop"]) .heroicon{display:none}html:not([data-layout="desktop"]) .hero h1{font-size:24px}html:not([data-layout="desktop"]) .cardbody{padding:12px}html:not([data-layout="desktop"]) .tool{min-width:38px}html:not([data-layout="desktop"]) .tab{font-size:11px}html:not([data-layout="desktop"]) .botavatar{display:none}html:not([data-layout="desktop"]) .template{font-size:10px;padding:10px}html:not([data-layout="desktop"]) .draft{font-size:9px}html:not([data-layout="desktop"]) .topbar .quiet{font-size:10px}html:not([data-layout="desktop"]) .breadcrumb .ti{display:none}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}html[data-layout="mobile"] .session-choice{font-size:8px}html[data-layout="mobile"] .shell{grid-template-columns:1fr}html[data-layout="mobile"] .sidebar{display:none}html[data-layout="mobile"] .layout{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}html[data-layout="mobile"] .main{padding:27px 22px}html[data-layout="mobile"] .hero h1{font-size:27px}html[data-layout="mobile"] .topbar{height:64px;padding:0 18px}html[data-layout="mobile"] .breadcrumb>span,html[data-layout="mobile"] .topright .status{display:none}html[data-layout="mobile"] .topright{gap:8px}html[data-layout="mobile"] .main{padding:24px 16px}html[data-layout="mobile"] .hero h1{font-size:25px}html[data-layout="mobile"] .hero p{max-width:260px}html[data-layout="mobile"] .heroicon{width:48px;height:48px;border-radius:14px}html[data-layout="mobile"] .layout{grid-template-columns:1fr}html[data-layout="mobile"] .templategrid{grid-template-columns:repeat(3,1fr)}html[data-layout="mobile"] .template{font-size:9px;padding:11px 8px}html[data-layout="mobile"] .editor textarea{min-height:230px}html[data-layout="mobile"] .previewhead{margin-top:8px}html[data-layout="mobile"] .footer{font-size:8px}html[data-layout="mobile"] .actions{flex-wrap:wrap}html[data-layout="mobile"] .hero{margin-bottom:24px}html[data-layout="mobile"] .message{padding:22px 14px}html[data-layout="mobile"] .tab{font-size:11px}html[data-layout="mobile"] .embed{padding:13px}html[data-layout="mobile"] .quiet{font-size:10px}html[data-layout="mobile"] body{padding-bottom:calc(128px + env(safe-area-inset-bottom));font-size:14px}html[data-layout="mobile"] .shell{min-height:100dvh}html[data-layout="mobile"] .topbar{position:sticky;top:0;z-index:8;height:calc(64px + env(safe-area-inset-top));background:#101014f5;backdrop-filter:blur(16px);padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}html[data-layout="mobile"] .topbar .quiet{min-height:42px;padding:9px 11px;font-size:11px}html[data-layout="mobile"] .topbar .avatar{display:none}html[data-layout="mobile"] .breadcrumb{gap:8px;font-size:11px}html[data-layout="mobile"] .main{padding:22px max(14px,env(safe-area-inset-left)) 16px max(14px,env(safe-area-inset-right))}html[data-layout="mobile"] .hero{gap:10px;margin-bottom:22px}html[data-layout="mobile"] .hero h1{font-size:26px}html[data-layout="mobile"] .hero p{font-size:12px;line-height:1.8}html[data-layout="mobile"] .heroicon{flex-shrink:0}html[data-layout="mobile"] .eyebrow{font-size:9px;letter-spacing:1.6px}html[data-layout="mobile"] .layout{gap:20px}html[data-layout="mobile"] .tabs{margin-bottom:16px}html[data-layout="mobile"] .tab{min-height:46px;font-size:12px;gap:7px}html[data-layout="mobile"] .cardhead{padding:13px 15px}html[data-layout="mobile"] .cardbody{padding:15px}html[data-layout="mobile"] .cardtitle{font-size:12px}html[data-layout="mobile"] .compose-step{display:none}html[data-layout="mobile"] .mobile-preview-link{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:42px;font-size:11px;text-decoration:none}html[data-layout="mobile"] .mobile-preview-link .ti{font-size:17px}html[data-layout="mobile"] .templategrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}html[data-layout="mobile"] .template{min-height:68px;padding:12px;font-size:11px;gap:9px;flex-direction:row;align-items:center}html[data-layout="mobile"] .sectionrow{gap:8px}html[data-layout="mobile"] .sectionrow .tiny{font-size:9px}html[data-layout="mobile"] .toolbar{padding:7px;gap:2px}html[data-layout="mobile"] .tool{min-width:40px;min-height:42px;padding:9px}html[data-layout="mobile"] .tool .ti{font-size:19px}html[data-layout="mobile"] .toolbar .spacer{display:none}html[data-layout="mobile"] .editor textarea{font-size:16px;line-height:1.8;min-height:230px;padding:14px}html[data-layout="mobile"] .editorfoot{font-size:9px;flex-wrap:wrap;padding:10px}html[data-layout="mobile"] .label,html[data-layout="mobile"] .caption-label{font-size:12px}html[data-layout="mobile"] .field{font-size:16px;min-height:48px;padding:11px 12px}html[data-layout="mobile"] .urlstatus,html[data-layout="mobile"] .helper{font-size:11px;line-height:1.7}html[data-layout="mobile"] .session-options{grid-template-columns:1fr;gap:8px}html[data-layout="mobile"] .session-choice{min-height:46px;flex-direction:row;justify-content:flex-start;padding:12px 14px;font-size:11px;gap:10px}html[data-layout="mobile"] .session-choice.active{box-shadow:inset 3px 0 #c4a0ff}html[data-layout="mobile"] .options{padding:16px;gap:12px}html[data-layout="mobile"] .optiontitle{font-size:12px}html[data-layout="mobile"] .optiondesc{font-size:11px;line-height:1.7}html[data-layout="mobile"] .switch{width:44px;height:44px;display:flex;align-items:center}html[data-layout="mobile"] .switch span{width:44px;height:26px}html[data-layout="mobile"] .switch span:after{width:20px;height:20px;top:12px}html[data-layout="mobile"] .switch input:checked+span:after{transform:translateX(18px)}html[data-layout="mobile"] .send-actions{position:fixed;bottom:0;left:0;right:0;z-index:10;margin:0;padding:10px max(14px,env(safe-area-inset-left)) calc(12px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-right));background:#15121bf5;backdrop-filter:blur(20px);border-top:1px solid #463550;display:grid;grid-template-columns:minmax(108px,.85fr) minmax(0,1.4fr);gap:8px;box-shadow:0 -8px 30px #0003}html[data-layout="mobile"] .send-destination{grid-column:1/-1;font-size:10px;text-align:center;padding-bottom:2px}html[data-layout="mobile"] .send-actions button{min-height:48px;font-size:12px;padding:12px 8px}html[data-layout="mobile"] .bottomhint{font-size:10px;margin:10px 0 0}html[data-layout="mobile"] .desktop-shortcut{display:none}html[data-layout="mobile"] .previewhead{flex-wrap:wrap;gap:8px;margin-bottom:12px}html[data-layout="mobile"] .previewhead .livepill{display:none}html[data-layout="mobile"] .previewhead strong{font-size:13px}html[data-layout="mobile"] .message{gap:8px;padding:18px 10px}html[data-layout="mobile"] .botavatar{width:28px;height:28px;font-size:12px}html[data-layout="mobile"] .botname{font-size:11px}html[data-layout="mobile"] .botline time{font-size:9px}html[data-layout="mobile"] .embed{padding:12px 10px}html[data-layout="mobile"] .previewtext{font-size:12px}html[data-layout="mobile"] .videotitle{font-size:13px}html[data-layout="mobile"] .session-preview{font-size:11px}html[data-layout="mobile"] .embedfoot{font-size:9px;line-height:1.7}html[data-layout="mobile"] .previewbottom{font-size:10px;padding:11px 13px}html[data-layout="mobile"] .metarow{font-size:10px;gap:10px;flex-wrap:wrap}html[data-layout="mobile"] .notecard p{font-size:11px}html[data-layout="mobile"] .footer{flex-direction:column;gap:6px;font-size:10px;margin-top:22px}html[data-layout="mobile"] dialog{padding:20px 16px;width:calc(100% - 24px);border-radius:14px;max-height:calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom))}html[data-layout="mobile"] dialog h2{font-size:19px}html[data-layout="mobile"] .dialogheader button{min-height:44px;min-width:44px}html[data-layout="mobile"] dialog .actions button{min-height:46px}html[data-layout="mobile"] #toast{bottom:calc(125px + env(safe-area-inset-bottom));font-size:12px;text-align:center;overflow-wrap:anywhere}.mobile-brand{display:none}.mobile-header-settings{min-height:42px}html[data-layout="mobile"] .mobile-brand{display:flex;align-items:center;gap:7px;font-size:16px;font-weight:800;letter-spacing:-.5px}html[data-layout="mobile"] .mobile-brand .ti{color:var(--purple)}html[data-layout="mobile"] .breadcrumb{display:none}html[data-layout="mobile"] .topbar{gap:8px}html[data-layout="mobile"] .topright{gap:8px}html[data-layout="mobile"] .topright .status,html[data-layout="mobile"] .topright>.avatar{display:none}html[data-layout="mobile"] .topbar .quiet{width:44px;padding:9px}html[data-layout="mobile"] .settings-text{display:none}html[data-layout="mobile"] .heroicon{display:none}html[data-layout="mobile"] .shell{display:block}html[data-layout="mobile"] .main{width:100%;max-width:none}html[data-layout="mobile"] .tabs{width:100%}html[data-layout="mobile"] .send-actions{width:100%}/* Compact phone workspace: preserve readable type while removing excess vertical spacing. */
-.channel-details{margin:8px 0;color:var(--muted);font-size:11px}.channel-details summary{cursor:pointer;padding:6px 0}.channel-details[open] summary{margin-bottom:4px}html[data-layout="mobile"] body{padding-bottom:calc(88px + env(safe-area-inset-bottom))}html[data-layout="mobile"] .topbar{height:calc(54px + env(safe-area-inset-top));gap:6px}html[data-layout="mobile"] .mobile-brand{font-size:15px}html[data-layout="mobile"] .topright{gap:6px}html[data-layout="mobile"] .topbar .quiet{min-height:38px;height:38px}html[data-layout="mobile"] .main{padding:10px 10px 14px}html[data-layout="mobile"] .hero{margin:0 2px 10px}html[data-layout="mobile"] .hero h1{font-size:20px;line-height:1.3;margin:2px 0}html[data-layout="mobile"] .hero .eyebrow,html[data-layout="mobile"] .hero p{display:none}html[data-layout="mobile"] .layout{gap:10px}html[data-layout="mobile"] .tabs{padding:3px;margin-bottom:10px;border-radius:9px;gap:4px}html[data-layout="mobile"] .tab{min-height:40px;padding:7px 4px;font-size:12px}html[data-layout="mobile"] .card{margin-bottom:8px;border-radius:11px}html[data-layout="mobile"] .cardhead{padding:5px 11px;min-height:38px}html[data-layout="mobile"] .mobile-preview-link{min-height:32px;font-size:11px}html[data-layout="mobile"] .cardbody{padding:10px}html[data-layout="mobile"] .sectionrow{margin-bottom:7px}html[data-layout="mobile"] .sectionrow b{font-size:11px}html[data-layout="mobile"] .sectionrow .tiny{display:none}html[data-layout="mobile"] .templategrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}html[data-layout="mobile"] .template{min-height:46px;flex-direction:row;align-items:center;gap:5px;padding:7px 5px;font-size:10px;line-height:1.35;border-radius:7px}html[data-layout="mobile"] .template .ti{font-size:16px;flex-shrink:0}html[data-layout="mobile"] .editor{margin-top:9px;border-radius:8px}html[data-layout="mobile"] .toolbar{flex-wrap:nowrap;overflow-x:auto;padding:3px;gap:1px;scrollbar-width:thin}html[data-layout="mobile"] .tool{min-width:32px;min-height:34px;padding:6px;flex-shrink:0}html[data-layout="mobile"] .tool .ti{font-size:17px}html[data-layout="mobile"] .editor textarea{height:112px;min-height:96px;padding:9px 10px;font-size:16px;line-height:1.55}html[data-layout="mobile"][data-post-mode="youtube"] .editor textarea{height:82px;min-height:72px}html[data-layout="mobile"] .editorfoot{padding:5px 8px;font-size:9px;gap:4px}html[data-layout="mobile"] .draft{font-size:9px}html[data-layout="mobile"] .cardbody>.helper{display:none}html[data-layout="mobile"] .options{padding:5px 12px;min-height:44px;margin-bottom:4px}html[data-layout="mobile"] .optiondesc{display:none}html[data-layout="mobile"] .optiontitle{font-size:11px}html[data-layout="mobile"] .bottomhint{font-size:9px;margin:4px 0}html[data-layout="mobile"] .label,html[data-layout="mobile"] .caption-label{font-size:11px}html[data-layout="mobile"] .field{min-height:40px;height:40px;padding:7px 9px;margin:4px 0;font-size:16px;border-radius:7px}html[data-layout="mobile"] .urlstatus{font-size:10px;line-height:1.5;margin:3px 0 8px}html[data-layout="mobile"] .channel-details{margin:0;font-size:10px}html[data-layout="mobile"] .channel-details summary{padding:5px 0;min-height:28px}html[data-layout="mobile"] .session-picker{padding-top:9px;margin-top:7px}html[data-layout="mobile"] .session-options{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin:5px 0 9px}html[data-layout="mobile"] .session-choice{min-height:46px;justify-content:center;gap:5px;padding:6px 4px;font-size:10px;line-height:1.3;word-break:normal}html[data-layout="mobile"] .session-choice .ti{font-size:16px;flex-shrink:0}html[data-layout="mobile"] .session-choice.active{box-shadow:none}html[data-layout="mobile"] .session-picker>.helper{display:none}html[data-layout="mobile"] .caption-label{margin-top:6px}html[data-layout="mobile"] .previewhead{margin:0 2px 5px;gap:5px;min-height:30px}html[data-layout="mobile"] .previewhead strong{font-size:12px}html[data-layout="mobile"] .discord{border-radius:10px}html[data-layout="mobile"] .channelbar{padding:7px 10px;font-size:11px}html[data-layout="mobile"] .message{padding:10px 9px;gap:7px}html[data-layout="mobile"] .botavatar{width:26px;height:26px}html[data-layout="mobile"] .mention{font-size:11px;margin:4px 0}html[data-layout="mobile"] .embed{min-height:0;padding:9px;margin-top:4px}html[data-layout="mobile"] .previewtext{font-size:12px;line-height:1.6}html[data-layout="mobile"] .videotitle{margin:2px 0 6px;font-size:12px}html[data-layout="mobile"] .session-preview{padding:6px 0;margin:6px 0}html[data-layout="mobile"] .videothumb{max-height:150px;object-fit:contain;margin-top:8px;display:block}html[data-layout="mobile"] .embedfoot{margin-top:9px;font-size:9px}html[data-layout="mobile"] .previewbottom{padding:6px 9px;font-size:9px;line-height:1.5}html[data-layout="mobile"] .metarow{margin:7px 2px;font-size:9px}html[data-layout="mobile"] .notecard,html[data-layout="mobile"] .footer{display:none}html[data-layout="mobile"] .send-actions{padding:5px 10px calc(8px + env(safe-area-inset-bottom));gap:4px 8px}html[data-layout="mobile"] .send-destination{font-size:9px;padding:0}html[data-layout="mobile"] .send-actions button{min-height:42px;padding:9px 8px}html[data-layout="mobile"] #toast{bottom:calc(92px + env(safe-area-inset-bottom))}html[data-layout="mobile"] #composer,html[data-layout="mobile"] #discordPreview{scroll-margin-top:65px}/* Readable mobile sizing; zoom correction handles oversized host viewports. */
-html[data-layout="mobile"]{-webkit-text-size-adjust:100%;text-size-adjust:100%}html[data-layout="mobile"] body{font-size:14px;min-height:0;padding-bottom:calc(96px + env(safe-area-inset-bottom))}html[data-layout="mobile"] .shell{min-height:0;height:auto}html[data-layout="mobile"] .topbar{height:calc(58px + env(safe-area-inset-top));padding-left:12px;padding-right:12px}html[data-layout="mobile"] .mobile-brand{font-size:18px}html[data-layout="mobile"] .mobile-brand .ti{font-size:21px}html[data-layout="mobile"] .topbar .quiet{min-width:42px;min-height:42px;height:42px}html[data-layout="mobile"] .main{padding:12px}html[data-layout="mobile"] .hero{margin:0 0 12px}html[data-layout="mobile"] .hero h1{font-size:24px;line-height:1.3}html[data-layout="mobile"] .tabs{margin-bottom:12px}html[data-layout="mobile"] .tab{font-size:14px;min-height:44px}html[data-layout="mobile"] .cardhead{padding:6px 12px;min-height:44px}html[data-layout="mobile"] .cardtitle{font-size:13px}html[data-layout="mobile"] .mobile-preview-link{font-size:12px;min-height:36px}html[data-layout="mobile"] .cardbody{padding:12px}html[data-layout="mobile"] .sectionrow b{font-size:13px}html[data-layout="mobile"] .templategrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}html[data-layout="mobile"] .template{font-size:12px;min-height:44px;padding:9px 8px;gap:7px;line-height:1.4}html[data-layout="mobile"] .template .ti{font-size:18px}html[data-layout="mobile"] .toolbar{padding:4px;gap:2px}html[data-layout="mobile"] .tool{min-height:36px;min-width:34px}html[data-layout="mobile"] .tool .ti{font-size:18px}html[data-layout="mobile"] .editor textarea{font-size:16px;line-height:1.6;min-height:112px;height:132px}html[data-layout="mobile"][data-post-mode="youtube"] .editor textarea{min-height:88px;height:100px}html[data-layout="mobile"] .editorfoot,html[data-layout="mobile"] .draft{font-size:11px;line-height:1.5}html[data-layout="mobile"] .editorfoot{padding:7px 8px}html[data-layout="mobile"] .label,html[data-layout="mobile"] .caption-label,html[data-layout="mobile"] .optiontitle{font-size:13px}html[data-layout="mobile"] .field{min-height:44px;height:44px;font-size:16px}html[data-layout="mobile"] .session-choice{font-size:11px;min-height:48px;line-height:1.35;flex-direction:column}html[data-layout="mobile"] .channel-details,html[data-layout="mobile"] .urlstatus{font-size:12px}html[data-layout="mobile"] .channel-details summary{min-height:34px}html[data-layout="mobile"] .options{min-height:46px;padding:6px 12px}html[data-layout="mobile"] .bottomhint{font-size:11px}html[data-layout="mobile"] .previewhead{margin-top:4px}html[data-layout="mobile"] .previewhead strong{font-size:14px}html[data-layout="mobile"] .channelbar{font-size:12px;padding:8px 10px}html[data-layout="mobile"] .message{padding:12px 10px}html[data-layout="mobile"] .botname{font-size:12px}html[data-layout="mobile"] .botline time{font-size:10px}html[data-layout="mobile"] .previewtext{font-size:14px;line-height:1.6}html[data-layout="mobile"] .mention{font-size:13px}html[data-layout="mobile"] .videotitle{font-size:14px}html[data-layout="mobile"] .videoauthor,html[data-layout="mobile"] .session-preview{font-size:12px}html[data-layout="mobile"] .embedfoot{font-size:10px}html[data-layout="mobile"] .previewbottom,html[data-layout="mobile"] .metarow{font-size:11px}html[data-layout="mobile"] .send-destination{font-size:11px}html[data-layout="mobile"] .send-actions{gap:5px 8px;padding:6px 12px calc(9px + env(safe-area-inset-bottom))}html[data-layout="mobile"] .send-actions button{font-size:14px;min-height:44px}html[data-layout="mobile"] #toast{bottom:calc(103px + env(safe-area-inset-bottom))}html[data-layout="mobile"][data-scaled="true"] dialog{max-height:calc((100dvh / var(--phone-scale)) - 32px)}
-
-/* Creator signature and one shared settings entry point. */
-.hero .creator-title{display:flex;align-items:center;gap:15px;margin:5px 0;font-size:38px;font-weight:800;line-height:1.2;letter-spacing:-1.7px}
-.creator-dash{display:block;width:32px;height:3px;border-radius:4px;flex-shrink:0;background:linear-gradient(90deg,#7952bd,#d4baff);box-shadow:0 0 14px #ad7aef33}
-.creator-name{color:#f3eefb}.creator-name>span{color:#bd9aef}
-html[data-layout="mobile"] .hero .creator-title{font-size:29px;gap:11px;letter-spacing:-1px;margin:4px 0}
-html[data-layout="mobile"] .creator-dash{width:24px;height:3px}
-
-/* Update title with a separate creator byline. */
-.hero .creator-title{font-size:clamp(25px,3vw,38px);line-height:1.2;letter-spacing:-1.2px}
-.hero .creator-byline{display:flex;align-items:center;gap:10px;margin:9px 0 0;font-size:12px;line-height:1.5;letter-spacing:1px;color:#a89bb9}
-.creator-byline strong{font-weight:600;color:#d4b7f5}
-.creator-byline .creator-dash{width:23px;height:2px}
-html[data-layout="mobile"] .hero .creator-title{font-size:clamp(22px,6vw,29px);letter-spacing:-.8px;line-height:1.25}
-html[data-layout="mobile"] .hero .creator-byline{display:flex;margin-top:6px;font-size:12px;gap:8px}
-html[data-layout="mobile"] .creator-byline .creator-dash{width:20px;height:2px}
-
-/* Custom confirmation cards, shared with the workspace dialog theme. */
-.action-dialog{width:min(440px,calc(100% - 28px));padding:24px;border:1px solid #664a83;border-radius:20px;background:linear-gradient(145deg,#251c31,#151219 70%);box-shadow:0 24px 90px #0009}
-.action-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.action-symbol{display:grid;place-items:center;width:46px;height:46px;border-radius:13px;background:#a57ae51c;border:1px solid #a57ae53d;color:#c6a2fa}
-.action-symbol .ti{font-size:25px}
-.action-close{width:40px;height:40px;border:1px solid #ffffff0d;border-radius:10px;background:#ffffff04;color:#afa3bb}
-.action-close:hover{background:#ffffff0c;color:white}
-.action-dialog h2{font-size:22px;line-height:1.35;margin:0 0 9px;letter-spacing:-.6px}
-.action-dialog p{font-size:13px;line-height:1.8;color:#b7aabe;margin:0}
-.action-preview{white-space:pre-wrap;overflow-wrap:anywhere;max-height:180px;overflow:auto;background:#100d15;border:1px solid #3b2c48;border-radius:10px;padding:13px;margin-top:16px;font-size:12px;color:#d6cbdc;line-height:1.7}
-.action-dialog .actions{margin-top:22px;gap:10px}
-.action-dialog .actions button{flex:1;min-height:44px}
-.action-dialog[data-tone="danger"] .action-symbol{color:#f2a3b2;background:#df72951a;border-color:#df729540}
-.action-dialog[data-tone="danger"] #actionAccept{background:linear-gradient(120deg,#bc4775,#96335d);border-color:#d36b92;box-shadow:none}
-html[data-layout="mobile"] .action-dialog{padding:20px;border-radius:17px}
-html[data-layout="mobile"] .action-dialog h2{font-size:21px}
-</style>
-<script id="layout-bootstrap">
-(function(){
-  'use strict';
-  const root=document.documentElement;
-  const coarsePointer=window.matchMedia('(pointer: coarse)');
-  function visibleWidth(){
-    let width=window.innerWidth;
-    const touch=coarsePointer.matches||navigator.maxTouchPoints>0;
-    // Correct a desktop-width layout viewport on a small touch screen.
-    // No fingerprint, UA parsing, or saved layout preference is needed.
-    if(touch&&window.screen.width>0&&window.screen.width<=600){
-      width=Math.min(width,window.screen.width);
-    }
-    try{
-      if(window.top!==window&&window.top.innerWidth<=760){
-        width=Math.min(width,window.top.innerWidth);
-        const frame=window.frameElement;
-        if(frame){const rendered=frame.getBoundingClientRect().width;if(rendered>0)width=Math.min(width,rendered)}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>Ubi Studio — Community Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0c0c10;
+        --panel: #131318;
+        --line: #292830;
+        --text: #eceaf2;
+        --muted: #96939f;
+        --purple: #bba0ff;
+        --accent: #9165ed;
+        --green: #9bddb6
       }
-    }catch{}
-    return Math.max(240,width);
-  }
-  function apply(){
-    const viewport=window.innerWidth;
-    const target=visibleWidth();
-    const mobile=target<=760;
-    const scale=mobile&&viewport>target*1.15?viewport/target:1;
-    root.dataset.layout=mobile?'mobile':'auto';
-    root.style.zoom=String(scale);
-    root.style.setProperty('--phone-scale',String(scale));
-    root.dataset.scaled=scale>1?'true':'false';
-  }
-  // Layout dimensions stay independent of pinch zoom and keyboard height.
-  apply();
-  window.addEventListener('resize',apply);
-  window.addEventListener('orientationchange',apply);
-  window.addEventListener('pageshow',apply);
-  if(coarsePointer.addEventListener)coarsePointer.addEventListener('change',apply);
-  document.addEventListener('DOMContentLoaded',apply);
-})();
-</script>
-</head>
-<body>
-<div class="shell">
-<aside class="sidebar"><div class="brand"><div class="brandmark"><i class="ti ti-broadcast" aria-hidden="true"></i></div><div>ubi studio<small>COMMUNITY WORKSPACE</small></div></div><div class="navlabel">WORKSPACE</div><button class="navbtn active" data-mode="announcement"><i class="ti ti-speakerphone" aria-hidden="true"></i>Pengumuman</button><button class="navbtn" data-mode="youtube"><i class="ti ti-brand-youtube" aria-hidden="true"></i>YouTube Post</button><div class="sidebottom"><div class="workspace"><div class="avatar">S</div><div><strong>SasaUbi</strong><small>Creator workspace</small></div></div><div class="sidefoot">ONE SPACE. YOUR COMMUNITY.</div></div></aside>
-<div><header class="topbar"><div class="breadcrumb"><i class="ti ti-layout-dashboard" aria-hidden="true"></i><span>Workspace /</span><b id="breadcrumb">Pengumuman</b></div><div class="mobile-brand"><i class="ti ti-broadcast" aria-hidden="true"></i>ubi studio</div><div class="topright"><span class="status"><span class="dot"></span>Mode personal</span><button class="quiet" data-settings aria-label="Pengaturan webhook"><i class="ti ti-settings" aria-hidden="true"></i><span class="settings-text">Pengaturan</span></button><div class="avatar" aria-label="SasaUbi">S</div></div></header>
-<main class="main"><section class="hero"><div class="creator-heading"><h1 class="creator-title"><span class="creator-name">UPDATE UPDATE <span>UBI !!!!</span></span></h1><p class="creator-byline"><span class="creator-dash" aria-hidden="true"></span><span>by <strong>SasaUbi</strong></span></p></div><div class="heroicon"><i class="ti ti-speakerphone" aria-hidden="true"></i></div></section>
-<div class="layout"><section id="composer" aria-label="Editor pesan"><div class="tabs" aria-label="Jenis posting"><button class="tab active" data-mode="announcement" aria-pressed="true"><i class="ti ti-speakerphone" aria-hidden="true"></i>Pengumuman</button><button class="tab" data-mode="youtube" aria-pressed="false"><i class="ti ti-brand-youtube" aria-hidden="true"></i>YouTube Post</button></div>
-<div class="card"><div class="cardhead"><span class="cardtitle"><i class="ti ti-edit" aria-hidden="true"></i><span id="editorTitle">Buat pengumuman</span></span><a class="mobile-preview-link" href="#discordPreview"><i class="ti ti-eye" aria-hidden="true"></i>Preview</a><span class="tiny compose-step">01 / COMPOSE</span></div><div class="cardbody"><div id="templatesSection"><div class="sectionrow"><b>Mulai dari template</b><span class="tiny">Pilih, lalu sesuaikan</span></div><div class="templategrid" id="templates"></div></div>
-<div id="videoSection" hidden><label class="label" for="videoUrl">Link video YouTube</label><input class="field" id="videoUrl" placeholder="https://youtube.com/watch?v=..." type="url"><div class="urlstatus" id="videoStatus" role="status">Mendukung video, Shorts, dan live YouTube.</div><label class="label" for="videoTitle">Judul video</label><input class="field" id="videoTitle" maxlength="180" placeholder="Otomatis terisi atau tulis judul sendiri"><details class="channel-details"><summary>Ubah nama channel</summary><label class="label" for="videoChannel">Nama channel</label><input class="field" id="videoChannel" maxlength="100" value="SasaUbi"></details>
-<div class="session-picker"><label class="label">Sesi video</label><div class="session-options" role="group" aria-label="Pilih sesi video"><button type="button" class="session-choice active" data-session="ANTARCTICA" aria-pressed="true"><i class="ti ti-snowflake" aria-hidden="true"></i>ANTARCTICA</button><button type="button" class="session-choice" data-session="VIOLENCE DISTRICT" aria-pressed="false"><i class="ti ti-building-community" aria-hidden="true"></i>VIOLENCE DISTRICT</button><button type="button" class="session-choice" data-session="RANDOM MAP" aria-pressed="false"><i class="ti ti-map" aria-hidden="true"></i>RANDOM MAP</button></div>
-<p class="helper">Nama sesi otomatis muncul di antara garis pembatas, sebelum caption.</p><span class="caption-label" id="captionLabel">Caption kamu (opsional)</span></div></div>
-<div class="editor"><div class="toolbar" id="toolbar" aria-label="Format pesan"></div><label class="hidden" for="message">Isi pesan atau caption</label><textarea id="message" placeholder="Ada kabar apa hari ini?\nTulis pesan untuk komunitasmu di sini..."></textarea><div class="editorfoot"><span class="draft" id="draftStatus"><i class="ti ti-device-floppy" aria-hidden="true"></i>Draft otomatis tersimpan</span><span id="charCount">0 / 2000</span></div></div><p class="helper">Gunakan <b>---</b> di baris baru untuk menambahkan garis pembatas.</p></div></div>
-<div class="card options"><div><div class="optiontitle">Notifikasi @everyone</div><div class="optiondesc">Beri tahu seluruh anggota saat pesan utama dikirim.</div></div><label class="switch"><input id="everyone" type="checkbox" checked aria-label="Aktifkan notifikasi everyone"><span></span></label></div>
-<div class="actions send-actions"><div class="send-destination" id="sendDestination">Tujuan: Pengumuman</div><button class="secondary" id="testBtn"><i class="ti ti-flask" aria-hidden="true"></i>Kirim test</button><button class="primary" id="sendBtn"><i class="ti ti-send" aria-hidden="true"></i>Kirim ke Discord</button></div><div class="bottomhint">Test tidak menyebut @everyone <span class="desktop-shortcut"><span aria-hidden="true">·</span> <kbd>Ctrl</kbd> + <kbd>Enter</kbd> untuk lanjut</span></div>
-</section>
-<aside id="discordPreview" aria-label="Preview Discord"><div class="previewhead"><strong>Preview Discord</strong><a class="mobile-preview-link" href="#composer">Kembali ke editor</a><span class="livepill"><span class="dot"></span>LIVE PREVIEW</span></div><div class="discord"><div class="channelbar"><i class="ti ti-hash" aria-hidden="true"></i><span id="previewChannel">pengumuman</span><small>DISCORD</small></div><div class="message"><div class="botavatar">S<img src="https://raw.githubusercontent.com/RehanDias/s0urce/refs/heads/main/sasaubi.jpeg" alt="" onerror="this.hidden=true"></div><div class="messagecontent"><div class="botline"><span class="botname" id="botName">SasaUbi Berbicara</span><span class="botbadge">APP</span><time id="previewTime"></time></div><span class="mention" id="mention">@everyone</span><div class="embed"><div id="videoPreview" hidden><div class="videoauthor" id="previewAuthor"></div><a id="previewTitle" class="videotitle" target="_blank" rel="noopener noreferrer"></a></div><div id="previewSession" class="session-preview" hidden></div><div class="previewtext" id="previewText"><span class="placeholder">Pesanmu akan tampil di sini.<br>Mulai menulis atau pilih salah satu template.</span></div><img id="previewImage" class="videothumb" alt="Thumbnail video YouTube" hidden><div class="embedfoot"><i class="ti ti-broadcast" aria-hidden="true"></i><span id="previewFooter">tiktok.com/@sasaubi</span><span>·</span><span id="previewDate"></span></div></div></div></div><div class="previewbottom"><i class="ti ti-eye" aria-hidden="true"></i>Simulasi tampilan pesan. Hasil Discord dapat sedikit berbeda.</div></div><div class="metarow"><span id="postType">Pengumuman komunitas</span><span id="previewLength">0 karakter</span></div><div class="notecard"><i class="ti ti-bulb" aria-hidden="true"></i><div><b>Pesan yang baik dimulai dari preview.</b><p>Periksa isi pesan, lalu kirim test ke channel percobaan. Setelah siap, bagikan ke komunitasmu.</p></div></div></aside></div>
-<footer class="footer"><span>ubi studio <span aria-hidden="true">/</span> Made for SasaUbi</span><span>Pengumuman & YouTube, dalam satu ruang.</span></footer>
-</main></div></div>
-<dialog id="settings" aria-label="Pengaturan webhook"><div class="dialogheader"><h2>Pengaturan webhook</h2><button data-close="settings" aria-label="Tutup pengaturan"><i class="ti ti-x" aria-hidden="true"></i></button></div><p>Tiga tujuan pengiriman untuk seluruh workspace. Webhook test digunakan bersama oleh kedua mode. Perubahan berlaku selama halaman ini terbuka.</p><form id="settingsForm"><div class="webhook-setting"><label class="label" for="announcementWebhook"><i class="ti ti-speakerphone" aria-hidden="true"></i> Webhook pengumuman</label><input class="field" id="announcementWebhook" type="password" autocomplete="off" spellcheck="false" placeholder="https://discord.com/api/webhooks/..."><p class="helper">Tujuan tombol kirim pada mode Pengumuman.</p></div><div class="webhook-setting"><label class="label" for="youtubeWebhook"><i class="ti ti-brand-youtube" aria-hidden="true"></i> Webhook YouTube</label><input class="field" id="youtubeWebhook" type="password" autocomplete="off" spellcheck="false" placeholder="https://discord.com/api/webhooks/..."><p class="helper">Tujuan tombol kirim pada mode YouTube Post.</p></div><div class="webhook-setting"><label class="label" for="testWebhook"><i class="ti ti-flask" aria-hidden="true"></i> Webhook test bersama</label><input class="field" id="testWebhook" type="password" autocomplete="off" placeholder="https://discord.com/api/webhooks/..."><p class="helper">Semua pesan test masuk ke sini, tanpa @everyone.</p></div><p id="settingsError" role="alert"></p><div class="actions"><button type="button" class="secondary" data-close="settings">Batal</button><button class="primary" type="submit">Simpan pengaturan</button></div></form></dialog>
-<dialog id="confirmation" aria-labelledby="confirmTitle" aria-describedby="confirmNote"><h2 id="confirmTitle">Kirim ke Discord?</h2><p id="confirmNote"></p><div id="confirmContent"></div><div class="actions"><button class="secondary" data-close="confirmation">Periksa lagi</button><button class="primary" id="confirmSend"><i class="ti ti-send" aria-hidden="true"></i>Kirim sekarang</button></div></dialog>
-<dialog id="actionDialog" class="action-dialog" aria-labelledby="actionTitle" aria-describedby="actionDescription">
-<div class="action-heading"><div class="action-symbol" id="actionSymbol"><i class="ti ti-replace" aria-hidden="true"></i></div><button type="button" class="action-close" data-close="actionDialog" aria-label="Tutup dialog"><i class="ti ti-x" aria-hidden="true"></i></button></div>
-<h2 id="actionTitle">Ganti isi pesan?</h2><p id="actionDescription"></p>
-<div class="action-preview" id="actionPreview" hidden></div>
-<div class="actions"><button type="button" class="secondary" id="actionCancel" data-close="actionDialog" autofocus>Batal</button><button type="button" class="primary" id="actionAccept">Lanjutkan</button></div>
-</dialog>
-<div id="toast" role="status" aria-live="polite" hidden></div>
-<script>
-'use strict';
-const DEFAULT_WEBHOOKS = {"announcement": {"main": "https://discord.com/api/webhooks/1509730907429535765/8NZKU4Iw1VfgPq7xVFntf5UMhJd33oiIQG9lfYEgtn_H43_1Kb8RejcQnGYtsAbVzU-6", "test": "https://discord.com/api/webhooks/1516345816325951550/Td4HeVX1oaXdgRLoCXMnTrt61wXTSw1PR_Fpj_9XTK4I57BxOPkOOXdRJnAq3FPVc2IZ"}, "youtube": {"main": "https://discord.com/api/webhooks/1549042613363937400/j2TfwQ0rV2VD6k4rVChxZtcqjrz5D7umCmF_j0Y6CLXFNZIfTt9e5zHCzpQmA8WVOcRc", "test": "https://discord.com/api/webhooks/1516345816325951550/Td4HeVX1oaXdgRLoCXMnTrt61wXTSw1PR_Fpj_9XTK4I57BxOPkOOXdRJnAq3FPVc2IZ"}};
-const $=id=>document.getElementById(id);
-const state={mode:'announcement',session:'ANTARCTICA',sending:false,videoId:null,version:0,timer:null,abort:null,pending:null,drafts:{announcement:'',youtube:''},settings:structuredClone(DEFAULT_WEBHOOKS)};
-const templates=[
-['moon-off','Tidak live','**Hai semuanya!**\n\nSasaUbi hari ini **tidak bisa live** ya.\n\n[tulis alasannya di sini]\n\nMaaf ya sudah menunggu. Sampai ketemu di live berikutnya!'],
-['tool','Gangguan teknis','**Info gangguan teknis**\n\nHai semua, ada kendala teknis yang sedang diperbaiki.\n\n[tulis detail masalahnya]\n\nTerima kasih sudah sabar menunggu.'],
-['player-pause','Live dijeda','**Live dijeda sebentar**\n\nKoneksi sedang bermasalah dan sedang kami perbaiki.\n\nKalau sudah stabil, SasaUbi langsung kembali. Tunggu sebentar ya!'],
-['broadcast','Live sekarang','**LIVE SEKARANG di TikTok!**\n\nSasaUbi sudah live. Yuk, mampir dan temani sesi hari ini!\n\nhttps://www.tiktok.com/@sasaubi'],
-['calendar-event','Jadwal live','**Jadwal live minggu ini**\n\n---\n**Senin** — Libur\n**Rabu** — 21.00 WIB\n**Jumat** — 20.00 WIB\n**Sabtu** — 19.00 WIB\n---\n\nJadwal dapat berubah. Pantau terus channel ini ya!'],
-['message-2','Info umum','**Pengumuman untuk semuanya**\n\n[tulis pengumuman kamu di sini]\n\nTerima kasih sudah selalu mendukung **SasaUbi**.']
-];
-const icon=name=>`<i class="ti ti-${name}" aria-hidden="true"></i>`;
-function toast(text){$('toast').textContent=text;$('toast').hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').hidden=true,4500)}
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
-function inline(s){return esc(s).replace(/`([^`\n]+)`/g,'<code>$1</code>').replace(/\*\*([^\n]+?)\*\*/g,'<strong>$1</strong>').replace(/__([^\n]+?)__/g,'<u>$1</u>').replace(/~~([^\n]+?)~~/g,'<del>$1</del>').replace(/\*([^*\n]+)\*/g,'<em>$1</em>').replace(/\|\|([^\n]+?)\|\|/g,'<button type="button" class="spoiler" aria-label="Tampilkan spoiler">$1</button>')}
-function markdown(s){return s.split('\n').map(line=>line.trim()==='---'?'<hr>':line.startsWith('> ')?'<blockquote>'+inline(line.slice(2))+'</blockquote>':inline(line)).join('<br>')}
-function captionParts(raw){const result=[];let buffer=[];const flush=()=>{const content=buffer.join('\n').trim();if(content)result.push({type:10,content});buffer=[]};for(const line of raw.split('\n')){if(line.trim()==='---'){flush();result.push({type:14,divider:true,spacing:1})}else buffer.push(line)}flush();return result}
-function videoId(raw){try{const u=new URL(raw),host=u.hostname.toLowerCase();if(u.protocol!=='https:'&&u.protocol!=='http:')return null;let id;if(host==='youtu.be')id=u.pathname.slice(1).split('/')[0];else if(['youtube.com','www.youtube.com','m.youtube.com','music.youtube.com'].includes(host)){const parts=u.pathname.split('/');id=u.pathname==='/watch'?u.searchParams.get('v'):['shorts','embed','live'].includes(parts[1])?parts[2]:null}return /^[A-Za-z0-9_-]{11}$/.test(id||'')?id:null}catch{return null}}
-function webhookValid(raw){try{const u=new URL(raw);return u.protocol==='https:'&&['discord.com','discordapp.com','canary.discord.com','ptb.discord.com'].includes(u.hostname)&&!u.username&&!u.password&&/^\/api(?:\/v\d+)?\/webhooks\/\d+\/[A-Za-z0-9._-]+\/?$/.test(u.pathname)}catch{return false}}
-const SESSION_NAMES=['ANTARCTICA','VIOLENCE DISTRICT','RANDOM MAP'];
-function effectiveCaption(){return $('message').value.trim()}
-function setSession(session){if(!SESSION_NAMES.includes(session))return;state.session=session;document.querySelectorAll('[data-session]').forEach(b=>{const active=b.dataset.session===session;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});saveDraft();render()}
-function saveDraft(){state.drafts[state.mode]=$('message').value;try{localStorage.setItem('ubi_studio_v1',JSON.stringify({drafts:state.drafts,url:$('videoUrl').value,title:$('videoTitle').value,channel:$('videoChannel').value,everyone:$('everyone').checked,session:state.session}));$('draftStatus').innerHTML=icon('check')+'Draft tersimpan di perangkat ini'}catch{$('draftStatus').textContent='Draft tersimpan selama halaman terbuka'}}
-function render(){const youtube=state.mode==='youtube',raw=$('message').value,limit=2000;const date=new Date();$('previewTime').textContent='Hari ini '+date.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});$('previewDate').textContent=date.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});const caption=effectiveCaption();$('previewSession').hidden=!youtube||!state.videoId;$('previewSession').textContent=state.session;$('previewText').innerHTML=caption?markdown(caption):youtube?'':'<span class="placeholder">Pesanmu akan tampil di sini.<br>Mulai menulis atau pilih salah satu template.</span>';$('charCount').textContent=raw.length+' / '+limit;$('charCount').classList.toggle('errorcount',raw.length>limit);$('previewLength').textContent=caption.length+' karakter caption';$('mention').hidden=!$('everyone').checked;$('botName').textContent=youtube?'Ubi YouTube Post':'SasaUbi Berbicara';$('previewFooter').textContent=youtube?'youtube.com/@SasaUbii':'tiktok.com/@sasaubi';$('previewChannel').textContent=youtube?'youtube-update':'pengumuman';$('postType').textContent=youtube?'Posting video YouTube':'Pengumuman komunitas';$('sendDestination').textContent='Tujuan: '+(youtube?'YouTube':'Pengumuman')+' · Test: channel percobaan';$('videoPreview').hidden=!youtube||!state.videoId;$('previewImage').hidden=!youtube||!state.videoId;if(youtube&&state.videoId){$('previewAuthor').textContent=$('videoChannel').value.trim()||'SasaUbi';$('previewTitle').textContent=$('videoTitle').value.trim()||'Judul video belum diisi';$('previewTitle').href='https://www.youtube.com/watch?v='+state.videoId;const src='https://i.ytimg.com/vi/'+state.videoId+'/hqdefault.jpg';if($('previewImage').getAttribute('src')!==src)$('previewImage').src=src}const valid=raw.length<=limit&&(youtube?state.videoId&&$('videoTitle').value.trim():raw.trim());$('sendBtn').disabled=$('testBtn').disabled=state.sending||!valid}
-function switchMode(mode){if(state.sending)return;state.drafts[state.mode]=$('message').value;state.mode=mode;document.documentElement.dataset.postMode=mode;$('message').value=state.drafts[mode];document.querySelectorAll('[data-mode]').forEach(b=>{const active=b.dataset.mode===mode;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});const yt=mode==='youtube';$('templatesSection').hidden=yt;$('videoSection').hidden=!yt;$('editorTitle').textContent=yt?'Siapkan posting video':'Buat pengumuman';$('breadcrumb').textContent=yt?'YouTube Post':'Pengumuman';$('message').placeholder=yt?'Tulis seluruh caption di sini (opsional). Judul replay, tanggal, dan ajakan menonton bisa kamu atur sendiri.':'Ada kabar apa hari ini?\nTulis pesan untuk komunitasmu di sini...';render()}
-function onVideo(){state.version++;const version=state.version;clearTimeout(state.timer);state.abort?.abort();state.videoId=videoId($('videoUrl').value.trim());$('videoTitle').value='';$('videoStatus').className='urlstatus';if(!state.videoId){$('videoStatus').textContent=$('videoUrl').value?'Link YouTube belum valid.':'Mendukung video, Shorts, dan live YouTube.';render();saveDraft();return}const id=state.videoId;$('videoStatus').textContent='Mengambil informasi video...';render();saveDraft();state.timer=setTimeout(async()=>{const controller=new AbortController();state.abort=controller;const timeout=setTimeout(()=>controller.abort(),8000);const originalTitle=$('videoTitle').value;try{const res=await fetch('https://www.youtube.com/oembed?url='+encodeURIComponent('https://www.youtube.com/watch?v='+id)+'&format=json',{signal:controller.signal});if(!res.ok)throw Error();const data=await res.json();if(version!==state.version)return;if($('videoTitle').value===originalTitle)$('videoTitle').value=String(data.title||'').slice(0,180);$('videoStatus').textContent='Video siap. Judul dapat kamu sesuaikan.';$('videoStatus').className='urlstatus ok'}catch{if(version!==state.version)return;$('videoStatus').textContent='Info otomatis tidak tersedia. Isi judul video secara manual.';$('videoStatus').className='urlstatus error'}finally{clearTimeout(timeout);if(version===state.version){render();saveDraft()}}},500)}
-function format(type){const ta=$('message'),start=ta.selectionStart,end=ta.selectionEnd,selected=ta.value.slice(start,end)||'teks';const pairs={bold:['**','**'],italic:['*','*'],underline:['__','__'],strikethrough:['~~','~~'],code:['`','`'],'eye-off':['||','||']};let text;if(type==='separator')text=(start&&ta.value[start-1]!=='\n'?'\n':'')+'---\n';else if(type==='quote')text=(start&&ta.value[start-1]!=='\n'?'\n':'')+selected.split('\n').map(s=>'> '+s).join('\n');else text=pairs[type][0]+selected+pairs[type][1];ta.setRangeText(text,start,end,'end');ta.focus();saveDraft();render()}
-function buildPayload(test){const yt=state.mode==='youtube',raw=$('message').value.trim();if($('message').value.length>2000)throw Error('Pesan maksimal 2000 karakter.');if(!yt&&!raw)throw Error('Tulis pesan terlebih dahulu.');if(yt&&(!state.videoId||!$('videoTitle').value.trim()))throw Error('Isi link dan judul video terlebih dahulu.');const parts=[];const label=s=>s.replace(/([\\`*_{}\[\]()<>~|])/g,'\\$1');if(test)parts.push({type:10,content:'**[TEST]** Pesan percobaan — bukan channel utama.'});if(yt)parts.push({type:10,content:'**'+label($('videoChannel').value.trim()||'SasaUbi')+'**\n**['+label($('videoTitle').value.trim())+'](https://www.youtube.com/watch?v='+state.videoId+')**'});if(yt){parts.push({type:14,divider:true,spacing:1},{type:10,content:'**'+state.session+'**'},{type:14,divider:true,spacing:1})}parts.push(...captionParts(effectiveCaption()));if(yt)parts.push({type:12,items:[{media:{url:'https://i.ytimg.com/vi/'+state.videoId+'/hqdefault.jpg'}}]});parts.push({type:10,content:'-# '+(test?'Test webhook':yt?'youtube.com/@SasaUbii':'tiktok.com/@sasaubi')+' · '+new Date().toLocaleDateString('id-ID')});const mention=!test&&$('everyone').checked;const components=[...(mention?[{type:10,content:'@everyone'}]:[]),{type:17,accent_color:test?16234512:12615932,components:parts}];if(parts.length+components.length>40)throw Error('Terlalu banyak garis pembatas. Kurangi jumlahnya.');if(parts.reduce((n,p)=>n+(p.content?.length||0),mention?9:0)>4000)throw Error('Total teks terlalu panjang. Pendekkan pesan.');return {username:yt?'Ubi YouTube Post':'SasaUbi Berbicara',avatar_url:'https://raw.githubusercontent.com/RehanDias/s0urce/refs/heads/main/sasaubi.jpeg',flags:32768,allowed_mentions:{parse:mention?['everyone']:[]},components}}
-function prepareSend(test){if(state.sending)return;try{const payload=buildPayload(test),url=state.settings[state.mode][test?'test':'main'];if(!webhookValid(url)){openSettings();toast('Isi webhook '+(test?'test':'utama')+' terlebih dahulu.');return}state.pending={payload,url,test};$('confirmTitle').textContent=test?'Kirim pesan test?':'Kirim ke channel utama?';$('confirmNote').textContent=test?'Pesan akan masuk ke webhook test tanpa notifikasi @everyone.':$('everyone').checked?'Pesan ini akan menyebut @everyone di channel utama.':'Pesan akan dikirim ke channel utama tanpa menyebut @everyone.';$('confirmNote').textContent+=' Tujuan: '+(test?'Webhook test bersama':state.mode==='youtube'?'Webhook YouTube':'Webhook pengumuman')+'.';$('confirmContent').textContent=(state.mode==='youtube'?$('videoTitle').value+'\nhttps://www.youtube.com/watch?v='+state.videoId+'\n\n'+state.session+'\n--------------------\n':'')+effectiveCaption();$('confirmation').showModal()}catch(e){toast(e.message)}}
-async function send(){if(state.sending||!state.pending)return;const pending=state.pending;state.pending=null;state.sending=true;$('confirmation').close();render();document.querySelectorAll('.tab,.navbtn,input,textarea,.tool,.template,.session-choice,select,[data-settings]').forEach(e=>e.disabled=true);const button=$(pending.test?'testBtn':'sendBtn'),original=button.innerHTML;button.textContent='Mengirim...';const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),20000);try{const url=new URL(pending.url);url.searchParams.set('wait','true');url.searchParams.set('with_components','true');const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(pending.payload),signal:controller.signal});if(!res.ok){let data={};try{data=await res.json()}catch{}if(res.status===429)throw Error('Batas pengiriman tercapai. Coba lagi dalam '+Math.ceil(data.retry_after||5)+' detik.');throw Error([401,403,404].includes(res.status)?'Webhook tidak tersedia. Periksa pengaturan.':'Discord menolak pesan (HTTP '+res.status+'). Periksa isi pesan dan webhook.')}toast(pending.test?'Test berhasil dikirim tanpa @everyone.':'Pesan berhasil dikirim ke Discord.')}catch(e){toast(e.name==='AbortError'?'Waktu tunggu habis. Periksa channel sebelum mencoba lagi.':e instanceof TypeError?'Koneksi gagal. Periksa internet dan channel sebelum mencoba lagi.':e.message)}finally{clearTimeout(timeout);state.sending=false;button.innerHTML=original;document.querySelectorAll('.tab,.navbtn,input,textarea,.tool,.template,.session-choice,select,[data-settings]').forEach(e=>e.disabled=false);render()}}
-function openSettings(){$('announcementWebhook').value=state.settings.announcement.main;$('youtubeWebhook').value=state.settings.youtube.main;$('testWebhook').value=state.settings.announcement.test;$('settingsError').textContent='';$('settings').showModal()}
-$('settingsForm').addEventListener('submit',e=>{e.preventDefault();const announcement=$('announcementWebhook').value.trim(),youtube=$('youtubeWebhook').value.trim(),test=$('testWebhook').value.trim();if([announcement,youtube,test].some(s=>s&&!webhookValid(s))){$('settingsError').textContent='Gunakan URL webhook Discord yang valid.';return}state.settings={announcement:{main:announcement,test},youtube:{main:youtube,test}};$('settings').close();toast('Pengaturan diterapkan untuk sesi ini.')});
-let pendingAction=null;
-function showActionCard({title,description,label,preview='',danger=false,onAccept}){
-  if(state.sending)return;
-  const dialog=$('actionDialog');
-  pendingAction=onAccept;
-  $('actionTitle').textContent=title;
-  $('actionDescription').textContent=description;
-  $('actionAccept').textContent=label;
-  $('actionPreview').textContent=preview;
-  $('actionPreview').hidden=!preview;
-  $('actionSymbol').innerHTML=icon(danger?'trash':'replace');
-  dialog.dataset.tone=danger?'danger':'normal';
-  dialog.showModal();
-  $('actionCancel').focus();
-}
-$('actionDialog').addEventListener('close',()=>{pendingAction=null});
-$('actionDialog').addEventListener('cancel',()=>{pendingAction=null});
-$('actionAccept').onclick=()=>{const apply=pendingAction;pendingAction=null;$('actionDialog').close();if(apply)apply()};
-for(const [idx,t] of templates.entries()){const b=document.createElement('button');b.className='template';b.innerHTML=icon(t[0])+'<span>'+t[1]+'</span>';b.onclick=()=>{const apply=()=>{$('message').value=t[2];document.querySelectorAll('.template').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');saveDraft();render()};if(!$('message').value.trim()){apply();return}showActionCard({title:'Pakai template ini?',description:'Isi pesan saat ini akan diganti dengan template '+t[1]+'.',label:'Pakai template',preview:t[2],onAccept:apply})};$('templates').appendChild(b)}
-for(const [type,title] of [['bold','Tebal'],['italic','Miring'],['underline','Garis bawah'],['strikethrough','Coret'],['code','Kode'],['eye-off','Spoiler'],['quote','Kutipan'],['separator','Garis pembatas']]){const b=document.createElement('button');b.className='tool';b.title=title;b.setAttribute('aria-label',title);b.innerHTML=icon(type);b.onclick=()=>format(type);$('toolbar').appendChild(b)}
-const space=document.createElement('span');space.className='spacer';$('toolbar').appendChild(space);const clear=document.createElement('button');clear.className='tool';clear.title='Hapus pesan';clear.setAttribute('aria-label','Hapus pesan');clear.innerHTML=icon('trash');clear.onclick=()=>{if(!$('message').value)return;showActionCard({title:'Hapus isi pesan?',description:'Pesan dan draft pada mode ini akan dikosongkan. Pastikan tidak ada teks yang masih ingin kamu simpan.',label:'Hapus pesan',danger:true,onAccept:()=>{$('message').value='';document.querySelectorAll('.template').forEach(x=>x.classList.remove('selected'));saveDraft();render();$('message').focus()}})};$('toolbar').appendChild(clear);
-document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>switchMode(b.dataset.mode));document.querySelectorAll('[data-settings]').forEach(b=>b.onclick=openSettings);document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.close).close());document.querySelectorAll('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close()}}));$('message').addEventListener('input',()=>{saveDraft();render()});$('videoUrl').addEventListener('input',onVideo);for(const id of ['videoTitle','videoChannel','everyone'])$(id).addEventListener('input',()=>{saveDraft();render()});$('previewText').onclick=e=>{if(e.target.classList.contains('spoiler')){e.target.classList.toggle('revealed');e.target.setAttribute('aria-label',e.target.classList.contains('revealed')?'Sembunyikan spoiler':'Tampilkan spoiler')}};$('previewImage').onerror=()=>{$('previewImage').hidden=true};$('testBtn').onclick=()=>prepareSend(true);$('sendBtn').onclick=()=>prepareSend(false);$('confirmSend').onclick=send;document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'&&!document.querySelector('dialog[open]')){e.preventDefault();prepareSend(false)}});
-document.querySelectorAll('[data-session]').forEach(b=>b.onclick=()=>setSession(b.dataset.session));
-try{const saved=JSON.parse(localStorage.getItem('ubi_studio_v1')||'null');if(saved){if(SESSION_NAMES.includes(saved.session))state.session=saved.session;for(const mode of ['announcement','youtube'])if(typeof saved.drafts?.[mode]==='string')state.drafts[mode]=saved.drafts[mode];for(const [id,key]of [['videoUrl','url'],['videoTitle','title'],['videoChannel','channel']])if(typeof saved[key]==='string')$(id).value=saved[key];if(typeof saved.everyone==='boolean')$('everyone').checked=saved.everyone;state.videoId=videoId($('videoUrl').value);if(state.videoId)$('videoStatus').textContent='Video dipulihkan dari draft.'}else{const old=localStorage.getItem('sasa_draft');if(old)state.drafts.announcement=old}}catch{}
-$('message').value=state.drafts.announcement;
-switchMode('announcement');
-document.querySelectorAll('[data-session]').forEach(b=>{b.classList.toggle('active',b.dataset.session===state.session);b.setAttribute('aria-pressed',String(b.dataset.session===state.session))});
-</script>
-</body>
+
+      * {
+        box-sizing: border-box
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 14px/1.6 'Plus Jakarta Sans', sans-serif
+      }
+
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit
+      }
+
+      button,
+      a,
+      input,
+      textarea,
+      select {
+        outline-offset: 4px
+      }
+
+      button {
+        cursor: pointer
+      }
+
+      button:disabled {
+        opacity: .4;
+        cursor: not-allowed
+      }
+
+      button {
+        color: inherit
+      }
+
+      a {
+        color: var(--purple)
+      }
+
+      .ti {
+        font-size: 20px;
+        line-height: 1
+      }
+
+      button .ti {
+        pointer-events: none
+      }
+
+      button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px
+      }
+
+      button:focus-visible,
+      a:focus-visible {
+        outline: 2px solid var(--purple)
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: 224px minmax(0, 1fr);
+        min-height: 100vh
+      }
+
+      .sidebar {
+        padding: 32px 20px;
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        background: #101014
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        font-size: 21px;
+        font-weight: 800;
+        letter-spacing: -1px
+      }
+
+      .brandmark {
+        background: linear-gradient(145deg, #b894ff, #6b3bcc);
+        border: 1px solid #d4baff66;
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        color: white;
+        box-shadow: 0 4px 20px #9760ed22
+      }
+
+      .brand small {
+        font-size: 9px;
+        letter-spacing: 1.8px;
+        color: var(--muted);
+        display: block;
+        font-weight: 500;
+        line-height: 1.4
+      }
+
+      .navlabel {
+        font-size: 10px;
+        letter-spacing: 1.8px;
+        color: #716d7d;
+        margin: 43px 12px 14px
+      }
+
+      .navbtn {
+        width: 100%;
+        justify-content: flex-start;
+        border: 1px solid transparent;
+        background: none;
+        padding: 12px;
+        border-radius: 9px;
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 13px
+      }
+
+      .navbtn.active {
+        background: #211b30;
+        color: #cfb7ff;
+        border-color: #3d2d57
+      }
+
+      .navbtn:hover {
+        background: #211e2a
+      }
+
+      .sidebottom {
+        margin-top: auto
+      }
+
+      .workspace {
+        border: 1px solid var(--line);
+        padding: 14px;
+        border-radius: 12px;
+        margin: 22px 0;
+        display: flex;
+        gap: 10px;
+        align-items: center
+      }
+
+      .avatar {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #3b2c57;
+        color: #d6bcff;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        flex-shrink: 0
+      }
+
+      .workspace strong {
+        font-size: 12px
+      }
+
+      .workspace small {
+        display: block;
+        color: var(--muted);
+        font-size: 10px
+      }
+
+      .sidefoot {
+        font-size: 10px;
+        color: #716d7d;
+        letter-spacing: .5px;
+        padding: 0 10px
+      }
+
+      .topbar {
+        height: 76px;
+        border-bottom: 1px solid var(--line);
+        padding: 0 42px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px
+      }
+
+      .breadcrumb {
+        font-size: 12px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 14px
+      }
+
+      .breadcrumb b {
+        font-weight: 500;
+        color: var(--text)
+      }
+
+      .quiet {
+        border: 1px solid var(--line);
+        background: #18171e;
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 12px
+      }
+
+      .quiet:hover {
+        background: #272130
+      }
+
+      .topright {
+        display: flex;
+        align-items: center;
+        gap: 18px
+      }
+
+      .status {
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--muted)
+      }
+
+      .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 10px #9bddb622
+      }
+
+      .main {
+        max-width: 1440px;
+        margin: auto;
+        padding: 37px 42px 24px
+      }
+
+      .eyebrow {
+        color: var(--purple);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase
+      }
+
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 29px;
+        gap: 16px
+      }
+
+      .hero h1 {
+        font-size: 30px;
+        line-height: 1.3;
+        letter-spacing: -1.2px;
+        margin: 9px 0
+      }
+
+      .hero p {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 0
+      }
+
+      .heroicon {
+        width: 64px;
+        height: 64px;
+        border: 1px solid #44325d;
+        border-radius: 20px;
+        background: radial-gradient(at top left, #352447, #18141f);
+        display: grid;
+        place-items: center;
+        transform: rotate(-7deg);
+        color: #caa9ff
+      }
+
+      .heroicon .ti {
+        font-size: 30px
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 25px;
+        align-items: start
+      }
+
+      .tabs {
+        display: flex;
+        background: #101015;
+        border: 1px solid var(--line);
+        padding: 5px;
+        border-radius: 11px;
+        margin-bottom: 22px;
+        gap: 5px
+      }
+
+      .tab {
+        flex: 1;
+        background: none;
+        border: 0;
+        padding: 10px 4px;
+        border-radius: 7px;
+        font-size: 12px;
+        color: var(--muted)
+      }
+
+      .tab.active {
+        background: #2b223c;
+        color: #d8c1ff;
+        box-shadow: 0 2px 5px #0003
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--panel);
+        overflow: hidden;
+        margin-bottom: 18px
+      }
+
+      .cardhead {
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px
+      }
+
+      .cardtitle {
+        font-weight: 600;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 9px
+      }
+
+      .cardtitle .ti {
+        font-size: 17px;
+        color: #b6a0db
+      }
+
+      .tiny {
+        font-size: 10px;
+        color: var(--muted)
+      }
+
+      .cardbody {
+        padding: 20px
+      }
+
+      .sectionrow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px
+      }
+
+      .sectionrow b {
+        font-size: 12px;
+        font-weight: 600
+      }
+
+      .templategrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px
+      }
+
+      .template {
+        background: #1b1921;
+        border: 1px solid #302b39;
+        border-radius: 9px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 13px 10px;
+        font-size: 10px;
+        text-align: left;
+        gap: 9px;
+        transition: .15s
+      }
+
+      .template .ti {
+        color: #bca7de;
+        font-size: 19px
+      }
+
+      .template:hover,
+      .template.selected {
+        border-color: #9470c9;
+        background: #2b223a
+      }
+
+      .editor {
+        margin-top: 21px;
+        border: 1px solid #37303f;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #101014
+      }
+
+      .toolbar {
+        padding: 7px 9px;
+        border-bottom: 1px solid #29252f;
+        display: flex;
+        gap: 3px;
+        flex-wrap: wrap
+      }
+
+      .tool {
+        padding: 7px;
+        background: none;
+        border: 0;
+        border-radius: 5px;
+        color: #aea7bc
+      }
+
+      .tool:hover {
+        background: #33253f;
+        color: #dfcaff
+      }
+
+      .tool .ti {
+        font-size: 17px
+      }
+
+      .toolbar .spacer {
+        flex: 1
+      }
+
+      .editor textarea {
+        width: 100%;
+        padding: 17px;
+        border: 0;
+        background: none;
+        color: var(--text);
+        min-height: 225px;
+        resize: vertical;
+        line-height: 1.85;
+        font-size: 12px;
+        display: block;
+        outline: none
+      }
+
+      .editor:focus-within {
+        border-color: #9b77cf;
+        box-shadow: 0 0 0 3px #9b77cf10
+      }
+
+      textarea::placeholder,
+      input::placeholder {
+        color: #77717f
+      }
+
+      .editorfoot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+        border-top: 1px solid #29252f;
+        font-size: 10px;
+        color: var(--muted);
+        gap: 8px
+      }
+
+      .draft {
+        display: flex;
+        align-items: center;
+        gap: 6px
+      }
+
+      .draft .ti {
+        font-size: 13px;
+        color: var(--green)
+      }
+
+      .helper {
+        font-size: 10px;
+        color: #807a8e;
+        margin: 11px 0 0
+      }
+
+      .options {
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px
+      }
+
+      .optiontitle {
+        font-size: 12px;
+        font-weight: 600
+      }
+
+      .optiondesc {
+        color: var(--muted);
+        font-size: 10px;
+        margin-top: 3px
+      }
+
+      .switch {
+        position: relative;
+        flex-shrink: 0;
+        width: 36px;
+        height: 21px
+      }
+
+      .switch input {
+        position: absolute;
+        opacity: 0
+      }
+
+      .switch span {
+        display: block;
+        height: 21px;
+        background: #3c3546;
+        border-radius: 20px;
+        cursor: pointer
+      }
+
+      .switch span:after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #fff;
+        transition: transform .2s
+      }
+
+      .switch input:checked+span {
+        background: #9670e0
+      }
+
+      .switch input:checked+span:after {
+        transform: translateX(15px)
+      }
+
+      .switch input:focus-visible+span {
+        outline: 2px solid white;
+        outline-offset: 4px
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px
+      }
+
+      .primary,
+      .secondary {
+        border-radius: 9px;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 13px 16px
+      }
+
+      .primary {
+        background: linear-gradient(110deg, #a681ee, #8c60dc);
+        color: white;
+        border: 1px solid #b897ef;
+        box-shadow: 0 4px 15px #6f3db520;
+        flex: 1
+      }
+
+      .primary:hover {
+        filter: brightness(1.1)
+      }
+
+      .secondary {
+        background: #1b1822;
+        border: 1px solid #3a3049;
+        color: #ccb9e9
+      }
+
+      .actions .ti {
+        font-size: 17px
+      }
+
+      .bottomhint {
+        text-align: center;
+        font-size: 10px;
+        color: #726b7f;
+        margin: 12px 0
+      }
+
+      kbd {
+        font-family: inherit;
+        font-size: 9px;
+        border: 1px solid #3b3444;
+        border-radius: 4px;
+        padding: 1px 4px
+      }
+
+      .previewhead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 5px 0 19px
+      }
+
+      .previewhead strong {
+        font-size: 12px
+      }
+
+      .livepill {
+        font-size: 9px;
+        color: #a8d3b7;
+        background: #17221d;
+        padding: 4px 8px;
+        border: 1px solid #2a4135;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 5px
+      }
+
+      .discord {
+        background: #242429;
+        border: 1px solid #36333c;
+        border-radius: 14px;
+        overflow: hidden
+      }
+
+      .channelbar {
+        padding: 13px 18px;
+        border-bottom: 1px solid #37343d;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 12px;
+        color: #cfccd6
+      }
+
+      .channelbar .ti {
+        color: #817b8a;
+        font-size: 18px
+      }
+
+      .channelbar small {
+        margin-left: auto;
+        color: #837d8d;
+        font-size: 9px
+      }
+
+      .message {
+        padding: 24px 18px 26px;
+        display: flex;
+        align-items: flex-start;
+        gap: 11px
+      }
+
+      .botavatar {
+        background: #5b4080;
+        position: relative;
+        overflow: hidden;
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: #e3ccff;
+        font-weight: 700
+      }
+
+      .botavatar img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover
+      }
+
+      .messagecontent {
+        min-width: 0;
+        flex: 1
+      }
+
+      .botline {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+        line-height: 1.5
+      }
+
+      .botname {
+        font-size: 12px;
+        font-weight: 700;
+        color: #d1b4fc
+      }
+
+      .botbadge {
+        background: #5865f2;
+        color: white;
+        border-radius: 3px;
+        font: 8px/1.5 sans-serif;
+        padding: 1px 4px
+      }
+
+      .botline time {
+        font-size: 9px;
+        color: #97909f
+      }
+
+      .mention {
+        color: #cbd0ff;
+        background: #5865f23b;
+        border-radius: 3px;
+        padding: 1px 5px;
+        font-size: 12px;
+        display: inline-block;
+        margin: 8px 0
+      }
+
+      .embed {
+        border-left: 3px solid #ac87e9;
+        border-radius: 4px;
+        background: #1c1c21;
+        padding: 15px;
+        margin-top: 8px;
+        min-height: 165px;
+        overflow-wrap: anywhere
+      }
+
+      .previewtext {
+        font-size: 12px;
+        line-height: 1.8;
+        color: #d1ced8;
+        white-space: normal
+      }
+
+      .previewtext strong {
+        color: #f2eef8
+      }
+
+      .previewtext code {
+        background: #121215;
+        padding: 2px 4px;
+        border-radius: 3px
+      }
+
+      .previewtext blockquote {
+        margin: 5px 0;
+        border-left: 3px solid #605669;
+        padding-left: 9px
+      }
+
+      .previewtext hr {
+        border: 0;
+        border-top: 1px solid #46404d;
+        margin: 13px 0
+      }
+
+      .spoiler {
+        background: #09090b;
+        color: transparent;
+        border: 0;
+        border-radius: 3px;
+        padding: 0 3px;
+        display: inline;
+        font: inherit
+      }
+
+      .spoiler.revealed {
+        color: inherit;
+        background: #37303e
+      }
+
+      .placeholder {
+        color: #8d8499
+      }
+
+      .embedfoot {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 8px;
+        color: #91899b;
+        margin-top: 18px;
+        flex-wrap: wrap
+      }
+
+      .embedfoot .ti {
+        font-size: 12px
+      }
+
+      .previewbottom {
+        border-top: 1px solid #37323e;
+        padding: 12px 18px;
+        color: #8f869c;
+        font-size: 9px;
+        display: flex;
+        gap: 7px;
+        align-items: center
+      }
+
+      .previewbottom .ti {
+        font-size: 14px
+      }
+
+      .notecard {
+        display: flex;
+        gap: 12px;
+        border: 1px solid #34293f;
+        border-radius: 11px;
+        background: linear-gradient(120deg, #1d1826, #141318);
+        padding: 18px;
+        margin-top: 18px
+      }
+
+      .notecard>.ti {
+        color: #af8de1
+      }
+
+      .notecard b {
+        font-size: 11px;
+        font-weight: 600
+      }
+
+      .notecard p {
+        font-size: 10px;
+        line-height: 1.8;
+        color: #9d93aa;
+        margin: 5px 0 0
+      }
+
+      .metarow {
+        display: flex;
+        justify-content: space-between;
+        color: #8b8298;
+        font-size: 10px;
+        margin: 19px 3px
+      }
+
+      .footer {
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        font-size: 9px;
+        color: #746d80;
+        padding-top: 18px;
+        margin-top: 30px;
+        gap: 15px
+      }
+
+      .field {
+        width: 100%;
+        border: 1px solid #393140;
+        border-radius: 8px;
+        background: #101014;
+        color: var(--text);
+        padding: 11px;
+        font-size: 12px;
+        margin: 7px 0
+      }
+
+      .label {
+        font-size: 11px;
+        color: #c5b9d4;
+        display: block
+      }
+
+      .urlstatus {
+        font-size: 10px;
+        color: var(--muted);
+        margin: 4px 0 15px
+      }
+
+      .urlstatus.error {
+        color: #f4a4a4
+      }
+
+      .urlstatus.ok {
+        color: var(--green)
+      }
+
+      .videotitle {
+        font-size: 13px;
+        font-weight: 700;
+        color: #8fbbfa;
+        display: block;
+        margin: 5px 0 10px;
+        text-decoration: none
+      }
+
+      .videothumb {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        border-radius: 7px;
+        margin-top: 12px;
+        background: #25222b
+      }
+
+      .videoauthor {
+        font-size: 11px;
+        color: #8fbbfa;
+        font-weight: 700
+      }
+
+      .session-picker {
+        margin-top: 18px;
+        padding-top: 17px;
+        border-top: 1px solid var(--line)
+      }
+
+      .session-options {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+        margin: 10px 0 18px
+      }
+
+      .session-choice {
+        border: 1px solid #3d324b;
+        background: #1b1722;
+        border-radius: 8px;
+        padding: 12px 5px;
+        font-size: 9px;
+        font-weight: 700;
+        flex-direction: column;
+        gap: 7px
+      }
+
+      .session-choice .ti {
+        font-size: 19px;
+        color: #c6a8ef
+      }
+
+      .session-choice.active {
+        border-color: #b28ae9;
+        background: #352744;
+        color: #e2ccff
+      }
+
+      .session-preview {
+        border-top: 1px solid #46404d;
+        border-bottom: 1px solid #46404d;
+        padding: 8px 0;
+        margin: 9px 0;
+        font-size: 12px;
+        font-weight: 800;
+        color: #e5e1eb
+      }
+
+      .caption-label {
+        display: block;
+        font-size: 11px;
+        color: #c5b9d4;
+        margin-top: 17px
+      }
+
+      @media(max-width:420px) {
+        html:not([data-layout="desktop"]) .session-choice {
+          font-size: 8px
+        }
+      }
+
+      .hidden,
+      [hidden] {
+        display: none !important
+      }
+
+      dialog {
+        background: #19151f;
+        border: 1px solid #544065;
+        color: var(--text);
+        border-radius: 16px;
+        padding: 25px;
+        max-width: 480px;
+        width: calc(100% - 32px);
+        max-height: 85vh;
+        overflow: auto;
+        box-shadow: 0 25px 100px #0008
+      }
+
+      dialog::backdrop {
+        background: #07050bcc;
+        backdrop-filter: blur(5px)
+      }
+
+      dialog h2 {
+        font-size: 20px;
+        margin: 0 0 8px;
+        letter-spacing: -.5px
+      }
+
+      dialog p {
+        font-size: 12px;
+        color: var(--muted)
+      }
+
+      dialog .actions {
+        margin-top: 22px
+      }
+
+      .dialogheader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px
+      }
+
+      .dialogheader button {
+        border: 0;
+        background: none;
+        color: var(--muted)
+      }
+
+      #confirmContent {
+        max-height: 230px;
+        overflow: auto;
+        padding: 15px;
+        background: #110f15;
+        border-radius: 8px;
+        margin-top: 16px;
+        white-space: pre-wrap;
+        font-size: 12px;
+        overflow-wrap: anywhere
+      }
+
+      #toast {
+        position: fixed;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #292032;
+        border: 1px solid #72518c;
+        padding: 13px 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 50px #0008;
+        z-index: 20;
+        font-size: 12px;
+        width: max-content;
+        max-width: calc(100% - 30px)
+      }
+
+      .errorcount {
+        color: #f3a0a0 !important
+      }
+
+      @media(min-width:1500px) {
+        .main {
+          padding-top: 50px
+        }
+
+        .editor textarea {
+          min-height: 285px
+        }
+      }
+
+      @media(max-width:1150px) {
+        html:not([data-layout="desktop"]) .shell {
+          grid-template-columns: 190px minmax(0, 1fr)
+        }
+
+        html:not([data-layout="desktop"]) .sidebar {
+          padding: 26px 13px
+        }
+
+        html:not([data-layout="desktop"]) .main {
+          padding: 30px 24px
+        }
+
+        html:not([data-layout="desktop"]) .topbar {
+          padding: 0 24px
+        }
+
+        html:not([data-layout="desktop"]) .layout {
+          gap: 18px
+        }
+
+        html:not([data-layout="desktop"]) .cardbody {
+          padding: 16px
+        }
+
+        html:not([data-layout="desktop"]) .templategrid {
+          grid-template-columns: repeat(2, 1fr)
+        }
+      }
+
+      @media(max-width:900px) {
+        html:not([data-layout="desktop"]) .shell {
+          grid-template-columns: 1fr
+        }
+
+        html:not([data-layout="desktop"]) .sidebar {
+          display: none
+        }
+
+        html:not([data-layout="desktop"]) .layout {
+          grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr)
+        }
+
+        html:not([data-layout="desktop"]) .main {
+          padding: 27px 22px
+        }
+
+        html:not([data-layout="desktop"]) .hero h1 {
+          font-size: 27px
+        }
+      }
+
+      @media(max-width:650px) {
+        html:not([data-layout="desktop"]) .topbar {
+          height: 64px;
+          padding: 0 18px
+        }
+
+        html:not([data-layout="desktop"]) .breadcrumb>span,
+        html:not([data-layout="desktop"]) .topright .status {
+          display: none
+        }
+
+        html:not([data-layout="desktop"]) .topright {
+          gap: 8px
+        }
+
+        html:not([data-layout="desktop"]) .main {
+          padding: 24px 16px
+        }
+
+        html:not([data-layout="desktop"]) .hero h1 {
+          font-size: 25px
+        }
+
+        html:not([data-layout="desktop"]) .hero p {
+          max-width: 260px
+        }
+
+        html:not([data-layout="desktop"]) .heroicon {
+          width: 48px;
+          height: 48px;
+          border-radius: 14px
+        }
+
+        html:not([data-layout="desktop"]) .layout {
+          grid-template-columns: 1fr
+        }
+
+        html:not([data-layout="desktop"]) .templategrid {
+          grid-template-columns: repeat(3, 1fr)
+        }
+
+        html:not([data-layout="desktop"]) .template {
+          font-size: 9px;
+          padding: 11px 8px
+        }
+
+        html:not([data-layout="desktop"]) .editor textarea {
+          min-height: 230px
+        }
+
+        html:not([data-layout="desktop"]) .previewhead {
+          margin-top: 8px
+        }
+
+        html:not([data-layout="desktop"]) .footer {
+          font-size: 8px
+        }
+
+        html:not([data-layout="desktop"]) .actions {
+          flex-wrap: wrap
+        }
+
+        html:not([data-layout="desktop"]) .hero {
+          margin-bottom: 24px
+        }
+
+        html:not([data-layout="desktop"]) .message {
+          padding: 22px 14px
+        }
+
+        html:not([data-layout="desktop"]) .tab {
+          font-size: 11px
+        }
+
+        html:not([data-layout="desktop"]) .embed {
+          padding: 13px
+        }
+
+        html:not([data-layout="desktop"]) .quiet {
+          font-size: 10px
+        }
+      }
+
+      @media(prefers-reduced-motion:reduce) {
+        * {
+          transition: none !important;
+          scroll-behavior: auto !important
+        }
+      }
+
+      /* Touch-friendly layout and persistent mobile send controls. */
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 90px
+      }
+
+      body {
+        overflow-wrap: break-word
+      }
+
+      .layout>*,
+      .hero>div,
+      .messagecontent {
+        min-width: 0
+      }
+
+      .mobile-preview-link {
+        display: none
+      }
+
+      .send-actions {
+        flex-wrap: wrap
+      }
+
+      .send-destination {
+        flex-basis: 100%;
+        font-size: 10px;
+        color: var(--muted);
+        padding: 0 2px 2px
+      }
+
+      .webhook-setting {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line)
+      }
+
+      .webhook-setting .label {
+        display: flex;
+        align-items: center;
+        gap: 6px
+      }
+
+      .webhook-setting .helper {
+        margin: 3px 0 0
+      }
+
+      .webhook-setting .ti {
+        font-size: 17px;
+        color: var(--purple)
+      }
+
+      .field {
+        max-width: 100%
+      }
+
+      dialog {
+        max-height: calc(100dvh - 32px);
+        overscroll-behavior: contain
+      }
+
+      .topbar {
+        padding-top: env(safe-area-inset-top)
+      }
+
+      #composer,
+      #discordPreview {
+        scroll-margin-top: 90px
+      }
+
+      @media(max-width:1100px) and (min-width:651px) {
+        html:not([data-layout="desktop"]) .layout {
+          grid-template-columns: minmax(0, 1fr)
+        }
+
+        html:not([data-layout="desktop"]) .templategrid {
+          grid-template-columns: repeat(3, minmax(0, 1fr))
+        }
+
+        html:not([data-layout="desktop"]) .main {
+          max-width: 850px
+        }
+
+        html:not([data-layout="desktop"]) .discord {
+          max-width: 100%
+        }
+
+        html:not([data-layout="desktop"]) .editor textarea {
+          min-height: 240px
+        }
+
+        html:not([data-layout="desktop"]) .session-choice {
+          font-size: 11px
+        }
+
+        html:not([data-layout="desktop"]) .field {
+          font-size: 16px;
+          min-height: 46px
+        }
+
+        html:not([data-layout="desktop"]) .tool {
+          min-width: 42px;
+          min-height: 42px
+        }
+
+        html:not([data-layout="desktop"]) .mobile-preview-link {
+          display: inline-flex;
+          gap: 5px;
+          align-items: center;
+          font-size: 11px;
+          text-decoration: none;
+          min-height: 40px
+        }
+
+        html:not([data-layout="desktop"]) .compose-step {
+          display: none
+        }
+      }
+
+      @media(max-width:650px) {
+        html:not([data-layout="desktop"]) body {
+          padding-bottom: calc(128px + env(safe-area-inset-bottom));
+          font-size: 14px
+        }
+
+        html:not([data-layout="desktop"]) .shell {
+          min-height: 100dvh
+        }
+
+        html:not([data-layout="desktop"]) .topbar {
+          position: sticky;
+          top: 0;
+          z-index: 8;
+          height: calc(64px + env(safe-area-inset-top));
+          background: #101014f5;
+          backdrop-filter: blur(16px);
+          padding-left: max(14px, env(safe-area-inset-left));
+          padding-right: max(14px, env(safe-area-inset-right))
+        }
+
+        html:not([data-layout="desktop"]) .topbar .quiet {
+          min-height: 42px;
+          padding: 9px 11px;
+          font-size: 11px
+        }
+
+        html:not([data-layout="desktop"]) .topbar .avatar {
+          display: none
+        }
+
+        html:not([data-layout="desktop"]) .breadcrumb {
+          gap: 8px;
+          font-size: 11px
+        }
+
+        html:not([data-layout="desktop"]) .main {
+          padding: 22px max(14px, env(safe-area-inset-left)) 16px max(14px, env(safe-area-inset-right))
+        }
+
+        html:not([data-layout="desktop"]) .hero {
+          gap: 10px;
+          margin-bottom: 22px
+        }
+
+        html:not([data-layout="desktop"]) .hero h1 {
+          font-size: 26px
+        }
+
+        html:not([data-layout="desktop"]) .hero p {
+          font-size: 12px;
+          line-height: 1.8
+        }
+
+        html:not([data-layout="desktop"]) .heroicon {
+          flex-shrink: 0
+        }
+
+        html:not([data-layout="desktop"]) .eyebrow {
+          font-size: 9px;
+          letter-spacing: 1.6px
+        }
+
+        html:not([data-layout="desktop"]) .layout {
+          gap: 20px
+        }
+
+        html:not([data-layout="desktop"]) .tabs {
+          margin-bottom: 16px
+        }
+
+        html:not([data-layout="desktop"]) .tab {
+          min-height: 46px;
+          font-size: 12px;
+          gap: 7px
+        }
+
+        html:not([data-layout="desktop"]) .cardhead {
+          padding: 13px 15px
+        }
+
+        html:not([data-layout="desktop"]) .cardbody {
+          padding: 15px
+        }
+
+        html:not([data-layout="desktop"]) .cardtitle {
+          font-size: 12px
+        }
+
+        html:not([data-layout="desktop"]) .compose-step {
+          display: none
+        }
+
+        html:not([data-layout="desktop"]) .mobile-preview-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+          min-height: 42px;
+          font-size: 11px;
+          text-decoration: none
+        }
+
+        html:not([data-layout="desktop"]) .mobile-preview-link .ti {
+          font-size: 17px
+        }
+
+        html:not([data-layout="desktop"]) .templategrid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 9px
+        }
+
+        html:not([data-layout="desktop"]) .template {
+          min-height: 68px;
+          padding: 12px;
+          font-size: 11px;
+          gap: 9px;
+          flex-direction: row;
+          align-items: center
+        }
+
+        html:not([data-layout="desktop"]) .sectionrow {
+          gap: 8px
+        }
+
+        html:not([data-layout="desktop"]) .sectionrow .tiny {
+          font-size: 9px
+        }
+
+        html:not([data-layout="desktop"]) .toolbar {
+          padding: 7px;
+          gap: 2px
+        }
+
+        html:not([data-layout="desktop"]) .tool {
+          min-width: 40px;
+          min-height: 42px;
+          padding: 9px
+        }
+
+        html:not([data-layout="desktop"]) .tool .ti {
+          font-size: 19px
+        }
+
+        html:not([data-layout="desktop"]) .toolbar .spacer {
+          display: none
+        }
+
+        html:not([data-layout="desktop"]) .editor textarea {
+          font-size: 16px;
+          line-height: 1.8;
+          min-height: 230px;
+          padding: 14px
+        }
+
+        html:not([data-layout="desktop"]) .editorfoot {
+          font-size: 9px;
+          flex-wrap: wrap;
+          padding: 10px
+        }
+
+        html:not([data-layout="desktop"]) .label,
+        html:not([data-layout="desktop"]) .caption-label {
+          font-size: 12px
+        }
+
+        html:not([data-layout="desktop"]) .field {
+          font-size: 16px;
+          min-height: 48px;
+          padding: 11px 12px
+        }
+
+        html:not([data-layout="desktop"]) .urlstatus,
+        html:not([data-layout="desktop"]) .helper {
+          font-size: 11px;
+          line-height: 1.7
+        }
+
+        html:not([data-layout="desktop"]) .session-options {
+          grid-template-columns: 1fr;
+          gap: 8px
+        }
+
+        html:not([data-layout="desktop"]) .session-choice {
+          min-height: 46px;
+          flex-direction: row;
+          justify-content: flex-start;
+          padding: 12px 14px;
+          font-size: 11px;
+          gap: 10px
+        }
+
+        html:not([data-layout="desktop"]) .session-choice.active {
+          box-shadow: inset 3px 0 #c4a0ff
+        }
+
+        html:not([data-layout="desktop"]) .options {
+          padding: 16px;
+          gap: 12px
+        }
+
+        html:not([data-layout="desktop"]) .optiontitle {
+          font-size: 12px
+        }
+
+        html:not([data-layout="desktop"]) .optiondesc {
+          font-size: 11px;
+          line-height: 1.7
+        }
+
+        html:not([data-layout="desktop"]) .switch {
+          width: 44px;
+          height: 44px;
+          display: flex;
+          align-items: center
+        }
+
+        html:not([data-layout="desktop"]) .switch span {
+          width: 44px;
+          height: 26px
+        }
+
+        html:not([data-layout="desktop"]) .switch span:after {
+          width: 20px;
+          height: 20px;
+          top: 12px
+        }
+
+        html:not([data-layout="desktop"]) .switch input:checked+span:after {
+          transform: translateX(18px)
+        }
+
+        html:not([data-layout="desktop"]) .send-actions {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 10;
+          margin: 0;
+          padding: 10px max(14px, env(safe-area-inset-left)) calc(12px + env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-right));
+          background: #15121bf5;
+          backdrop-filter: blur(20px);
+          border-top: 1px solid #463550;
+          display: grid;
+          grid-template-columns: minmax(108px, .85fr) minmax(0, 1.4fr);
+          gap: 8px;
+          box-shadow: 0 -8px 30px #0003
+        }
+
+        html:not([data-layout="desktop"]) .send-destination {
+          grid-column: 1/-1;
+          font-size: 10px;
+          text-align: center;
+          padding-bottom: 2px
+        }
+
+        html:not([data-layout="desktop"]) .send-actions button {
+          min-height: 48px;
+          font-size: 12px;
+          padding: 12px 8px
+        }
+
+        html:not([data-layout="desktop"]) .bottomhint {
+          font-size: 10px;
+          margin: 10px 0 0
+        }
+
+        html:not([data-layout="desktop"]) .desktop-shortcut {
+          display: none
+        }
+
+        html:not([data-layout="desktop"]) .previewhead {
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-bottom: 12px
+        }
+
+        html:not([data-layout="desktop"]) .previewhead .livepill {
+          display: none
+        }
+
+        html:not([data-layout="desktop"]) .previewhead strong {
+          font-size: 13px
+        }
+
+        html:not([data-layout="desktop"]) .message {
+          gap: 8px;
+          padding: 18px 10px
+        }
+
+        html:not([data-layout="desktop"]) .botavatar {
+          width: 28px;
+          height: 28px;
+          font-size: 12px
+        }
+
+        html:not([data-layout="desktop"]) .botname {
+          font-size: 11px
+        }
+
+        html:not([data-layout="desktop"]) .botline time {
+          font-size: 9px
+        }
+
+        html:not([data-layout="desktop"]) .embed {
+          padding: 12px 10px
+        }
+
+        html:not([data-layout="desktop"]) .previewtext {
+          font-size: 12px
+        }
+
+        html:not([data-layout="desktop"]) .videotitle {
+          font-size: 13px
+        }
+
+        html:not([data-layout="desktop"]) .session-preview {
+          font-size: 11px
+        }
+
+        html:not([data-layout="desktop"]) .embedfoot {
+          font-size: 9px;
+          line-height: 1.7
+        }
+
+        html:not([data-layout="desktop"]) .previewbottom {
+          font-size: 10px;
+          padding: 11px 13px
+        }
+
+        html:not([data-layout="desktop"]) .metarow {
+          font-size: 10px;
+          gap: 10px;
+          flex-wrap: wrap
+        }
+
+        html:not([data-layout="desktop"]) .notecard p {
+          font-size: 11px
+        }
+
+        html:not([data-layout="desktop"]) .footer {
+          flex-direction: column;
+          gap: 6px;
+          font-size: 10px;
+          margin-top: 22px
+        }
+
+        html:not([data-layout="desktop"]) dialog {
+          padding: 20px 16px;
+          width: calc(100% - 24px);
+          border-radius: 14px;
+          max-height: calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom))
+        }
+
+        html:not([data-layout="desktop"]) dialog h2 {
+          font-size: 19px
+        }
+
+        html:not([data-layout="desktop"]) .dialogheader button {
+          min-height: 44px;
+          min-width: 44px
+        }
+
+        html:not([data-layout="desktop"]) dialog .actions button {
+          min-height: 46px
+        }
+
+        html:not([data-layout="desktop"]) #toast {
+          bottom: calc(125px + env(safe-area-inset-bottom));
+          font-size: 12px;
+          text-align: center;
+          overflow-wrap: anywhere
+        }
+      }
+
+      @media(max-width:359px) {
+        html:not([data-layout="desktop"]) .heroicon {
+          display: none
+        }
+
+        html:not([data-layout="desktop"]) .hero h1 {
+          font-size: 24px
+        }
+
+        html:not([data-layout="desktop"]) .cardbody {
+          padding: 12px
+        }
+
+        html:not([data-layout="desktop"]) .tool {
+          min-width: 38px
+        }
+
+        html:not([data-layout="desktop"]) .tab {
+          font-size: 11px
+        }
+
+        html:not([data-layout="desktop"]) .botavatar {
+          display: none
+        }
+
+        html:not([data-layout="desktop"]) .template {
+          font-size: 10px;
+          padding: 10px
+        }
+
+        html:not([data-layout="desktop"]) .draft {
+          font-size: 9px
+        }
+
+        html:not([data-layout="desktop"]) .topbar .quiet {
+          font-size: 10px
+        }
+
+        html:not([data-layout="desktop"]) .breadcrumb .ti {
+          display: none
+        }
+      }
+
+      @media(prefers-reduced-motion:reduce) {
+        html {
+          scroll-behavior: auto
+        }
+      }
+
+      html[data-layout="mobile"] .session-choice {
+        font-size: 8px
+      }
+
+      html[data-layout="mobile"] .shell {
+        grid-template-columns: 1fr
+      }
+
+      html[data-layout="mobile"] .sidebar {
+        display: none
+      }
+
+      html[data-layout="mobile"] .layout {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr)
+      }
+
+      html[data-layout="mobile"] .main {
+        padding: 27px 22px
+      }
+
+      html[data-layout="mobile"] .hero h1 {
+        font-size: 27px
+      }
+
+      html[data-layout="mobile"] .topbar {
+        height: 64px;
+        padding: 0 18px
+      }
+
+      html[data-layout="mobile"] .breadcrumb>span,
+      html[data-layout="mobile"] .topright .status {
+        display: none
+      }
+
+      html[data-layout="mobile"] .topright {
+        gap: 8px
+      }
+
+      html[data-layout="mobile"] .main {
+        padding: 24px 16px
+      }
+
+      html[data-layout="mobile"] .hero h1 {
+        font-size: 25px
+      }
+
+      html[data-layout="mobile"] .hero p {
+        max-width: 260px
+      }
+
+      html[data-layout="mobile"] .heroicon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px
+      }
+
+      html[data-layout="mobile"] .layout {
+        grid-template-columns: 1fr
+      }
+
+      html[data-layout="mobile"] .templategrid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      html[data-layout="mobile"] .template {
+        font-size: 9px;
+        padding: 11px 8px
+      }
+
+      html[data-layout="mobile"] .editor textarea {
+        min-height: 230px
+      }
+
+      html[data-layout="mobile"] .previewhead {
+        margin-top: 8px
+      }
+
+      html[data-layout="mobile"] .footer {
+        font-size: 8px
+      }
+
+      html[data-layout="mobile"] .actions {
+        flex-wrap: wrap
+      }
+
+      html[data-layout="mobile"] .hero {
+        margin-bottom: 24px
+      }
+
+      html[data-layout="mobile"] .message {
+        padding: 22px 14px
+      }
+
+      html[data-layout="mobile"] .tab {
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .embed {
+        padding: 13px
+      }
+
+      html[data-layout="mobile"] .quiet {
+        font-size: 10px
+      }
+
+      html[data-layout="mobile"] body {
+        padding-bottom: calc(128px + env(safe-area-inset-bottom));
+        font-size: 14px
+      }
+
+      html[data-layout="mobile"] .shell {
+        min-height: 100dvh
+      }
+
+      html[data-layout="mobile"] .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 8;
+        height: calc(64px + env(safe-area-inset-top));
+        background: #101014f5;
+        backdrop-filter: blur(16px);
+        padding-left: max(14px, env(safe-area-inset-left));
+        padding-right: max(14px, env(safe-area-inset-right))
+      }
+
+      html[data-layout="mobile"] .topbar .quiet {
+        min-height: 42px;
+        padding: 9px 11px;
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .topbar .avatar {
+        display: none
+      }
+
+      html[data-layout="mobile"] .breadcrumb {
+        gap: 8px;
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .main {
+        padding: 22px max(14px, env(safe-area-inset-left)) 16px max(14px, env(safe-area-inset-right))
+      }
+
+      html[data-layout="mobile"] .hero {
+        gap: 10px;
+        margin-bottom: 22px
+      }
+
+      html[data-layout="mobile"] .hero h1 {
+        font-size: 26px
+      }
+
+      html[data-layout="mobile"] .hero p {
+        font-size: 12px;
+        line-height: 1.8
+      }
+
+      html[data-layout="mobile"] .heroicon {
+        flex-shrink: 0
+      }
+
+      html[data-layout="mobile"] .eyebrow {
+        font-size: 9px;
+        letter-spacing: 1.6px
+      }
+
+      html[data-layout="mobile"] .layout {
+        gap: 20px
+      }
+
+      html[data-layout="mobile"] .tabs {
+        margin-bottom: 16px
+      }
+
+      html[data-layout="mobile"] .tab {
+        min-height: 46px;
+        font-size: 12px;
+        gap: 7px
+      }
+
+      html[data-layout="mobile"] .cardhead {
+        padding: 13px 15px
+      }
+
+      html[data-layout="mobile"] .cardbody {
+        padding: 15px
+      }
+
+      html[data-layout="mobile"] .cardtitle {
+        font-size: 12px
+      }
+
+      html[data-layout="mobile"] .compose-step {
+        display: none
+      }
+
+      html[data-layout="mobile"] .mobile-preview-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        min-height: 42px;
+        font-size: 11px;
+        text-decoration: none
+      }
+
+      html[data-layout="mobile"] .mobile-preview-link .ti {
+        font-size: 17px
+      }
+
+      html[data-layout="mobile"] .templategrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px
+      }
+
+      html[data-layout="mobile"] .template {
+        min-height: 68px;
+        padding: 12px;
+        font-size: 11px;
+        gap: 9px;
+        flex-direction: row;
+        align-items: center
+      }
+
+      html[data-layout="mobile"] .sectionrow {
+        gap: 8px
+      }
+
+      html[data-layout="mobile"] .sectionrow .tiny {
+        font-size: 9px
+      }
+
+      html[data-layout="mobile"] .toolbar {
+        padding: 7px;
+        gap: 2px
+      }
+
+      html[data-layout="mobile"] .tool {
+        min-width: 40px;
+        min-height: 42px;
+        padding: 9px
+      }
+
+      html[data-layout="mobile"] .tool .ti {
+        font-size: 19px
+      }
+
+      html[data-layout="mobile"] .toolbar .spacer {
+        display: none
+      }
+
+      html[data-layout="mobile"] .editor textarea {
+        font-size: 16px;
+        line-height: 1.8;
+        min-height: 230px;
+        padding: 14px
+      }
+
+      html[data-layout="mobile"] .editorfoot {
+        font-size: 9px;
+        flex-wrap: wrap;
+        padding: 10px
+      }
+
+      html[data-layout="mobile"] .label,
+      html[data-layout="mobile"] .caption-label {
+        font-size: 12px
+      }
+
+      html[data-layout="mobile"] .field {
+        font-size: 16px;
+        min-height: 48px;
+        padding: 11px 12px
+      }
+
+      html[data-layout="mobile"] .urlstatus,
+      html[data-layout="mobile"] .helper {
+        font-size: 11px;
+        line-height: 1.7
+      }
+
+      html[data-layout="mobile"] .session-options {
+        grid-template-columns: 1fr;
+        gap: 8px
+      }
+
+      html[data-layout="mobile"] .session-choice {
+        min-height: 46px;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 12px 14px;
+        font-size: 11px;
+        gap: 10px
+      }
+
+      html[data-layout="mobile"] .session-choice.active {
+        box-shadow: inset 3px 0 #c4a0ff
+      }
+
+      html[data-layout="mobile"] .options {
+        padding: 16px;
+        gap: 12px
+      }
+
+      html[data-layout="mobile"] .optiontitle {
+        font-size: 12px
+      }
+
+      html[data-layout="mobile"] .optiondesc {
+        font-size: 11px;
+        line-height: 1.7
+      }
+
+      html[data-layout="mobile"] .switch {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center
+      }
+
+      html[data-layout="mobile"] .switch span {
+        width: 44px;
+        height: 26px
+      }
+
+      html[data-layout="mobile"] .switch span:after {
+        width: 20px;
+        height: 20px;
+        top: 12px
+      }
+
+      html[data-layout="mobile"] .switch input:checked+span:after {
+        transform: translateX(18px)
+      }
+
+      html[data-layout="mobile"] .send-actions {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        margin: 0;
+        padding: 10px max(14px, env(safe-area-inset-left)) calc(12px + env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-right));
+        background: #15121bf5;
+        backdrop-filter: blur(20px);
+        border-top: 1px solid #463550;
+        display: grid;
+        grid-template-columns: minmax(108px, .85fr) minmax(0, 1.4fr);
+        gap: 8px;
+        box-shadow: 0 -8px 30px #0003
+      }
+
+      html[data-layout="mobile"] .send-destination {
+        grid-column: 1/-1;
+        font-size: 10px;
+        text-align: center;
+        padding-bottom: 2px
+      }
+
+      html[data-layout="mobile"] .send-actions button {
+        min-height: 48px;
+        font-size: 12px;
+        padding: 12px 8px
+      }
+
+      html[data-layout="mobile"] .bottomhint {
+        font-size: 10px;
+        margin: 10px 0 0
+      }
+
+      html[data-layout="mobile"] .desktop-shortcut {
+        display: none
+      }
+
+      html[data-layout="mobile"] .previewhead {
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px
+      }
+
+      html[data-layout="mobile"] .previewhead .livepill {
+        display: none
+      }
+
+      html[data-layout="mobile"] .previewhead strong {
+        font-size: 13px
+      }
+
+      html[data-layout="mobile"] .message {
+        gap: 8px;
+        padding: 18px 10px
+      }
+
+      html[data-layout="mobile"] .botavatar {
+        width: 28px;
+        height: 28px;
+        font-size: 12px
+      }
+
+      html[data-layout="mobile"] .botname {
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .botline time {
+        font-size: 9px
+      }
+
+      html[data-layout="mobile"] .embed {
+        padding: 12px 10px
+      }
+
+      html[data-layout="mobile"] .previewtext {
+        font-size: 12px
+      }
+
+      html[data-layout="mobile"] .videotitle {
+        font-size: 13px
+      }
+
+      html[data-layout="mobile"] .session-preview {
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .embedfoot {
+        font-size: 9px;
+        line-height: 1.7
+      }
+
+      html[data-layout="mobile"] .previewbottom {
+        font-size: 10px;
+        padding: 11px 13px
+      }
+
+      html[data-layout="mobile"] .metarow {
+        font-size: 10px;
+        gap: 10px;
+        flex-wrap: wrap
+      }
+
+      html[data-layout="mobile"] .notecard p {
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .footer {
+        flex-direction: column;
+        gap: 6px;
+        font-size: 10px;
+        margin-top: 22px
+      }
+
+      html[data-layout="mobile"] dialog {
+        padding: 20px 16px;
+        width: calc(100% - 24px);
+        border-radius: 14px;
+        max-height: calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom))
+      }
+
+      html[data-layout="mobile"] dialog h2 {
+        font-size: 19px
+      }
+
+      html[data-layout="mobile"] .dialogheader button {
+        min-height: 44px;
+        min-width: 44px
+      }
+
+      html[data-layout="mobile"] dialog .actions button {
+        min-height: 46px
+      }
+
+      html[data-layout="mobile"] #toast {
+        bottom: calc(125px + env(safe-area-inset-bottom));
+        font-size: 12px;
+        text-align: center;
+        overflow-wrap: anywhere
+      }
+
+      .mobile-brand {
+        display: none
+      }
+
+      .mobile-header-settings {
+        min-height: 42px
+      }
+
+      html[data-layout="mobile"] .mobile-brand {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 16px;
+        font-weight: 800;
+        letter-spacing: -.5px
+      }
+
+      html[data-layout="mobile"] .mobile-brand .ti {
+        color: var(--purple)
+      }
+
+      html[data-layout="mobile"] .breadcrumb {
+        display: none
+      }
+
+      html[data-layout="mobile"] .topbar {
+        gap: 8px
+      }
+
+      html[data-layout="mobile"] .topright {
+        gap: 8px
+      }
+
+      html[data-layout="mobile"] .topright .status,
+      html[data-layout="mobile"] .topright>.avatar {
+        display: none
+      }
+
+      html[data-layout="mobile"] .topbar .quiet {
+        width: 44px;
+        padding: 9px
+      }
+
+      html[data-layout="mobile"] .settings-text {
+        display: none
+      }
+
+      html[data-layout="mobile"] .heroicon {
+        display: none
+      }
+
+      html[data-layout="mobile"] .shell {
+        display: block
+      }
+
+      html[data-layout="mobile"] .main {
+        width: 100%;
+        max-width: none
+      }
+
+      html[data-layout="mobile"] .tabs {
+        width: 100%
+      }
+
+      html[data-layout="mobile"] .send-actions {
+        width: 100%
+      }
+
+      /* Compact phone workspace: preserve readable type while removing excess vertical spacing. */
+      .channel-details {
+        margin: 8px 0;
+        color: var(--muted);
+        font-size: 11px
+      }
+
+      .channel-details summary {
+        cursor: pointer;
+        padding: 6px 0
+      }
+
+      .channel-details[open] summary {
+        margin-bottom: 4px
+      }
+
+      html[data-layout="mobile"] body {
+        padding-bottom: calc(88px + env(safe-area-inset-bottom))
+      }
+
+      html[data-layout="mobile"] .topbar {
+        height: calc(54px + env(safe-area-inset-top));
+        gap: 6px
+      }
+
+      html[data-layout="mobile"] .mobile-brand {
+        font-size: 15px
+      }
+
+      html[data-layout="mobile"] .topright {
+        gap: 6px
+      }
+
+      html[data-layout="mobile"] .topbar .quiet {
+        min-height: 38px;
+        height: 38px
+      }
+
+      html[data-layout="mobile"] .main {
+        padding: 10px 10px 14px
+      }
+
+      html[data-layout="mobile"] .hero {
+        margin: 0 2px 10px
+      }
+
+      html[data-layout="mobile"] .hero h1 {
+        font-size: 20px;
+        line-height: 1.3;
+        margin: 2px 0
+      }
+
+      html[data-layout="mobile"] .hero .eyebrow,
+      html[data-layout="mobile"] .hero p {
+        display: none
+      }
+
+      html[data-layout="mobile"] .layout {
+        gap: 10px
+      }
+
+      html[data-layout="mobile"] .tabs {
+        padding: 3px;
+        margin-bottom: 10px;
+        border-radius: 9px;
+        gap: 4px
+      }
+
+      html[data-layout="mobile"] .tab {
+        min-height: 40px;
+        padding: 7px 4px;
+        font-size: 12px
+      }
+
+      html[data-layout="mobile"] .card {
+        margin-bottom: 8px;
+        border-radius: 11px
+      }
+
+      html[data-layout="mobile"] .cardhead {
+        padding: 5px 11px;
+        min-height: 38px
+      }
+
+      html[data-layout="mobile"] .mobile-preview-link {
+        min-height: 32px;
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .cardbody {
+        padding: 10px
+      }
+
+      html[data-layout="mobile"] .sectionrow {
+        margin-bottom: 7px
+      }
+
+      html[data-layout="mobile"] .sectionrow b {
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .sectionrow .tiny {
+        display: none
+      }
+
+      html[data-layout="mobile"] .templategrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 5px
+      }
+
+      html[data-layout="mobile"] .template {
+        min-height: 46px;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        padding: 7px 5px;
+        font-size: 10px;
+        line-height: 1.35;
+        border-radius: 7px
+      }
+
+      html[data-layout="mobile"] .template .ti {
+        font-size: 16px;
+        flex-shrink: 0
+      }
+
+      html[data-layout="mobile"] .editor {
+        margin-top: 9px;
+        border-radius: 8px
+      }
+
+      html[data-layout="mobile"] .toolbar {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 3px;
+        gap: 1px;
+        scrollbar-width: thin
+      }
+
+      html[data-layout="mobile"] .tool {
+        min-width: 32px;
+        min-height: 34px;
+        padding: 6px;
+        flex-shrink: 0
+      }
+
+      html[data-layout="mobile"] .tool .ti {
+        font-size: 17px
+      }
+
+      html[data-layout="mobile"] .editor textarea {
+        height: 112px;
+        min-height: 96px;
+        padding: 9px 10px;
+        font-size: 16px;
+        line-height: 1.55
+      }
+
+      html[data-layout="mobile"][data-post-mode="youtube"] .editor textarea {
+        height: 82px;
+        min-height: 72px
+      }
+
+      html[data-layout="mobile"] .editorfoot {
+        padding: 5px 8px;
+        font-size: 9px;
+        gap: 4px
+      }
+
+      html[data-layout="mobile"] .draft {
+        font-size: 9px
+      }
+
+      html[data-layout="mobile"] .cardbody>.helper {
+        display: none
+      }
+
+      html[data-layout="mobile"] .options {
+        padding: 5px 12px;
+        min-height: 44px;
+        margin-bottom: 4px
+      }
+
+      html[data-layout="mobile"] .optiondesc {
+        display: none
+      }
+
+      html[data-layout="mobile"] .optiontitle {
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .bottomhint {
+        font-size: 9px;
+        margin: 4px 0
+      }
+
+      html[data-layout="mobile"] .label,
+      html[data-layout="mobile"] .caption-label {
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .field {
+        min-height: 40px;
+        height: 40px;
+        padding: 7px 9px;
+        margin: 4px 0;
+        font-size: 16px;
+        border-radius: 7px
+      }
+
+      html[data-layout="mobile"] .urlstatus {
+        font-size: 10px;
+        line-height: 1.5;
+        margin: 3px 0 8px
+      }
+
+      html[data-layout="mobile"] .channel-details {
+        margin: 0;
+        font-size: 10px
+      }
+
+      html[data-layout="mobile"] .channel-details summary {
+        padding: 5px 0;
+        min-height: 28px
+      }
+
+      html[data-layout="mobile"] .session-picker {
+        padding-top: 9px;
+        margin-top: 7px
+      }
+
+      html[data-layout="mobile"] .session-options {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 5px;
+        margin: 5px 0 9px
+      }
+
+      html[data-layout="mobile"] .session-choice {
+        min-height: 46px;
+        justify-content: center;
+        gap: 5px;
+        padding: 6px 4px;
+        font-size: 10px;
+        line-height: 1.3;
+        word-break: normal
+      }
+
+      html[data-layout="mobile"] .session-choice .ti {
+        font-size: 16px;
+        flex-shrink: 0
+      }
+
+      html[data-layout="mobile"] .session-choice.active {
+        box-shadow: none
+      }
+
+      html[data-layout="mobile"] .session-picker>.helper {
+        display: none
+      }
+
+      html[data-layout="mobile"] .caption-label {
+        margin-top: 6px
+      }
+
+      html[data-layout="mobile"] .previewhead {
+        margin: 0 2px 5px;
+        gap: 5px;
+        min-height: 30px
+      }
+
+      html[data-layout="mobile"] .previewhead strong {
+        font-size: 12px
+      }
+
+      html[data-layout="mobile"] .discord {
+        border-radius: 10px
+      }
+
+      html[data-layout="mobile"] .channelbar {
+        padding: 7px 10px;
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .message {
+        padding: 10px 9px;
+        gap: 7px
+      }
+
+      html[data-layout="mobile"] .botavatar {
+        width: 26px;
+        height: 26px
+      }
+
+      html[data-layout="mobile"] .mention {
+        font-size: 11px;
+        margin: 4px 0
+      }
+
+      html[data-layout="mobile"] .embed {
+        min-height: 0;
+        padding: 9px;
+        margin-top: 4px
+      }
+
+      html[data-layout="mobile"] .previewtext {
+        font-size: 12px;
+        line-height: 1.6
+      }
+
+      html[data-layout="mobile"] .videotitle {
+        margin: 2px 0 6px;
+        font-size: 12px
+      }
+
+      html[data-layout="mobile"] .session-preview {
+        padding: 6px 0;
+        margin: 6px 0
+      }
+
+      html[data-layout="mobile"] .videothumb {
+        max-height: 150px;
+        object-fit: contain;
+        margin-top: 8px;
+        display: block
+      }
+
+      html[data-layout="mobile"] .embedfoot {
+        margin-top: 9px;
+        font-size: 9px
+      }
+
+      html[data-layout="mobile"] .previewbottom {
+        padding: 6px 9px;
+        font-size: 9px;
+        line-height: 1.5
+      }
+
+      html[data-layout="mobile"] .metarow {
+        margin: 7px 2px;
+        font-size: 9px
+      }
+
+      html[data-layout="mobile"] .notecard,
+      html[data-layout="mobile"] .footer {
+        display: none
+      }
+
+      html[data-layout="mobile"] .send-actions {
+        padding: 5px 10px calc(8px + env(safe-area-inset-bottom));
+        gap: 4px 8px
+      }
+
+      html[data-layout="mobile"] .send-destination {
+        font-size: 9px;
+        padding: 0
+      }
+
+      html[data-layout="mobile"] .send-actions button {
+        min-height: 42px;
+        padding: 9px 8px
+      }
+
+      html[data-layout="mobile"] #toast {
+        bottom: calc(92px + env(safe-area-inset-bottom))
+      }
+
+      html[data-layout="mobile"] #composer,
+      html[data-layout="mobile"] #discordPreview {
+        scroll-margin-top: 65px
+      }
+
+      /* Readable mobile sizing; zoom correction handles oversized host viewports. */
+      html[data-layout="mobile"] {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%
+      }
+
+      html[data-layout="mobile"] body {
+        font-size: 14px;
+        min-height: 0;
+        padding-bottom: calc(96px + env(safe-area-inset-bottom))
+      }
+
+      html[data-layout="mobile"] .shell {
+        min-height: 0;
+        height: auto
+      }
+
+      html[data-layout="mobile"] .topbar {
+        height: calc(58px + env(safe-area-inset-top));
+        padding-left: 12px;
+        padding-right: 12px
+      }
+
+      html[data-layout="mobile"] .mobile-brand {
+        font-size: 18px
+      }
+
+      html[data-layout="mobile"] .mobile-brand .ti {
+        font-size: 21px
+      }
+
+      html[data-layout="mobile"] .topbar .quiet {
+        min-width: 42px;
+        min-height: 42px;
+        height: 42px
+      }
+
+      html[data-layout="mobile"] .main {
+        padding: 12px
+      }
+
+      html[data-layout="mobile"] .hero {
+        margin: 0 0 12px
+      }
+
+      html[data-layout="mobile"] .hero h1 {
+        font-size: 24px;
+        line-height: 1.3
+      }
+
+      html[data-layout="mobile"] .tabs {
+        margin-bottom: 12px
+      }
+
+      html[data-layout="mobile"] .tab {
+        font-size: 14px;
+        min-height: 44px
+      }
+
+      html[data-layout="mobile"] .cardhead {
+        padding: 6px 12px;
+        min-height: 44px
+      }
+
+      html[data-layout="mobile"] .cardtitle {
+        font-size: 13px
+      }
+
+      html[data-layout="mobile"] .mobile-preview-link {
+        font-size: 12px;
+        min-height: 36px
+      }
+
+      html[data-layout="mobile"] .cardbody {
+        padding: 12px
+      }
+
+      html[data-layout="mobile"] .sectionrow b {
+        font-size: 13px
+      }
+
+      html[data-layout="mobile"] .templategrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px
+      }
+
+      html[data-layout="mobile"] .template {
+        font-size: 12px;
+        min-height: 44px;
+        padding: 9px 8px;
+        gap: 7px;
+        line-height: 1.4
+      }
+
+      html[data-layout="mobile"] .template .ti {
+        font-size: 18px
+      }
+
+      html[data-layout="mobile"] .toolbar {
+        padding: 4px;
+        gap: 2px
+      }
+
+      html[data-layout="mobile"] .tool {
+        min-height: 36px;
+        min-width: 34px
+      }
+
+      html[data-layout="mobile"] .tool .ti {
+        font-size: 18px
+      }
+
+      html[data-layout="mobile"] .editor textarea {
+        font-size: 16px;
+        line-height: 1.6;
+        min-height: 112px;
+        height: 132px
+      }
+
+      html[data-layout="mobile"][data-post-mode="youtube"] .editor textarea {
+        min-height: 88px;
+        height: 100px
+      }
+
+      html[data-layout="mobile"] .editorfoot,
+      html[data-layout="mobile"] .draft {
+        font-size: 11px;
+        line-height: 1.5
+      }
+
+      html[data-layout="mobile"] .editorfoot {
+        padding: 7px 8px
+      }
+
+      html[data-layout="mobile"] .label,
+      html[data-layout="mobile"] .caption-label,
+      html[data-layout="mobile"] .optiontitle {
+        font-size: 13px
+      }
+
+      html[data-layout="mobile"] .field {
+        min-height: 44px;
+        height: 44px;
+        font-size: 16px
+      }
+
+      html[data-layout="mobile"] .session-choice {
+        font-size: 11px;
+        min-height: 48px;
+        line-height: 1.35;
+        flex-direction: column
+      }
+
+      html[data-layout="mobile"] .channel-details,
+      html[data-layout="mobile"] .urlstatus {
+        font-size: 12px
+      }
+
+      html[data-layout="mobile"] .channel-details summary {
+        min-height: 34px
+      }
+
+      html[data-layout="mobile"] .options {
+        min-height: 46px;
+        padding: 6px 12px
+      }
+
+      html[data-layout="mobile"] .bottomhint {
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .previewhead {
+        margin-top: 4px
+      }
+
+      html[data-layout="mobile"] .previewhead strong {
+        font-size: 14px
+      }
+
+      html[data-layout="mobile"] .channelbar {
+        font-size: 12px;
+        padding: 8px 10px
+      }
+
+      html[data-layout="mobile"] .message {
+        padding: 12px 10px
+      }
+
+      html[data-layout="mobile"] .botname {
+        font-size: 12px
+      }
+
+      html[data-layout="mobile"] .botline time {
+        font-size: 10px
+      }
+
+      html[data-layout="mobile"] .previewtext {
+        font-size: 14px;
+        line-height: 1.6
+      }
+
+      html[data-layout="mobile"] .mention {
+        font-size: 13px
+      }
+
+      html[data-layout="mobile"] .videotitle {
+        font-size: 14px
+      }
+
+      html[data-layout="mobile"] .videoauthor,
+      html[data-layout="mobile"] .session-preview {
+        font-size: 12px
+      }
+
+      html[data-layout="mobile"] .embedfoot {
+        font-size: 10px
+      }
+
+      html[data-layout="mobile"] .previewbottom,
+      html[data-layout="mobile"] .metarow {
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .send-destination {
+        font-size: 11px
+      }
+
+      html[data-layout="mobile"] .send-actions {
+        gap: 5px 8px;
+        padding: 6px 12px calc(9px + env(safe-area-inset-bottom))
+      }
+
+      html[data-layout="mobile"] .send-actions button {
+        font-size: 14px;
+        min-height: 44px
+      }
+
+      html[data-layout="mobile"] #toast {
+        bottom: calc(103px + env(safe-area-inset-bottom))
+      }
+
+      html[data-layout="mobile"][data-scaled="true"] dialog {
+        max-height: calc((100dvh / var(--phone-scale)) - 32px)
+      }
+
+      /* Creator signature and one shared settings entry point. */
+      .hero .creator-title {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin: 5px 0;
+        font-size: 38px;
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -1.7px
+      }
+
+      .creator-dash {
+        display: block;
+        width: 32px;
+        height: 3px;
+        border-radius: 4px;
+        flex-shrink: 0;
+        background: linear-gradient(90deg, #7952bd, #d4baff);
+        box-shadow: 0 0 14px #ad7aef33
+      }
+
+      .creator-name {
+        color: #f3eefb
+      }
+
+      .creator-name>span {
+        color: #bd9aef
+      }
+
+      html[data-layout="mobile"] .hero .creator-title {
+        font-size: 29px;
+        gap: 11px;
+        letter-spacing: -1px;
+        margin: 4px 0
+      }
+
+      html[data-layout="mobile"] .creator-dash {
+        width: 24px;
+        height: 3px
+      }
+
+      /* Update title with a separate creator byline. */
+      .hero .creator-title {
+        font-size: clamp(25px, 3vw, 38px);
+        line-height: 1.2;
+        letter-spacing: -1.2px
+      }
+
+      .hero .creator-byline {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 9px 0 0;
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: 1px;
+        color: #a89bb9
+      }
+
+      .creator-byline strong {
+        font-weight: 600;
+        color: #d4b7f5
+      }
+
+      .creator-byline .creator-dash {
+        width: 23px;
+        height: 2px
+      }
+
+      html[data-layout="mobile"] .hero .creator-title {
+        font-size: clamp(22px, 6vw, 29px);
+        letter-spacing: -.8px;
+        line-height: 1.25
+      }
+
+      html[data-layout="mobile"] .hero .creator-byline {
+        display: flex;
+        margin-top: 6px;
+        font-size: 12px;
+        gap: 8px
+      }
+
+      html[data-layout="mobile"] .creator-byline .creator-dash {
+        width: 20px;
+        height: 2px
+      }
+
+      /* Custom confirmation cards, shared with the workspace dialog theme. */
+      .action-dialog {
+        width: min(440px, calc(100% - 28px));
+        padding: 24px;
+        border: 1px solid #664a83;
+        border-radius: 20px;
+        background: linear-gradient(145deg, #251c31, #151219 70%);
+        box-shadow: 0 24px 90px #0009
+      }
+
+      .action-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px
+      }
+
+      .action-symbol {
+        display: grid;
+        place-items: center;
+        width: 46px;
+        height: 46px;
+        border-radius: 13px;
+        background: #a57ae51c;
+        border: 1px solid #a57ae53d;
+        color: #c6a2fa
+      }
+
+      .action-symbol .ti {
+        font-size: 25px
+      }
+
+      .action-close {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #ffffff0d;
+        border-radius: 10px;
+        background: #ffffff04;
+        color: #afa3bb
+      }
+
+      .action-close:hover {
+        background: #ffffff0c;
+        color: white
+      }
+
+      .action-dialog h2 {
+        font-size: 22px;
+        line-height: 1.35;
+        margin: 0 0 9px;
+        letter-spacing: -.6px
+      }
+
+      .action-dialog p {
+        font-size: 13px;
+        line-height: 1.8;
+        color: #b7aabe;
+        margin: 0
+      }
+
+      .action-preview {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        max-height: 180px;
+        overflow: auto;
+        background: #100d15;
+        border: 1px solid #3b2c48;
+        border-radius: 10px;
+        padding: 13px;
+        margin-top: 16px;
+        font-size: 12px;
+        color: #d6cbdc;
+        line-height: 1.7
+      }
+
+      .action-dialog .actions {
+        margin-top: 22px;
+        gap: 10px
+      }
+
+      .action-dialog .actions button {
+        flex: 1;
+        min-height: 44px
+      }
+
+      .action-dialog[data-tone="danger"] .action-symbol {
+        color: #f2a3b2;
+        background: #df72951a;
+        border-color: #df729540
+      }
+
+      .action-dialog[data-tone="danger"] #actionAccept {
+        background: linear-gradient(120deg, #bc4775, #96335d);
+        border-color: #d36b92;
+        box-shadow: none
+      }
+
+      html[data-layout="mobile"] .action-dialog {
+        padding: 20px;
+        border-radius: 17px
+      }
+
+      html[data-layout="mobile"] .action-dialog h2 {
+        font-size: 21px
+      }
+    </style>
+    <script id="layout-bootstrap">
+      (function() {
+        'use strict';
+        const root = document.documentElement;
+        const coarsePointer = window.matchMedia('(pointer: coarse)');
+
+        function visibleWidth() {
+          let width = window.innerWidth;
+          const touch = coarsePointer.matches || navigator.maxTouchPoints > 0;
+          // Correct a desktop-width layout viewport on a small touch screen.
+          // No fingerprint, UA parsing, or saved layout preference is needed.
+          if (touch && window.screen.width > 0 && window.screen.width <= 600) {
+            width = Math.min(width, window.screen.width);
+          }
+          try {
+            if (window.top !== window && window.top.innerWidth <= 760) {
+              width = Math.min(width, window.top.innerWidth);
+              const frame = window.frameElement;
+              if (frame) {
+                const rendered = frame.getBoundingClientRect().width;
+                if (rendered > 0) width = Math.min(width, rendered)
+              }
+            }
+          } catch {}
+          return Math.max(240, width);
+        }
+
+        function apply() {
+          const viewport = window.innerWidth;
+          const target = visibleWidth();
+          const mobile = target <= 760;
+          const scale = mobile && viewport > target * 1.15 ? viewport / target : 1;
+          root.dataset.layout = mobile ? 'mobile' : 'auto';
+          root.style.zoom = String(scale);
+          root.style.setProperty('--phone-scale', String(scale));
+          root.dataset.scaled = scale > 1 ? 'true' : 'false';
+        }
+        // Layout dimensions stay independent of pinch zoom and keyboard height.
+        apply();
+        window.addEventListener('resize', apply);
+        window.addEventListener('orientationchange', apply);
+        window.addEventListener('pageshow', apply);
+        if (coarsePointer.addEventListener) coarsePointer.addEventListener('change', apply);
+        document.addEventListener('DOMContentLoaded', apply);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brandmark"><i class="ti ti-broadcast" aria-hidden="true"></i></div>
+          <div>ubi studio<small>COMMUNITY WORKSPACE</small></div>
+        </div>
+        <div class="navlabel">WORKSPACE</div><button class="navbtn active" data-mode="announcement"><i class="ti ti-speakerphone" aria-hidden="true"></i>Pengumuman</button><button class="navbtn" data-mode="youtube"><i class="ti ti-brand-youtube" aria-hidden="true"></i>YouTube Post</button>
+        <div class="sidebottom">
+          <div class="workspace">
+            <div class="avatar">S</div>
+            <div><strong>SasaUbi</strong><small>Creator workspace</small></div>
+          </div>
+          <div class="sidefoot">ONE SPACE. YOUR COMMUNITY.</div>
+        </div>
+      </aside>
+      <div>
+        <header class="topbar">
+          <div class="breadcrumb"><i class="ti ti-layout-dashboard" aria-hidden="true"></i><span>Workspace /</span><b id="breadcrumb">Pengumuman</b></div>
+          <div class="mobile-brand"><i class="ti ti-broadcast" aria-hidden="true"></i>ubi studio</div>
+          <div class="topright"><span class="status"><span class="dot"></span>Mode personal</span><button class="quiet" data-settings aria-label="Pengaturan webhook"><i class="ti ti-settings" aria-hidden="true"></i><span class="settings-text">Pengaturan</span></button>
+            <div class="avatar" aria-label="SasaUbi">S</div>
+          </div>
+        </header>
+        <main class="main">
+          <section class="hero">
+            <div class="creator-heading">
+              <h1 class="creator-title"><span class="creator-name">UPDATE UPDATE <span>UBI !!!!</span></span></h1>
+              <p class="creator-byline"><span class="creator-dash" aria-hidden="true"></span><span>by <strong>SasaUbi</strong></span></p>
+            </div>
+            <div class="heroicon"><i class="ti ti-speakerphone" aria-hidden="true"></i></div>
+          </section>
+          <div class="layout">
+            <section id="composer" aria-label="Editor pesan">
+              <div class="tabs" aria-label="Jenis posting"><button class="tab active" data-mode="announcement" aria-pressed="true"><i class="ti ti-speakerphone" aria-hidden="true"></i>Pengumuman</button><button class="tab" data-mode="youtube" aria-pressed="false"><i class="ti ti-brand-youtube" aria-hidden="true"></i>YouTube Post</button></div>
+              <div class="card">
+                <div class="cardhead"><span class="cardtitle"><i class="ti ti-edit" aria-hidden="true"></i><span id="editorTitle">Buat pengumuman</span></span><a class="mobile-preview-link" href="#discordPreview"><i class="ti ti-eye" aria-hidden="true"></i>Preview</a><span class="tiny compose-step">01 / COMPOSE</span></div>
+                <div class="cardbody">
+                  <div id="templatesSection">
+                    <div class="sectionrow"><b>Mulai dari template</b><span class="tiny">Pilih, lalu sesuaikan</span></div>
+                    <div class="templategrid" id="templates"></div>
+                  </div>
+                  <div id="videoSection" hidden><label class="label" for="videoUrl">Link video YouTube</label><input class="field" id="videoUrl" placeholder="https://youtube.com/watch?v=..." type="url">
+                    <div class="urlstatus" id="videoStatus" role="status">Mendukung video, Shorts, dan live YouTube.</div><label class="label" for="videoTitle">Judul video</label><input class="field" id="videoTitle" maxlength="180" placeholder="Otomatis terisi atau tulis judul sendiri">
+                    <details class="channel-details">
+                      <summary>Ubah nama channel</summary><label class="label" for="videoChannel">Nama channel</label><input class="field" id="videoChannel" maxlength="100" value="SasaUbi">
+                    </details>
+                    <div class="session-picker"><label class="label">Sesi video</label>
+                      <div class="session-options" role="group" aria-label="Pilih sesi video"><button type="button" class="session-choice active" data-session="ANTARCTICA" aria-pressed="true"><i class="ti ti-snowflake" aria-hidden="true"></i>ANTARCTICA</button><button type="button" class="session-choice" data-session="VIOLENCE DISTRICT" aria-pressed="false"><i class="ti ti-building-community" aria-hidden="true"></i>VIOLENCE DISTRICT</button><button type="button" class="session-choice" data-session="RANDOM MAP" aria-pressed="false"><i class="ti ti-map" aria-hidden="true"></i>RANDOM MAP</button></div>
+                      <p class="helper">Nama sesi otomatis muncul di antara garis pembatas, sebelum caption.</p><span class="caption-label" id="captionLabel">Caption kamu (opsional)</span>
+                    </div>
+                  </div>
+                  <div class="editor">
+                    <div class="toolbar" id="toolbar" aria-label="Format pesan"></div><label class="hidden" for="message">Isi pesan atau caption</label><textarea id="message" placeholder="Ada kabar apa hari ini?\nTulis pesan untuk komunitasmu di sini..."></textarea>
+                    <div class="editorfoot"><span class="draft" id="draftStatus"><i class="ti ti-device-floppy" aria-hidden="true"></i>Draft otomatis tersimpan</span><span id="charCount">0 / 2000</span></div>
+                  </div>
+                  <p class="helper">Gunakan <b>---</b> di baris baru untuk menambahkan garis pembatas.</p>
+                </div>
+              </div>
+              <div class="card options">
+                <div>
+                  <div class="optiontitle">Notifikasi @everyone</div>
+                  <div class="optiondesc">Beri tahu seluruh anggota saat pesan utama dikirim.</div>
+                </div><label class="switch"><input id="everyone" type="checkbox" checked aria-label="Aktifkan notifikasi everyone"><span></span></label>
+              </div>
+              <div class="actions send-actions">
+                <div class="send-destination" id="sendDestination">Tujuan: Pengumuman</div><button class="secondary" id="testBtn"><i class="ti ti-flask" aria-hidden="true"></i>Kirim test</button><button class="primary" id="sendBtn"><i class="ti ti-send" aria-hidden="true"></i>Kirim ke Discord</button>
+              </div>
+              <div class="bottomhint">Test tidak menyebut @everyone <span class="desktop-shortcut"><span aria-hidden="true">·</span><kbd>Ctrl</kbd> + <kbd>Enter</kbd> untuk lanjut</span></div>
+            </section>
+            <aside id="discordPreview" aria-label="Preview Discord">
+              <div class="previewhead"><strong>Preview Discord</strong><a class="mobile-preview-link" href="#composer">Kembali ke editor</a><span class="livepill"><span class="dot"></span>LIVE PREVIEW</span></div>
+              <div class="discord">
+                <div class="channelbar"><i class="ti ti-hash" aria-hidden="true"></i><span id="previewChannel">pengumuman</span><small>DISCORD</small></div>
+                <div class="message">
+                  <div class="botavatar">S<img src="https://raw.githubusercontent.com/RehanDias/s0urce/refs/heads/main/sasaubi.jpeg" alt="" onerror="this.hidden=true"></div>
+                  <div class="messagecontent">
+                    <div class="botline"><span class="botname" id="botName">SasaUbi Berbicara</span><span class="botbadge">APP</span><time id="previewTime"></time></div><span class="mention" id="mention">@everyone</span>
+                    <div class="embed">
+                      <div id="videoPreview" hidden>
+                        <div class="videoauthor" id="previewAuthor"></div><a id="previewTitle" class="videotitle" target="_blank" rel="noopener noreferrer"></a>
+                      </div>
+                      <div id="previewSession" class="session-preview" hidden></div>
+                      <div class="previewtext" id="previewText"><span class="placeholder">Pesanmu akan tampil di sini.<br>Mulai menulis atau pilih salah satu template.</span></div><img id="previewImage" class="videothumb" alt="Thumbnail video YouTube" hidden>
+                      <div class="embedfoot"><i class="ti ti-broadcast" aria-hidden="true"></i><span id="previewFooter">tiktok.com/@sasaubi</span><span>·</span><span id="previewDate"></span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="previewbottom"><i class="ti ti-eye" aria-hidden="true"></i>Simulasi tampilan pesan. Hasil Discord dapat sedikit berbeda.</div>
+              </div>
+              <div class="metarow"><span id="postType">Pengumuman komunitas</span><span id="previewLength">0 karakter</span></div>
+              <div class="notecard"><i class="ti ti-bulb" aria-hidden="true"></i>
+                <div><b>Pesan yang baik dimulai dari preview.</b>
+                  <p>Periksa isi pesan, lalu kirim test ke channel percobaan. Setelah siap, bagikan ke komunitasmu.</p>
+                </div>
+              </div>
+            </aside>
+          </div>
+          <footer class="footer"><span>ubi studio <span aria-hidden="true">/</span> Made for SasaUbi</span><span>Pengumuman & YouTube, dalam satu ruang.</span></footer>
+        </main>
+      </div>
+    </div>
+    <dialog id="settings" aria-label="Pengaturan webhook">
+      <div class="dialogheader">
+        <h2>Pengaturan webhook</h2><button data-close="settings" aria-label="Tutup pengaturan"><i class="ti ti-x" aria-hidden="true"></i></button>
+      </div>
+      <p>Tiga tujuan pengiriman untuk seluruh workspace. Webhook test digunakan bersama oleh kedua mode. Perubahan berlaku selama halaman ini terbuka.</p>
+      <form id="settingsForm">
+        <div class="webhook-setting"><label class="label" for="announcementWebhook"><i class="ti ti-speakerphone" aria-hidden="true"></i> Webhook pengumuman</label><input class="field" id="announcementWebhook" type="password" autocomplete="off" spellcheck="false" placeholder="https://discord.com/api/webhooks/...">
+          <p class="helper">Tujuan tombol kirim pada mode Pengumuman.</p>
+        </div>
+        <div class="webhook-setting"><label class="label" for="youtubeWebhook"><i class="ti ti-brand-youtube" aria-hidden="true"></i> Webhook YouTube</label><input class="field" id="youtubeWebhook" type="password" autocomplete="off" spellcheck="false" placeholder="https://discord.com/api/webhooks/...">
+          <p class="helper">Tujuan tombol kirim pada mode YouTube Post.</p>
+        </div>
+        <div class="webhook-setting"><label class="label" for="testWebhook"><i class="ti ti-flask" aria-hidden="true"></i> Webhook test bersama</label><input class="field" id="testWebhook" type="password" autocomplete="off" placeholder="https://discord.com/api/webhooks/...">
+          <p class="helper">Semua pesan test masuk ke sini, tanpa @everyone.</p>
+        </div>
+        <p id="settingsError" role="alert"></p>
+        <div class="actions"><button type="button" class="secondary" data-close="settings">Batal</button><button class="primary" type="submit">Simpan pengaturan</button></div>
+      </form>
+    </dialog>
+    <dialog id="confirmation" aria-labelledby="confirmTitle" aria-describedby="confirmNote">
+      <h2 id="confirmTitle">Kirim ke Discord?</h2>
+      <p id="confirmNote"></p>
+      <div id="confirmContent"></div>
+      <div class="actions"><button class="secondary" data-close="confirmation">Periksa lagi</button><button class="primary" id="confirmSend"><i class="ti ti-send" aria-hidden="true"></i>Kirim sekarang</button></div>
+    </dialog>
+    <dialog id="actionDialog" class="action-dialog" aria-labelledby="actionTitle" aria-describedby="actionDescription">
+      <div class="action-heading">
+        <div class="action-symbol" id="actionSymbol"><i class="ti ti-replace" aria-hidden="true"></i></div><button type="button" class="action-close" data-close="actionDialog" aria-label="Tutup dialog"><i class="ti ti-x" aria-hidden="true"></i></button>
+      </div>
+      <h2 id="actionTitle">Ganti isi pesan?</h2>
+      <p id="actionDescription"></p>
+      <div class="action-preview" id="actionPreview" hidden></div>
+      <div class="actions"><button type="button" class="secondary" id="actionCancel" data-close="actionDialog" autofocus>Batal</button><button type="button" class="primary" id="actionAccept">Lanjutkan</button></div>
+    </dialog>
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+    <script>
+      'use strict';
+      const DEFAULT_WEBHOOKS = {
+        "announcement": {
+          "main": "https://discord.com/api/webhooks/1509730907429535765/8NZKU4Iw1VfgPq7xVFntf5UMhJd33oiIQG9lfYEgtn_H43_1Kb8RejcQnGYtsAbVzU-6",
+          "test": "https://discord.com/api/webhooks/1516345816325951550/Td4HeVX1oaXdgRLoCXMnTrt61wXTSw1PR_Fpj_9XTK4I57BxOPkOOXdRJnAq3FPVc2IZ"
+        },
+        "youtube": {
+          "main": "https://discord.com/api/webhooks/1549042613363937400/j2TfwQ0rV2VD6k4rVChxZtcqjrz5D7umCmF_j0Y6CLXFNZIfTt9e5zHCzpQmA8WVOcRc",
+          "test": "https://discord.com/api/webhooks/1516345816325951550/Td4HeVX1oaXdgRLoCXMnTrt61wXTSw1PR_Fpj_9XTK4I57BxOPkOOXdRJnAq3FPVc2IZ"
+        }
+      };
+      const $ = id => document.getElementById(id);
+      const state = {
+        mode: 'announcement',
+        session: 'ANTARCTICA',
+        sending: false,
+        videoId: null,
+        version: 0,
+        timer: null,
+        abort: null,
+        pending: null,
+        drafts: {
+          announcement: '',
+          youtube: ''
+        },
+        settings: structuredClone(DEFAULT_WEBHOOKS)
+      };
+      const templates = [
+        ['moon-off', 'Tidak live', '**Hai semuanya!**\n\nSasaUbi hari ini **tidak bisa live** ya.\n\n[tulis alasannya di sini]\n\nMaaf ya sudah menunggu. Sampai ketemu di live berikutnya!'],
+        ['tool', 'Gangguan teknis', '**Info gangguan teknis**\n\nHai semua, ada kendala teknis yang sedang diperbaiki.\n\n[tulis detail masalahnya]\n\nTerima kasih sudah sabar menunggu.'],
+        ['player-pause', 'Live dijeda', '**Live dijeda sebentar**\n\nKoneksi sedang bermasalah dan sedang kami perbaiki.\n\nKalau sudah stabil, SasaUbi langsung kembali. Tunggu sebentar ya!'],
+        ['broadcast', 'Live sekarang', '**LIVE SEKARANG di TikTok!**\n\nSasaUbi sudah live. Yuk, mampir dan temani sesi hari ini!\n\nhttps://www.tiktok.com/@sasaubi'],
+        ['calendar-event', 'Jadwal live', '**Jadwal live minggu ini**\n\n---\n**Senin** — Libur\n**Rabu** — 21.00 WIB\n**Jumat** — 20.00 WIB\n**Sabtu** — 19.00 WIB\n---\n\nJadwal dapat berubah. Pantau terus channel ini ya!'],
+        ['message-2', 'Info umum', '**Pengumuman untuk semuanya**\n\n[tulis pengumuman kamu di sini]\n\nTerima kasih sudah selalu mendukung **SasaUbi**.']
+      ];
+      const icon = name => `<i class="ti ti-${name}" aria-hidden="true"></i>`;
+
+      function toast(text) {
+        $('toast').textContent = text;
+        $('toast').hidden = false;
+        clearTimeout(toast.timer);
+        toast.timer = setTimeout(() => $('toast').hidden = true, 4500)
+      }
+
+      function esc(s) {
+        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;')
+      }
+
+      function inline(s) {
+        return esc(s).replace(/`([^`\n]+)`/g, '<code>$1</code>').replace(/\*\*([^\n]+?)\*\*/g, '<strong>$1</strong>').replace(/__([^\n]+?)__/g, '<u>$1</u>').replace(/~~([^\n]+?)~~/g, '<del>$1</del>').replace(/\*([^*\n]+)\*/g, '<em>$1</em>').replace(/\|\|([^\n]+?)\|\|/g, '<button type="button" class="spoiler" aria-label="Tampilkan spoiler">$1</button>')
+      }
+
+      function markdown(s) {
+        return s.split('\n').map(line => line.trim() === '---' ? '<hr>' : line.startsWith('> ') ? '<blockquote>' + inline(line.slice(2)) + '</blockquote>' : inline(line)).join('<br>')
+      }
+
+      function captionParts(raw) {
+        const result = [];
+        let buffer = [];
+        const flush = () => {
+          const content = buffer.join('\n').trim();
+          if (content) result.push({
+            type: 10,
+            content
+          });
+          buffer = []
+        };
+        for (const line of raw.split('\n')) {
+          if (line.trim() === '---') {
+            flush();
+            result.push({
+              type: 14,
+              divider: true,
+              spacing: 1
+            })
+          } else buffer.push(line)
+        }
+        flush();
+        return result
+      }
+
+      function videoId(raw) {
+        try {
+          const u = new URL(raw),
+            host = u.hostname.toLowerCase();
+          if (u.protocol !== 'https:' && u.protocol !== 'http:') return null;
+          let id;
+          if (host === 'youtu.be') id = u.pathname.slice(1).split('/')[0];
+          else if (['youtube.com', 'www.youtube.com', 'm.youtube.com', 'music.youtube.com'].includes(host)) {
+            const parts = u.pathname.split('/');
+            id = u.pathname === '/watch' ? u.searchParams.get('v') : ['shorts', 'embed', 'live'].includes(parts[1]) ? parts[2] : null
+          }
+          return /^[A-Za-z0-9_-]{11}$/.test(id || '') ? id : null
+        } catch {
+          return null
+        }
+      }
+
+      function webhookValid(raw) {
+        try {
+          const u = new URL(raw);
+          return u.protocol === 'https:' && ['discord.com', 'discordapp.com', 'canary.discord.com', 'ptb.discord.com'].includes(u.hostname) && !u.username && !u.password && /^\/api(?:\/v\d+)?\/webhooks\/\d+\/[A-Za-z0-9._-]+\/?$/.test(u.pathname)
+        } catch {
+          return false
+        }
+      }
+      const SESSION_NAMES = ['ANTARCTICA', 'VIOLENCE DISTRICT', 'RANDOM MAP'];
+
+      function effectiveCaption() {
+        return $('message').value.trim()
+      }
+
+      function setSession(session) {
+        if (!SESSION_NAMES.includes(session)) return;
+        state.session = session;
+        document.querySelectorAll('[data-session]').forEach(b => {
+          const active = b.dataset.session === session;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', String(active))
+        });
+        saveDraft();
+        render()
+      }
+
+      function saveDraft() {
+        state.drafts[state.mode] = $('message').value;
+        try {
+          localStorage.setItem('ubi_studio_v1', JSON.stringify({
+            drafts: state.drafts,
+            url: $('videoUrl').value,
+            title: $('videoTitle').value,
+            channel: $('videoChannel').value,
+            everyone: $('everyone').checked,
+            session: state.session
+          }));
+          $('draftStatus').innerHTML = icon('check') + 'Draft tersimpan di perangkat ini'
+        } catch {
+          $('draftStatus').textContent = 'Draft tersimpan selama halaman terbuka'
+        }
+      }
+
+      function render() {
+        const youtube = state.mode === 'youtube',
+          raw = $('message').value,
+          limit = 2000;
+        const date = new Date();
+        $('previewTime').textContent = 'Hari ini ' + date.toLocaleTimeString('id-ID', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+        $('previewDate').textContent = date.toLocaleDateString('id-ID', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        });
+        const caption = effectiveCaption();
+        $('previewSession').hidden = !youtube || !state.videoId;
+        $('previewSession').textContent = state.session;
+        $('previewText').innerHTML = caption ? markdown(caption) : youtube ? '' : '<span class="placeholder">Pesanmu akan tampil di sini.<br>Mulai menulis atau pilih salah satu template.</span>';
+        $('charCount').textContent = raw.length + ' / ' + limit;
+        $('charCount').classList.toggle('errorcount', raw.length > limit);
+        $('previewLength').textContent = caption.length + ' karakter caption';
+        $('mention').hidden = !$('everyone').checked;
+        $('botName').textContent = youtube ? 'Ubi YouTube Post' : 'SasaUbi Berbicara';
+        $('previewFooter').textContent = youtube ? 'youtube.com/@SasaUbii' : 'tiktok.com/@sasaubi';
+        $('previewChannel').textContent = youtube ? 'youtube-update' : 'pengumuman';
+        $('postType').textContent = youtube ? 'Posting video YouTube' : 'Pengumuman komunitas';
+        $('sendDestination').textContent = 'Tujuan: ' + (youtube ? 'YouTube' : 'Pengumuman') + ' · Test: channel percobaan';
+        $('videoPreview').hidden = !youtube || !state.videoId;
+        $('previewImage').hidden = !youtube || !state.videoId;
+        if (youtube && state.videoId) {
+          $('previewAuthor').textContent = $('videoChannel').value.trim() || 'SasaUbi';
+          $('previewTitle').textContent = $('videoTitle').value.trim() || 'Judul video belum diisi';
+          $('previewTitle').href = 'https://www.youtube.com/watch?v=' + state.videoId;
+          const src = 'https://i.ytimg.com/vi/' + state.videoId + '/hqdefault.jpg';
+          if ($('previewImage').getAttribute('src') !== src) $('previewImage').src = src
+        }
+        const valid = raw.length <= limit && (youtube ? state.videoId && $('videoTitle').value.trim() : raw.trim());
+        $('sendBtn').disabled = $('testBtn').disabled = state.sending || !valid
+      }
+
+      function switchMode(mode) {
+        if (state.sending) return;
+        state.drafts[state.mode] = $('message').value;
+        state.mode = mode;
+        document.documentElement.dataset.postMode = mode;
+        $('message').value = state.drafts[mode];
+        document.querySelectorAll('[data-mode]').forEach(b => {
+          const active = b.dataset.mode === mode;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-pressed', String(active))
+        });
+        const yt = mode === 'youtube';
+        $('templatesSection').hidden = yt;
+        $('videoSection').hidden = !yt;
+        $('editorTitle').textContent = yt ? 'Siapkan posting video' : 'Buat pengumuman';
+        $('breadcrumb').textContent = yt ? 'YouTube Post' : 'Pengumuman';
+        $('message').placeholder = yt ? 'Tulis seluruh caption di sini (opsional). Judul replay, tanggal, dan ajakan menonton bisa kamu atur sendiri.' : 'Ada kabar apa hari ini?\nTulis pesan untuk komunitasmu di sini...';
+        render()
+      }
+
+      function onVideo() {
+        state.version++;
+        const version = state.version;
+        clearTimeout(state.timer);
+        state.abort?.abort();
+        state.videoId = videoId($('videoUrl').value.trim());
+        $('videoTitle').value = '';
+        $('videoStatus').className = 'urlstatus';
+        if (!state.videoId) {
+          $('videoStatus').textContent = $('videoUrl').value ? 'Link YouTube belum valid.' : 'Mendukung video, Shorts, dan live YouTube.';
+          render();
+          saveDraft();
+          return
+        }
+        const id = state.videoId;
+        $('videoStatus').textContent = 'Mengambil informasi video...';
+        render();
+        saveDraft();
+        state.timer = setTimeout(async () => {
+          const controller = new AbortController();
+          state.abort = controller;
+          const timeout = setTimeout(() => controller.abort(), 8000);
+          const originalTitle = $('videoTitle').value;
+          try {
+            const res = await fetch('https://www.youtube.com/oembed?url=' + encodeURIComponent('https://www.youtube.com/watch?v=' + id) + '&format=json', {
+              signal: controller.signal
+            });
+            if (!res.ok) throw Error();
+            const data = await res.json();
+            if (version !== state.version) return;
+            if ($('videoTitle').value === originalTitle) $('videoTitle').value = String(data.title || '').slice(0, 180);
+            $('videoStatus').textContent = 'Video siap. Judul dapat kamu sesuaikan.';
+            $('videoStatus').className = 'urlstatus ok'
+          } catch {
+            if (version !== state.version) return;
+            $('videoStatus').textContent = 'Info otomatis tidak tersedia. Isi judul video secara manual.';
+            $('videoStatus').className = 'urlstatus error'
+          } finally {
+            clearTimeout(timeout);
+            if (version === state.version) {
+              render();
+              saveDraft()
+            }
+          }
+        }, 500)
+      }
+
+      function format(type) {
+        const ta = $('message'),
+          start = ta.selectionStart,
+          end = ta.selectionEnd,
+          selected = ta.value.slice(start, end) || 'teks';
+        const pairs = {
+          bold: ['**', '**'],
+          italic: ['*', '*'],
+          underline: ['__', '__'],
+          strikethrough: ['~~', '~~'],
+          code: ['`', '`'],
+          'eye-off': ['||', '||']
+        };
+        let text;
+        if (type === 'separator') text = (start && ta.value[start - 1] !== '\n' ? '\n' : '') + '---\n';
+        else if (type === 'quote') text = (start && ta.value[start - 1] !== '\n' ? '\n' : '') + selected.split('\n').map(s => '> ' + s).join('\n');
+        else text = pairs[type][0] + selected + pairs[type][1];
+        ta.setRangeText(text, start, end, 'end');
+        ta.focus();
+        saveDraft();
+        render()
+      }
+
+      function buildPayload(test) {
+        const yt = state.mode === 'youtube',
+          raw = $('message').value.trim();
+        if ($('message').value.length > 2000) throw Error('Pesan maksimal 2000 karakter.');
+        if (!yt && !raw) throw Error('Tulis pesan terlebih dahulu.');
+        if (yt && (!state.videoId || !$('videoTitle').value.trim())) throw Error('Isi link dan judul video terlebih dahulu.');
+        const parts = [];
+        const label = s => s.replace(/([\\`*_{}\[\]()<>~|])/g, '\\$1');
+        if (test) parts.push({
+          type: 10,
+          content: '**[TEST]** Pesan percobaan — bukan channel utama.'
+        });
+        if (yt) parts.push({
+          type: 10,
+          content: '**' + label($('videoChannel').value.trim() || 'SasaUbi') + '**\n**[' + label($('videoTitle').value.trim()) + '](https://www.youtube.com/watch?v=' + state.videoId + ')**'
+        });
+        if (yt) {
+          parts.push({
+            type: 14,
+            divider: true,
+            spacing: 1
+          }, {
+            type: 10,
+            content: '**' + state.session + '**'
+          }, {
+            type: 14,
+            divider: true,
+            spacing: 1
+          })
+        }
+        parts.push(...captionParts(effectiveCaption()));
+        if (yt) parts.push({
+          type: 12,
+          items: [{
+            media: {
+              url: 'https://i.ytimg.com/vi/' + state.videoId + '/hqdefault.jpg'
+            }
+          }]
+        });
+        parts.push({
+          type: 10,
+          content: '-# ' + (test ? 'Test webhook' : yt ? 'youtube.com/@SasaUbii' : 'tiktok.com/@sasaubi') + ' · ' + new Date().toLocaleDateString('id-ID')
+        });
+        const mention = !test && $('everyone').checked;
+        const components = [...(mention ? [{
+          type: 10,
+          content: '@everyone'
+        }] : []), {
+          type: 17,
+          accent_color: test ? 16234512 : 12615932,
+          components: parts
+        }];
+        if (parts.length + components.length > 40) throw Error('Terlalu banyak garis pembatas. Kurangi jumlahnya.');
+        if (parts.reduce((n, p) => n + (p.content?.length || 0), mention ? 9 : 0) > 4000) throw Error('Total teks terlalu panjang. Pendekkan pesan.');
+        return {
+          username: yt ? 'Ubi YouTube Post' : 'SasaUbi Berbicara',
+          avatar_url: 'https://raw.githubusercontent.com/RehanDias/s0urce/refs/heads/main/sasaubi.jpeg',
+          flags: 32768,
+          allowed_mentions: {
+            parse: mention ? ['everyone'] : []
+          },
+          components
+        }
+      }
+
+      function prepareSend(test) {
+        if (state.sending) return;
+        try {
+          const payload = buildPayload(test),
+            url = state.settings[state.mode][test ? 'test' : 'main'];
+          if (!webhookValid(url)) {
+            openSettings();
+            toast('Isi webhook ' + (test ? 'test' : 'utama') + ' terlebih dahulu.');
+            return
+          }
+          state.pending = {
+            payload,
+            url,
+            test
+          };
+          $('confirmTitle').textContent = test ? 'Kirim pesan test?' : 'Kirim ke channel utama?';
+          $('confirmNote').textContent = test ? 'Pesan akan masuk ke webhook test tanpa notifikasi @everyone.' : $('everyone').checked ? 'Pesan ini akan menyebut @everyone di channel utama.' : 'Pesan akan dikirim ke channel utama tanpa menyebut @everyone.';
+          $('confirmNote').textContent += ' Tujuan: ' + (test ? 'Webhook test bersama' : state.mode === 'youtube' ? 'Webhook YouTube' : 'Webhook pengumuman') + '.';
+          $('confirmContent').textContent = (state.mode === 'youtube' ? $('videoTitle').value + '\nhttps://www.youtube.com/watch?v=' + state.videoId + '\n\n' + state.session + '\n--------------------\n' : '') + effectiveCaption();
+          $('confirmation').showModal()
+        } catch (e) {
+          toast(e.message)
+        }
+      }
+      async function send() {
+        if (state.sending || !state.pending) return;
+        const pending = state.pending;
+        state.pending = null;
+        state.sending = true;
+        $('confirmation').close();
+        render();
+        document.querySelectorAll('.tab,.navbtn,input,textarea,.tool,.template,.session-choice,select,[data-settings]').forEach(e => e.disabled = true);
+        const button = $(pending.test ? 'testBtn' : 'sendBtn'),
+          original = button.innerHTML;
+        button.textContent = 'Mengirim...';
+        const controller = new AbortController(),
+          timeout = setTimeout(() => controller.abort(), 20000);
+        try {
+          const url = new URL(pending.url);
+          url.searchParams.set('wait', 'true');
+          url.searchParams.set('with_components', 'true');
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(pending.payload),
+            signal: controller.signal
+          });
+          if (!res.ok) {
+            let data = {};
+            try {
+              data = await res.json()
+            } catch {}
+            if (res.status === 429) throw Error('Batas pengiriman tercapai. Coba lagi dalam ' + Math.ceil(data.retry_after || 5) + ' detik.');
+            throw Error([401, 403, 404].includes(res.status) ? 'Webhook tidak tersedia. Periksa pengaturan.' : 'Discord menolak pesan (HTTP ' + res.status + '). Periksa isi pesan dan webhook.')
+          }
+          toast(pending.test ? 'Test berhasil dikirim tanpa @everyone.' : 'Pesan berhasil dikirim ke Discord.')
+        } catch (e) {
+          toast(e.name === 'AbortError' ? 'Waktu tunggu habis. Periksa channel sebelum mencoba lagi.' : e instanceof TypeError ? 'Koneksi gagal. Periksa internet dan channel sebelum mencoba lagi.' : e.message)
+        } finally {
+          clearTimeout(timeout);
+          state.sending = false;
+          button.innerHTML = original;
+          document.querySelectorAll('.tab,.navbtn,input,textarea,.tool,.template,.session-choice,select,[data-settings]').forEach(e => e.disabled = false);
+          render()
+        }
+      }
+
+      function openSettings() {
+        $('announcementWebhook').value = state.settings.announcement.main;
+        $('youtubeWebhook').value = state.settings.youtube.main;
+        $('testWebhook').value = state.settings.announcement.test;
+        $('settingsError').textContent = '';
+        $('settings').showModal()
+      }
+      $('settingsForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const announcement = $('announcementWebhook').value.trim(),
+          youtube = $('youtubeWebhook').value.trim(),
+          test = $('testWebhook').value.trim();
+        if ([announcement, youtube, test].some(s => s && !webhookValid(s))) {
+          $('settingsError').textContent = 'Gunakan URL webhook Discord yang valid.';
+          return
+        }
+        state.settings = {
+          announcement: {
+            main: announcement,
+            test
+          },
+          youtube: {
+            main: youtube,
+            test
+          }
+        };
+        $('settings').close();
+        toast('Pengaturan diterapkan untuk sesi ini.')
+      });
+      let pendingAction = null;
+
+      function showActionCard({
+        title,
+        description,
+        label,
+        preview = '',
+        danger = false,
+        onAccept
+      }) {
+        if (state.sending) return;
+        const dialog = $('actionDialog');
+        pendingAction = onAccept;
+        $('actionTitle').textContent = title;
+        $('actionDescription').textContent = description;
+        $('actionAccept').textContent = label;
+        $('actionPreview').textContent = preview;
+        $('actionPreview').hidden = !preview;
+        $('actionSymbol').innerHTML = icon(danger ? 'trash' : 'replace');
+        dialog.dataset.tone = danger ? 'danger' : 'normal';
+        dialog.showModal();
+        $('actionCancel').focus();
+      }
+      $('actionDialog').addEventListener('close', () => {
+        pendingAction = null
+      });
+      $('actionDialog').addEventListener('cancel', () => {
+        pendingAction = null
+      });
+      $('actionAccept').onclick = () => {
+        const apply = pendingAction;
+        pendingAction = null;
+        $('actionDialog').close();
+        if (apply) apply()
+      };
+      for (const [idx, t] of templates.entries()) {
+        const b = document.createElement('button');
+        b.className = 'template';
+        b.innerHTML = icon(t[0]) + '<span>' + t[1] + '</span>';
+        b.onclick = () => {
+          const apply = () => {
+            $('message').value = t[2];
+            document.querySelectorAll('.template').forEach(x => x.classList.remove('selected'));
+            b.classList.add('selected');
+            saveDraft();
+            render()
+          };
+          if (!$('message').value.trim()) {
+            apply();
+            return
+          }
+          showActionCard({
+            title: 'Pakai template ini?',
+            description: 'Isi pesan saat ini akan diganti dengan template ' + t[1] + '.',
+            label: 'Pakai template',
+            preview: t[2],
+            onAccept: apply
+          })
+        };
+        $('templates').appendChild(b)
+      }
+      for (const [type, title] of [
+          ['bold', 'Tebal'],
+          ['italic', 'Miring'],
+          ['underline', 'Garis bawah'],
+          ['strikethrough', 'Coret'],
+          ['code', 'Kode'],
+          ['eye-off', 'Spoiler'],
+          ['quote', 'Kutipan'],
+          ['separator', 'Garis pembatas']
+        ]) {
+        const b = document.createElement('button');
+        b.className = 'tool';
+        b.title = title;
+        b.setAttribute('aria-label', title);
+        b.innerHTML = icon(type);
+        b.onclick = () => format(type);
+        $('toolbar').appendChild(b)
+      }
+      const space = document.createElement('span');
+      space.className = 'spacer';
+      $('toolbar').appendChild(space);
+      const clear = document.createElement('button');
+      clear.className = 'tool';
+      clear.title = 'Hapus pesan';
+      clear.setAttribute('aria-label', 'Hapus pesan');
+      clear.innerHTML = icon('trash');
+      clear.onclick = () => {
+        if (!$('message').value) return;
+        showActionCard({
+          title: 'Hapus isi pesan?',
+          description: 'Pesan dan draft pada mode ini akan dikosongkan. Pastikan tidak ada teks yang masih ingin kamu simpan.',
+          label: 'Hapus pesan',
+          danger: true,
+          onAccept: () => {
+            $('message').value = '';
+            document.querySelectorAll('.template').forEach(x => x.classList.remove('selected'));
+            saveDraft();
+            render();
+            $('message').focus()
+          }
+        })
+      };
+      $('toolbar').appendChild(clear);
+      document.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => switchMode(b.dataset.mode));
+      document.querySelectorAll('[data-settings]').forEach(b => b.onclick = openSettings);
+      document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => $(b.dataset.close).close());
+      document.querySelectorAll('dialog').forEach(d => d.addEventListener('click', e => {
+        if (e.target === d) {
+          const r = d.getBoundingClientRect();
+          if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) d.close()
+        }
+      }));
+      $('message').addEventListener('input', () => {
+        saveDraft();
+        render()
+      });
+      $('videoUrl').addEventListener('input', onVideo);
+      for (const id of ['videoTitle', 'videoChannel', 'everyone']) $(id).addEventListener('input', () => {
+        saveDraft();
+        render()
+      });
+      $('previewText').onclick = e => {
+        if (e.target.classList.contains('spoiler')) {
+          e.target.classList.toggle('revealed');
+          e.target.setAttribute('aria-label', e.target.classList.contains('revealed') ? 'Sembunyikan spoiler' : 'Tampilkan spoiler')
+        }
+      };
+      $('previewImage').onerror = () => {
+        $('previewImage').hidden = true
+      };
+      $('testBtn').onclick = () => prepareSend(true);
+      $('sendBtn').onclick = () => prepareSend(false);
+      $('confirmSend').onclick = send;
+      document.addEventListener('keydown', e => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && !document.querySelector('dialog[open]')) {
+          e.preventDefault();
+          prepareSend(false)
+        }
+      });
+      document.querySelectorAll('[data-session]').forEach(b => b.onclick = () => setSession(b.dataset.session));
+      try {
+        const saved = JSON.parse(localStorage.getItem('ubi_studio_v1') || 'null');
+        if (saved) {
+          if (SESSION_NAMES.includes(saved.session)) state.session = saved.session;
+          for (const mode of ['announcement', 'youtube'])
+            if (typeof saved.drafts?.[mode] === 'string') state.drafts[mode] = saved.drafts[mode];
+          for (const [id, key] of [
+              ['videoUrl', 'url'],
+              ['videoTitle', 'title'],
+              ['videoChannel', 'channel']
+            ])
+            if (typeof saved[key] === 'string') $(id).value = saved[key];
+          if (typeof saved.everyone === 'boolean') $('everyone').checked = saved.everyone;
+          state.videoId = videoId($('videoUrl').value);
+          if (state.videoId) $('videoStatus').textContent = 'Video dipulihkan dari draft.'
+        } else {
+          const old = localStorage.getItem('sasa_draft');
+          if (old) state.drafts.announcement = old
+        }
+      } catch {}
+      $('message').value = state.drafts.announcement;
+      switchMode('announcement');
+      document.querySelectorAll('[data-session]').forEach(b => {
+        b.classList.toggle('active', b.dataset.session === state.session);
+        b.setAttribute('aria-pressed', String(b.dataset.session === state.session))
+      });
+    </script>
+  </body>
 </html>
